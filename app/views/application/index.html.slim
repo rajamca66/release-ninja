@@ -1,0 +1,4 @@
+- if user_signed_in?
+  | You're logged in
+- else
+  = link_to 'Login with Github', user_omniauth_authorize_path(:github)
