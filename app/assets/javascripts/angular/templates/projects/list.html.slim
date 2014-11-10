@@ -7,4 +7,4 @@ div content-for="header-body"
 div
   ul
     li ng-repeat="project in ctrl.projects"
-      | {{ project.title }}
+      a ui-sref="projects.show({id: project.id})" {{ project.title }}

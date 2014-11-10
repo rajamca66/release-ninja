@@ -31,4 +31,14 @@ angular.module("projects", [
       templateUrl: "projects/new.html",
       controller: "ProjectsNewController as ctrl"
     })
+    .state('projects.show', {
+      url: "/:id",
+      templateUrl: "projects/show.html",
+      controller: "ProjectsShowController as ctrl",
+      resolve: {
+        project: function(Restangular, $stateParams) {
+          return Restangular.one("projects", $stateParams.id).get();
+        }
+      }
+    })
 }]);
