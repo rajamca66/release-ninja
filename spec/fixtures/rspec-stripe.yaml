@@ -1,0 +1,89 @@
+---
+id: 24504509
+name: rspec-stripe
+full_name: sb8244/rspec-stripe
+owner:
+  login: sb8244
+  id: 1231659
+  avatar_url: https://avatars.githubusercontent.com/u/1231659?v=3
+  gravatar_id: ''
+  url: https://api.github.com/users/sb8244
+  html_url: https://github.com/sb8244
+  followers_url: https://api.github.com/users/sb8244/followers
+  following_url: https://api.github.com/users/sb8244/following{/other_user}
+  gists_url: https://api.github.com/users/sb8244/gists{/gist_id}
+  starred_url: https://api.github.com/users/sb8244/starred{/owner}{/repo}
+  subscriptions_url: https://api.github.com/users/sb8244/subscriptions
+  organizations_url: https://api.github.com/users/sb8244/orgs
+  repos_url: https://api.github.com/users/sb8244/repos
+  events_url: https://api.github.com/users/sb8244/events{/privacy}
+  received_events_url: https://api.github.com/users/sb8244/received_events
+  type: User
+  site_admin: false
+private: false
+html_url: https://github.com/sb8244/rspec-stripe
+description: ''
+fork: false
+url: https://api.github.com/repos/sb8244/rspec-stripe
+forks_url: https://api.github.com/repos/sb8244/rspec-stripe/forks
+keys_url: https://api.github.com/repos/sb8244/rspec-stripe/keys{/key_id}
+collaborators_url: https://api.github.com/repos/sb8244/rspec-stripe/collaborators{/collaborator}
+teams_url: https://api.github.com/repos/sb8244/rspec-stripe/teams
+hooks_url: https://api.github.com/repos/sb8244/rspec-stripe/hooks
+issue_events_url: https://api.github.com/repos/sb8244/rspec-stripe/issues/events{/number}
+events_url: https://api.github.com/repos/sb8244/rspec-stripe/events
+assignees_url: https://api.github.com/repos/sb8244/rspec-stripe/assignees{/user}
+branches_url: https://api.github.com/repos/sb8244/rspec-stripe/branches{/branch}
+tags_url: https://api.github.com/repos/sb8244/rspec-stripe/tags
+blobs_url: https://api.github.com/repos/sb8244/rspec-stripe/git/blobs{/sha}
+git_tags_url: https://api.github.com/repos/sb8244/rspec-stripe/git/tags{/sha}
+git_refs_url: https://api.github.com/repos/sb8244/rspec-stripe/git/refs{/sha}
+trees_url: https://api.github.com/repos/sb8244/rspec-stripe/git/trees{/sha}
+statuses_url: https://api.github.com/repos/sb8244/rspec-stripe/statuses/{sha}
+languages_url: https://api.github.com/repos/sb8244/rspec-stripe/languages
+stargazers_url: https://api.github.com/repos/sb8244/rspec-stripe/stargazers
+contributors_url: https://api.github.com/repos/sb8244/rspec-stripe/contributors
+subscribers_url: https://api.github.com/repos/sb8244/rspec-stripe/subscribers
+subscription_url: https://api.github.com/repos/sb8244/rspec-stripe/subscription
+commits_url: https://api.github.com/repos/sb8244/rspec-stripe/commits{/sha}
+git_commits_url: https://api.github.com/repos/sb8244/rspec-stripe/git/commits{/sha}
+comments_url: https://api.github.com/repos/sb8244/rspec-stripe/comments{/number}
+issue_comment_url: https://api.github.com/repos/sb8244/rspec-stripe/issues/comments/{number}
+contents_url: https://api.github.com/repos/sb8244/rspec-stripe/contents/{+path}
+compare_url: https://api.github.com/repos/sb8244/rspec-stripe/compare/{base}...{head}
+merges_url: https://api.github.com/repos/sb8244/rspec-stripe/merges
+archive_url: https://api.github.com/repos/sb8244/rspec-stripe/{archive_format}{/ref}
+downloads_url: https://api.github.com/repos/sb8244/rspec-stripe/downloads
+issues_url: https://api.github.com/repos/sb8244/rspec-stripe/issues{/number}
+pulls_url: https://api.github.com/repos/sb8244/rspec-stripe/pulls{/number}
+milestones_url: https://api.github.com/repos/sb8244/rspec-stripe/milestones{/number}
+notifications_url: https://api.github.com/repos/sb8244/rspec-stripe/notifications{?since,all,participating}
+labels_url: https://api.github.com/repos/sb8244/rspec-stripe/labels{/name}
+releases_url: https://api.github.com/repos/sb8244/rspec-stripe/releases{/id}
+created_at: '2014-09-26T15:20:14Z'
+updated_at: '2014-09-30T12:58:32Z'
+pushed_at: '2014-10-28T21:27:04Z'
+git_url: git://github.com/sb8244/rspec-stripe.git
+ssh_url: git@github.com:sb8244/rspec-stripe.git
+clone_url: https://github.com/sb8244/rspec-stripe.git
+svn_url: https://github.com/sb8244/rspec-stripe
+homepage:
+size: 191
+stargazers_count: 2
+watchers_count: 2
+language: Ruby
+has_issues: true
+has_downloads: true
+has_wiki: true
+has_pages: false
+forks_count: 1
+mirror_url:
+open_issues_count: 0
+forks: 1
+open_issues: 0
+watchers: 2
+default_branch: master
+permissions:
+  admin: true
+  push: true
+  pull: true

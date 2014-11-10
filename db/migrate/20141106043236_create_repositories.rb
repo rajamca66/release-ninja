@@ -1,13 +1,11 @@
 class CreateRepositories < ActiveRecord::Migration
   def change
     create_table :repositories do |t|
-      t.string :name
-      t.string :full_name
-      t.text :description
-      t.boolean :private
-      t.text :url
-      t.string :default_branch
-      t.integer :github_id
+      t.string :full_name, null: false
+      t.boolean :private, null: false
+      t.text :url, null: false
+      t.string :default_branch, null: false
+      t.integer :github_id, null: false
 
       t.timestamps
     end

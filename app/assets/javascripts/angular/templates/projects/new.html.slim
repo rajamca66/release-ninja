@@ -1,0 +1,40 @@
+div content-for="header-title" Create New Project
+div content-for="header-body"
+  .controls
+    a.btn.btn-primary ui-sref="projects.list" All Projects
+
+#new-project
+  .step
+    .title.row
+      .col-xs-5 Name it
+      .col-xs-3
+        input.form-control type="text" placeholder="Your Super Cool Weekly Update" ng-model="data.title"
+
+  .step
+    .title.row
+      .col-xs-5 Select your repositories
+      .col-xs-3: input.form-control placeholder="Filter" ng-model="filter"
+
+    div ng-hide="!!ctrl.repos"
+      | Loading...
+    ul.list-group ng-show="!!ctrl.repos"
+      li.list-group-item ng-repeat="repo in ctrl.repos | filter: { full_name: filter }" ng-click="data.repos[repo.full_name] = !data.repos[repo.full_name]"
+        input type="checkbox" ng-model="data.repos[repo.full_name]" ng-click="$event.stopPropagation()"
+        '
+        a ng-href="{{repo.html_url}}" target="_blank": i.fa.fa-github
+        '
+        span {{repo.full_name}}
+
+  .step
+    .title.row Confirm
+
+    div
+      strong Title:
+      span  {{ data.title }}
+
+    div
+      strong Repositories:
+      ul.list-group
+        li.list-group-item ng-repeat="(name,val) in data.repos | filter: false" {{ name }}
+
+    .btn.btn-success.btn-lg ng-click="create(data)" ng-disabled="!isValid(data) || processing" Create Project

@@ -10,7 +10,8 @@ gem 'rails', '4.1.7'
 gem 'dotenv-rails'
 
 # db
-gem 'sqlite3'
+gem 'pg'
+gem 'active_model_serializers'
 
 # users
 gem 'devise'
@@ -30,9 +31,12 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
   gem 'faker'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'vcr'
   gem 'webmock'
 end

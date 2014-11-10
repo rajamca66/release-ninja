@@ -1,0 +1,40 @@
+$header-bg: #315876;
+
+@import "font-awesome/css/font-awesome.min.css";
+@import "fonts";
+@import "bootstrap";
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.jumbotron {
+  background: url(image_path("bg.png"));
+  background-color: $header-bg;
+  color: rgba(255,255,255,.8);
+  padding: 30px 0px;
+  position: relative;
+
+  h1 {
+    color: #ffffff;
+    font-size: 48px;
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+.step {
+  margin-bottom: 30px;
+
+  .title {
+    font-size: 2em;
+    border-left: 2px solid #ccc;
+    padding-left: 20px;
+    margin-bottom: 0.5em;
+  }
+}

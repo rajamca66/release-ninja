@@ -11,18 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106043236) do
+ActiveRecord::Schema.define(version: 20141110050825) do
 
-  create_table "repositories", force: true do |t|
-    t.string   "name"
-    t.string   "full_name"
-    t.text     "description"
-    t.boolean  "private"
-    t.text     "url"
-    t.string   "default_branch"
-    t.integer  "github_id"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "projects", force: true do |t|
+    t.string   "title",      null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "repositories", force: true do |t|
+    t.string   "full_name",      null: false
+    t.boolean  "private",        null: false
+    t.text     "url",            null: false
+    t.string   "default_branch", null: false
+    t.integer  "github_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id",     null: false
   end
 
   create_table "users", force: true do |t|

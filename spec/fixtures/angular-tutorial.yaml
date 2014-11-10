@@ -1,0 +1,89 @@
+---
+id: 24808746
+name: angular-tutorial
+full_name: sb8244/angular-tutorial
+owner:
+  login: sb8244
+  id: 1231659
+  avatar_url: https://avatars.githubusercontent.com/u/1231659?v=3
+  gravatar_id: ''
+  url: https://api.github.com/users/sb8244
+  html_url: https://github.com/sb8244
+  followers_url: https://api.github.com/users/sb8244/followers
+  following_url: https://api.github.com/users/sb8244/following{/other_user}
+  gists_url: https://api.github.com/users/sb8244/gists{/gist_id}
+  starred_url: https://api.github.com/users/sb8244/starred{/owner}{/repo}
+  subscriptions_url: https://api.github.com/users/sb8244/subscriptions
+  organizations_url: https://api.github.com/users/sb8244/orgs
+  repos_url: https://api.github.com/users/sb8244/repos
+  events_url: https://api.github.com/users/sb8244/events{/privacy}
+  received_events_url: https://api.github.com/users/sb8244/received_events
+  type: User
+  site_admin: false
+private: false
+html_url: https://github.com/sb8244/angular-tutorial
+description: ''
+fork: false
+url: https://api.github.com/repos/sb8244/angular-tutorial
+forks_url: https://api.github.com/repos/sb8244/angular-tutorial/forks
+keys_url: https://api.github.com/repos/sb8244/angular-tutorial/keys{/key_id}
+collaborators_url: https://api.github.com/repos/sb8244/angular-tutorial/collaborators{/collaborator}
+teams_url: https://api.github.com/repos/sb8244/angular-tutorial/teams
+hooks_url: https://api.github.com/repos/sb8244/angular-tutorial/hooks
+issue_events_url: https://api.github.com/repos/sb8244/angular-tutorial/issues/events{/number}
+events_url: https://api.github.com/repos/sb8244/angular-tutorial/events
+assignees_url: https://api.github.com/repos/sb8244/angular-tutorial/assignees{/user}
+branches_url: https://api.github.com/repos/sb8244/angular-tutorial/branches{/branch}
+tags_url: https://api.github.com/repos/sb8244/angular-tutorial/tags
+blobs_url: https://api.github.com/repos/sb8244/angular-tutorial/git/blobs{/sha}
+git_tags_url: https://api.github.com/repos/sb8244/angular-tutorial/git/tags{/sha}
+git_refs_url: https://api.github.com/repos/sb8244/angular-tutorial/git/refs{/sha}
+trees_url: https://api.github.com/repos/sb8244/angular-tutorial/git/trees{/sha}
+statuses_url: https://api.github.com/repos/sb8244/angular-tutorial/statuses/{sha}
+languages_url: https://api.github.com/repos/sb8244/angular-tutorial/languages
+stargazers_url: https://api.github.com/repos/sb8244/angular-tutorial/stargazers
+contributors_url: https://api.github.com/repos/sb8244/angular-tutorial/contributors
+subscribers_url: https://api.github.com/repos/sb8244/angular-tutorial/subscribers
+subscription_url: https://api.github.com/repos/sb8244/angular-tutorial/subscription
+commits_url: https://api.github.com/repos/sb8244/angular-tutorial/commits{/sha}
+git_commits_url: https://api.github.com/repos/sb8244/angular-tutorial/git/commits{/sha}
+comments_url: https://api.github.com/repos/sb8244/angular-tutorial/comments{/number}
+issue_comment_url: https://api.github.com/repos/sb8244/angular-tutorial/issues/comments/{number}
+contents_url: https://api.github.com/repos/sb8244/angular-tutorial/contents/{+path}
+compare_url: https://api.github.com/repos/sb8244/angular-tutorial/compare/{base}...{head}
+merges_url: https://api.github.com/repos/sb8244/angular-tutorial/merges
+archive_url: https://api.github.com/repos/sb8244/angular-tutorial/{archive_format}{/ref}
+downloads_url: https://api.github.com/repos/sb8244/angular-tutorial/downloads
+issues_url: https://api.github.com/repos/sb8244/angular-tutorial/issues{/number}
+pulls_url: https://api.github.com/repos/sb8244/angular-tutorial/pulls{/number}
+milestones_url: https://api.github.com/repos/sb8244/angular-tutorial/milestones{/number}
+notifications_url: https://api.github.com/repos/sb8244/angular-tutorial/notifications{?since,all,participating}
+labels_url: https://api.github.com/repos/sb8244/angular-tutorial/labels{/name}
+releases_url: https://api.github.com/repos/sb8244/angular-tutorial/releases{/id}
+created_at: '2014-10-05T04:48:34Z'
+updated_at: '2014-10-26T00:25:00Z'
+pushed_at: '2014-10-06T20:58:14Z'
+git_url: git://github.com/sb8244/angular-tutorial.git
+ssh_url: git@github.com:sb8244/angular-tutorial.git
+clone_url: https://github.com/sb8244/angular-tutorial.git
+svn_url: https://github.com/sb8244/angular-tutorial
+homepage:
+size: 824
+stargazers_count: 3
+watchers_count: 3
+language: Ruby
+has_issues: true
+has_downloads: true
+has_wiki: true
+has_pages: false
+forks_count: 0
+mirror_url:
+open_issues_count: 0
+forks: 0
+open_issues: 0
+watchers: 3
+default_branch: master
+permissions:
+  admin: true
+  push: true
+  pull: true

@@ -4,5 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
+    if current_user
+      render text: "", layout: "ng"
+    else
+      render layout: "application"
+    end
   end
 end

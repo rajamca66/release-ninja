@@ -1,0 +1,10 @@
+div content-for="header-title" Your Projects
+div content-for="header-body"
+  p Projects are used...
+  .controls
+    a.btn.btn-primary ui-sref="projects.new" New Project
+
+div
+  ul
+    li ng-repeat="project in ctrl.projects"
+      | {{ project.title }}

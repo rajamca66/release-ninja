@@ -7,11 +7,13 @@ class RepositoryList
 
   def repositories
     @repositories ||= begin
-      repos = client.repositories.list.to_a
-      organizations.each do |org|
-        repos = repos + client.repositories.list(org: org).to_a
+      Rails.cache.fetch(expires_in: 2.minute) do
+        repos = client.repositories.list.to_a
+        organizations.each do |org|
+          repos = repos + client.repositories.list(org: org).to_a
+        end
+        repos
       end
-      repos
     end
   end
 

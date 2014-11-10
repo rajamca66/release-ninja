@@ -15,8 +15,16 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
+module JsonHelpers
+  def response_json
+    @response_json ||= JSON.parse(response.body)
+  end
+end
+
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include JsonHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :controller
+
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 end

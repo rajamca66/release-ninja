@@ -1,0 +1,20 @@
+doctype 5
+html ng-app="CustomerKnow"
+  head
+    base href="/"
+    title Customer Know
+    = stylesheet_link_tag 'application', media: 'all'
+  body
+    nav.navbar.navbar-default.navbar-static-top role="navigation" style=("margin-bottom: 0")
+      .navbar-header
+        a.navbar-brand href="/"  Customer Know
+
+    .jumbotron
+      .container
+        h1 yield-to="header-title"
+        div yield-to="header-body"
+
+    .container
+      div ui-view=true
+
+    = javascript_include_tag 'angular-app'
