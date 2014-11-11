@@ -4,5 +4,52 @@ div content-for="header-body"
     a.btn.btn-primary ui-sref="projects.list" All Projects
     a.btn.btn-primary ui-sref="projects.new" New Project
 
-div
-  | Here
+.row
+  .col-xs-4
+    h3 Releases
+    ul.list-group
+      li.list-group-item ng-repeat="release in ctrl.releases"
+        | {{release.title}}
+      li.list-group-item ng-if="ctrl.releases.length == 0"
+        | No Releases
+
+  .col-xs-8
+    h3
+      ' Notes
+      button.btn.btn-primary.btn-xs ng-click="ctrl.newNote()" Create a New Note
+
+    ul.list-group
+      li.list-group-item ng-repeat="note in ctrl.notes"
+        h4.list-group-item-heading ng-hide="note.show"
+          ' {{note.title}}
+          .pull-right
+            button.btn.btn-primary.btn-xs ng-click="note.show = !note.show" Edit Note
+
+        form ng-submit="ctrl.save(note)" ng-class="{ hidden: !note.show }"
+          h4.list-group-item-heading.row
+            label.control-label.col-xs-4 for="note_title" Title:
+            .col-xs-8
+              input.form-control type="text" id="note_title" name="title" ng-model="note.title" placeholder="Feature X Rolled Out" required=true
+          div.list-group-item-text
+            .row.bb
+              .col-xs-4
+                label.control-label for="note_body" Body (Markdown):
+                p: a href="https://help.github.com/articles/markdown-basics/" target="_blank" Markdown Basics
+              .col-xs-8
+                textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" required=true
+            .row
+              .col-xs-4: label.control-label for="note_level" Severity
+              .col-xs-8
+                select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
+                  option
+            .row
+              .col-xs-4
+              .col-xs-8
+                button.btn.btn-success ng-show="note.new" Create Note
+                button.btn.btn-success ng-hide="note.new" Update Note
+                button.btn.btn-danger  ng-hide="note.new" type="button" ng-click="ctrl.remove(note)" Remove Note
+                button.btn.btn-warning ng-hide="note.new" type="button" ng-click="note.show = false" Cancel
+
+      li.list-group-item ng-if="ctrl.notes.length == 0"
+        | No Notes
+

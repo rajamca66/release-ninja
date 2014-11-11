@@ -38,6 +38,9 @@ angular.module("projects", [
       resolve: {
         project: function(Restangular, $stateParams) {
           return Restangular.one("projects", $stateParams.id).get();
+        },
+        notes: function(Restangular, $stateParams) {
+          return Restangular.one("projects", $stateParams.id).all("notes").getList();
         }
       }
     })

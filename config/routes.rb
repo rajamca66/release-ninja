@@ -4,7 +4,9 @@ Rails.application.routes.draw do
              controllers: { omniauth_callbacks: "oauth_callbacks" }
 
   namespace :api do
-    resources :projects
+    resources :projects do
+      resources :notes
+    end
 
     namespace :github do
       resources :repositories, only: [:index]

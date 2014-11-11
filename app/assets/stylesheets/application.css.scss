@@ -42,3 +42,18 @@ html, body {
     margin-bottom: 0.5em;
   }
 }
+
+.control-label {
+  height: $input-height-base;
+  line-height: $input-height-base;
+}
+
+textarea {
+  &.form-control {
+    height: 150px;
+  }
+}
+
+.bb {
+  margin-bottom: 15px;
+}

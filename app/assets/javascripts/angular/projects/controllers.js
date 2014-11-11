@@ -2,7 +2,6 @@
   var ListCtrl = function(projects, $scope) {
     this.projects = projects;
   };
-  ListCtrl.$inject = ["projects", "$scope"];
 
   var NewCtrl = function($scope, Restangular, $state) {
     var self = this;
@@ -44,12 +43,48 @@
       return clone;
     }
   };
-  NewCtrl.$inject = ["$scope", "Restangular", "$state"];
 
-  var ShowCtrl = function($scope, project) {
+  var ShowCtrl = function($scope, project, notes) {
+    var self = this;
     this.project = project;
+    this.notes = notes;
+    this.releases = [];
+    this.severityLevels = {
+      major: "Major",
+      minor: "Minor",
+      fix: "Fix"
+    };
+
+    this.newNote = function() {
+      this.notes.unshift({new: true, show: true});
+    };
+
+    this.save = function(note) {
+      if (note.new) {
+        self.project.all("notes").post(note).then(function(createdNote) {
+          self.notes = _.map(self.notes, function(el) {
+            return el == note ? createdNote : el;
+          });
+        });
+      } else {
+        note.put().then(function() {
+          note.show = false;
+        });
+      }
+    };
+
+    this.remove = function(note) {
+      self.project.one("notes", note.id).remove().then(function() {
+        _.remove(self.notes, function(el) {
+          return el == note;
+        });
+      });
+    };
   };
-  ShowCtrl.$inject = ["$scope", "project"];
+
+  ListCtrl.$inject = ["projects", "$scope"];
+  NewCtrl.$inject = ["$scope", "Restangular", "$state"];
+  ShowCtrl.$inject = ["$scope", "project", "notes"];
 
   angular.module("projects").controller('ProjectsListController', ListCtrl)
                             .controller('ProjectsNewController', NewCtrl)

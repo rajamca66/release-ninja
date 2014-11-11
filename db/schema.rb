@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110050825) do
+ActiveRecord::Schema.define(version: 20141111034501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notes", force: true do |t|
+    t.string   "title",                     null: false
+    t.string   "level",                     null: false
+    t.text     "markdown_body",             null: false
+    t.integer  "order",         default: 0, null: false
+    t.integer  "release_id"
+    t.integer  "project_id",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["project_id"], name: "index_notes_on_project_id", using: :btree
+  add_index "notes", ["release_id"], name: "index_notes_on_release_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title",      null: false
@@ -24,6 +38,12 @@ ActiveRecord::Schema.define(version: 20141110050825) do
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "releases", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "repositories", force: true do |t|
     t.string   "full_name",      null: false
