@@ -42,13 +42,17 @@ div content-for="header-body"
               .col-xs-8
                 select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
                   option
-            .row
+            .row.bb
               .col-xs-4
               .col-xs-8
                 button.btn.btn-success ng-show="note.new" Create Note
                 button.btn.btn-success ng-hide="note.new" Update Note
                 button.btn.btn-danger  ng-hide="note.new" type="button" ng-click="ctrl.remove(note)" Remove Note
                 button.btn.btn-warning ng-hide="note.new" type="button" ng-click="note.show = false" Cancel
+
+            .row ng-if="note.html_preview"
+              .col-xs-4: label.control-label Preview
+              .col-xs-8: div.scrollverflow ng-bind-html="note.html_preview"
 
       li.list-group-item ng-if="ctrl.notes.length == 0"
         | No Notes

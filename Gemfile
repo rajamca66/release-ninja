@@ -23,8 +23,12 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
+# pipeline
 gem 'slim-rails'
-gem 'bootstrap-sass'
+
+# markdown
+gem 'github-markup'
+gem 'redcarpet'
 
 group :development do
   gem 'spring-commands-rspec'

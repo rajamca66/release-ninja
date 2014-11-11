@@ -1,7 +1,7 @@
 /*
  ==== Standard ====
  = require jquery
- = require bootstrap
+ = require bootstrap-sass-official
 
  ==== Angular ====
  = require angular
@@ -10,6 +10,7 @@
  = require lodash
  = require restangular
  = require angular-ui-router
+ = require angular-sanitize
 
  = require ./angular/templates
  = require ./angular/shared/module
@@ -21,7 +22,8 @@ var APP = angular.module('CustomerKnow', [
   'ui.router',
   'templates',
   'restangular',
-  'projects'
+  'projects',
+  'ngSanitize'
 ]);
 
 APP.config(['$urlRouterProvider', '$locationProvider', 'RestangularProvider',
