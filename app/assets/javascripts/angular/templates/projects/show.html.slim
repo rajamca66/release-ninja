@@ -14,12 +14,15 @@ div content-for="header-body"
         | No Reports
 
   .col-xs-8
-    h3
-      ' Notes
-      button.btn.btn-primary.btn-xs ng-click="ctrl.newNote()" Create a New Note
+    h3.header.clearfix
+      .pull-left
+        ' Notes
+        button.btn.btn-primary.btn-xs ng-click="ctrl.newNote()" Create a New Note
+      .pull-right
+        input.form-control placeholder="Search by Title" ng-model="filterTitle"
 
     ul.list-group
-      li.list-group-item ng-repeat="note in ctrl.notes"
+      li.list-group-item ng-repeat="note in ctrl.notes | filter: { title: filterTitle }"
         h4.list-group-item-heading ng-hide="note.show" ng-click="note.show = !note.show"
           span {{note.title}}
           span ng-if="note.published"
@@ -48,7 +51,7 @@ div content-for="header-body"
               .col-xs-8
                 label
                   input type="checkbox" id="note_published" ng-model="note.published"
-                  span &nbsp;Published? Note will appear in feed even without a report.
+                  span &nbsp;Published? Note will appear Public Change Log
             .row.bb
               .col-xs-4
               .col-xs-8
