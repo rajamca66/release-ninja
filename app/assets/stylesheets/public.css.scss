@@ -1,0 +1,18 @@
+$navbar-height: 175px;
+$navbar-default-bg: salmon;
+
+$navbar-default-color: white;
+$navbar-default-brand-color: $navbar-default-color;
+$navbar-default-brand-hover-color: $navbar-default-color;
+
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+
+.navbar {
+  border: 0px;
+
+  .navbar-brand {
+    font-size: $font-size-base * 2;
+    line-height: $line-height-computed * 2;
+    padding: (($navbar-height - $line-height-computed * 2) / 2) $navbar-padding-horizontal;
+  }
+}

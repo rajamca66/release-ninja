@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :public do
+    get "/:id" => "notes#show"
+  end
+
   get "*path", to: "application#index"
   root 'application#index'
 end

@@ -18,6 +18,7 @@ div content-for="header-body"
       .pull-left
         ' Release Notes
         button.btn.btn-primary.btn-xs ng-click="ctrl.newNote()" Create a New Note
+        a.btn.btn-primary.btn-xs ng-href="/public/{{ctrl.project.id}}" target="_blank" Public Change Log
       .pull-right
         input.form-control placeholder="Search by Title" ng-model="filterTitle"
 
