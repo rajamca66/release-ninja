@@ -8,3 +8,5 @@ Notes themselves aren't customer facing unless in release
 
 Releases are in an rss feed
 Releases are in beautiful 1 page format
+
+Tag by headlines that indicate severity (# Bug Fix, # New Feature, # Major Feature)
