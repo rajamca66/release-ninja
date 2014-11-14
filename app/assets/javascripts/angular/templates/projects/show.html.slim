@@ -16,16 +16,16 @@ div content-for="header-body"
   .col-xs-8
     h3.header.clearfix
       .pull-left
-        ' Notes
+        ' Release Notes
         button.btn.btn-primary.btn-xs ng-click="ctrl.newNote()" Create a New Note
       .pull-right
         input.form-control placeholder="Search by Title" ng-model="filterTitle"
 
     ul.list-group
-      li.list-group-item ng-repeat="note in ctrl.notes | filter: { title: filterTitle }"
-        h4.list-group-item-heading ng-hide="note.show" ng-click="note.show = !note.show"
+      li.list-group-item ng-repeat="note in ctrl.notes | filter: { title: filterTitle } | orderBy: id"
+        h4.list-group-item-heading.note-heading ng-hide="note.show" ng-click="note.show = !note.show"
           span {{note.title}}
-          span ng-if="note.published"
+          span.label.label-success ng-if="note.published" published
           .pull-right
             button.btn.btn-primary.btn-xs Edit Note
 
