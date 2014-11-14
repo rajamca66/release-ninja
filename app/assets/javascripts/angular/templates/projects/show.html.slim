@@ -20,10 +20,11 @@ div content-for="header-body"
 
     ul.list-group
       li.list-group-item ng-repeat="note in ctrl.notes"
-        h4.list-group-item-heading ng-hide="note.show"
-          ' {{note.title}}
+        h4.list-group-item-heading ng-hide="note.show" ng-click="note.show = !note.show"
+          span {{note.title}}
+          span ng-if="note.published || note.release_published"
           .pull-right
-            button.btn.btn-primary.btn-xs ng-click="note.show = !note.show" Edit Note
+            button.btn.btn-primary.btn-xs Edit Note
 
         form ng-submit="ctrl.save(note)" ng-class="{ hidden: !note.show }"
           h4.list-group-item-heading.row
@@ -37,7 +38,7 @@ div content-for="header-body"
                 p: a href="https://help.github.com/articles/markdown-basics/" target="_blank" Markdown Basics
               .col-xs-8
                 textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" required=true
-            .row
+            .row.bb
               .col-xs-4: label.control-label for="note_level" Severity
               .col-xs-8
                 select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
@@ -45,10 +46,17 @@ div content-for="header-body"
             .row.bb
               .col-xs-4
               .col-xs-8
-                button.btn.btn-success ng-show="note.new" Create Note
-                button.btn.btn-success ng-hide="note.new" Update Note
-                button.btn.btn-danger  ng-hide="note.new" type="button" ng-click="ctrl.remove(note)" Remove Note
-                button.btn.btn-warning ng-hide="note.new" type="button" ng-click="note.show = false" Cancel
+                label
+                  input type="checkbox" id="note_published" ng-model="note.published"
+                  span &nbsp;Published? Note will appear in feed even without a release.
+            .row.bb
+              .col-xs-4
+              .col-xs-8
+                .btn-group
+                  button.btn.btn-success ng-if="note.new" Create Note
+                  button.btn.btn-success ng-if="!note.new" Update Note
+                  button.btn.btn-danger  ng-if="!note.new" type="button" ng-click="ctrl.remove(note)" Remove Note
+                  button.btn.btn-warning ng-if="!note.new" type="button" ng-click="note.show = false" Cancel
 
             .row ng-if="note.html_preview"
               .col-xs-4: label.control-label Preview
