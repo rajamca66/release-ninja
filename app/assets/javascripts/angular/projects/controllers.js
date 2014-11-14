@@ -48,7 +48,7 @@
     var self = this;
     this.project = project;
     this.notes = notes;
-    this.releases = [];
+    this.reports = [];
     this.severityLevels = {
       major: "Major",
       minor: "Minor",

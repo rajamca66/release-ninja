@@ -6,12 +6,12 @@ div content-for="header-body"
 
 .row
   .col-xs-4
-    h3 Releases
+    h3 Reports
     ul.list-group
-      li.list-group-item ng-repeat="release in ctrl.releases"
-        | {{release.title}}
-      li.list-group-item ng-if="ctrl.releases.length == 0"
-        | No Releases
+      li.list-group-item ng-repeat="report in ctrl.reports"
+        | {{report.title}}
+      li.list-group-item ng-if="ctrl.reports.length == 0"
+        | No Reports
 
   .col-xs-8
     h3
@@ -22,7 +22,7 @@ div content-for="header-body"
       li.list-group-item ng-repeat="note in ctrl.notes"
         h4.list-group-item-heading ng-hide="note.show" ng-click="note.show = !note.show"
           span {{note.title}}
-          span ng-if="note.published || note.release_published"
+          span ng-if="note.published"
           .pull-right
             button.btn.btn-primary.btn-xs Edit Note
 
@@ -48,7 +48,7 @@ div content-for="header-body"
               .col-xs-8
                 label
                   input type="checkbox" id="note_published" ng-model="note.published"
-                  span &nbsp;Published? Note will appear in feed even without a release.
+                  span &nbsp;Published? Note will appear in feed even without a report.
             .row.bb
               .col-xs-4
               .col-xs-8

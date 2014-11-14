@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114011014) do
+ActiveRecord::Schema.define(version: 20141114014928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20141114011014) do
     t.string   "level",                     null: false
     t.text     "markdown_body",             null: false
     t.integer  "order",         default: 0, null: false
-    t.integer  "release_id"
+    t.integer  "report_id"
     t.integer  "project_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20141114011014) do
   end
 
   add_index "notes", ["project_id"], name: "index_notes_on_project_id", using: :btree
-  add_index "notes", ["release_id"], name: "index_notes_on_release_id", using: :btree
+  add_index "notes", ["report_id"], name: "index_notes_on_report_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title",      null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20141114011014) do
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
-  create_table "releases", force: true do |t|
+  create_table "reports", force: true do |t|
     t.string   "name",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
