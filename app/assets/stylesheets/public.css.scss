@@ -1,4 +1,5 @@
 $navbar-height: 175px;
+$navbar-border-radius: 0px;
 //https://color.adobe.com/Aspirin-C-color-theme-251864/edit/?copy=true&base=4&rule=Custom&selected=1&name=Copy%20of%20Aspirin%20C&mode=cmyk&rgbvalues=0.13159999999999994,0.32430000000000003,0.47,0.08551295999999997,0.583278016,0.64,0.6745000000000001,0.9405,0.95,0.952941,1,0.886275,0.92,0.4968,0&swatchOrder=0,1,2,3,4
 $navbar-default-bg: #1695A3;
 
@@ -7,6 +8,13 @@ $navbar-default-brand-color: $navbar-default-color;
 $navbar-default-brand-hover-color: $navbar-default-color;
 
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300);
+
+html, body {
+  background: #f0f1f3;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
 
 .navbar {
   border: 0px;
@@ -15,5 +23,34 @@ $navbar-default-brand-hover-color: $navbar-default-color;
     font-size: $font-size-base * 2;
     line-height: $line-height-computed * 2;
     padding: (($navbar-height - $line-height-computed * 2) / 2) $navbar-padding-horizontal;
+  }
+}
+
+.container {
+  width: 750px;
+}
+
+.note-body {
+  img {
+    @extend .img-responsive;
+  }
+}
+
+.note {
+  @extend .panel;
+  @extend .panel-default;
+
+  .note-title {
+    @extend .panel-heading;
+    font-size: 1.4em;
+
+    p {
+      margin: 0px;
+      display: inline;
+    }
+  }
+
+  .note-body {
+    @extend .panel-body;
   }
 }

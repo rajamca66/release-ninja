@@ -43,6 +43,11 @@ div content-for="header-body"
               .col-xs-8
                 textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" required=true
             .row.bb
+              .col-xs-4
+                label.control-label for="published_date" Published Date:
+              .col-xs-8
+                input.form-control type="text" id="published_date" ng-model="note.published_at"
+            .row.bb
               .col-xs-4: label.control-label for="note_level" Severity
               .col-xs-8
                 select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"

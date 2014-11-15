@@ -1,4 +1,28 @@
-nav.navbar.navbar-default.navbar-fixed-top
-  .container
-    .navbar-header
-      a.navbar-brand href="#" = @project.title
+- content_for(:nav)
+  nav.navbar.navbar-default
+    .container
+      .navbar-header
+        a.navbar-brand href="#" = @project.title
+
+#content
+  - @grouped_notes.each do |date, severity_grouping|
+    h2 = date.strftime("%A, %B %e")
+    - severity_grouping.each do |severity, notes|
+      - if severity == Note::FIX
+          .note
+            .note-title
+              | Fixes&nbsp;
+              .label.label-primary fix
+            .note-body
+              ul
+                - notes.each do |note|
+                  li = note.html_body.html_safe
+      - else
+        - notes.each do |note|
+          .note
+            .note-title
+              = note.html_title.html_safe
+              .label.label-primary = severity
+            .note-body = note.html_body.html_safe
+    - unless @grouped_notes.values.last == severity_grouping
+      hr

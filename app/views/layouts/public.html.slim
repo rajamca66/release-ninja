@@ -3,8 +3,10 @@ html
   head
     title Customer Know
     = stylesheet_link_tag 'public', media: 'all'
+
   body
-    .container
+    = yield :nav
+    .container.main
       = yield
 
     = javascript_include_tag 'public'

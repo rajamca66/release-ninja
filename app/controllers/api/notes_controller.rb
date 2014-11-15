@@ -35,6 +35,6 @@ class Api::NotesController < Api::BaseController
   end
 
   def note_params
-    params.permit(:title, :level, :markdown_body, :order, :published)
+    params.permit(:title, :level, :markdown_body, :order, :published, :published_at)
   end
 end
