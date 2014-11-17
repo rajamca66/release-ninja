@@ -9,7 +9,7 @@
     h2 = date.strftime("%A, %B %e")
     - severity_grouping.each do |severity, notes|
       - if severity == Note::FIX
-          .note
+          .note class=severity
             .note-title
               | Fixes&nbsp;
               .label.label-primary fix
@@ -19,7 +19,7 @@
                   li = note.html_body.html_safe
       - else
         - notes.each do |note|
-          .note
+          .note class=severity
             .note-title
               = note.html_title.html_safe
               .label.label-primary = severity
