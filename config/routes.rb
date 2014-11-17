@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         member do
           post :add_note
           delete :remove_note
+          get :html
         end
       end
     end

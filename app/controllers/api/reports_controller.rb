@@ -32,6 +32,12 @@ class Api::ReportsController < Api::BaseController
     respond_with :api, project, report
   end
 
+  def html
+    html = ReportHtmlRenderer.new(project).render
+    html = CGI::escapeHTML(html)
+    render text: html
+  end
+
   private
 
   def project
@@ -52,5 +58,19 @@ class Api::ReportsController < Api::BaseController
 
   def report_params
     params.permit(:name)
+  end
+end
+
+class ReportHtmlRenderer
+  def initialize(project)
+    @notes = NoteGrouper.new(project.notes).call
+  end
+
+  def render
+    raw_html = ApplicationController.new.render_to_string(
+      template: 'api/reports/html',
+      locals: { :@notes => @notes },
+      layout: false
+    )
   end
 end

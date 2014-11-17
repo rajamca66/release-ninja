@@ -1,0 +1,21 @@
+- @notes.each do |date, severity_grouping|
+  h2 = date.strftime("%A, %B %e")
+  - severity_grouping.each do |severity, notes|
+    - if severity == Note::FIX
+      .note class=severity
+        .note-title
+          | Fixes&nbsp;
+          .label.label-primary fix
+        .note-body
+          ul
+            - notes.each do |note|
+              li = note.html_body.html_safe
+    - else
+      - notes.each do |note|
+        .note class=severity
+          .note-title
+            = note.html_title.html_safe
+            .label.label-primary = severity
+          .note-body = note.html_body.html_safe
+  - unless @notes.values.last == severity_grouping
+    hr
