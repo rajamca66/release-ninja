@@ -33,9 +33,8 @@ class Api::ReportsController < Api::BaseController
   end
 
   def html
-    html = ReportHtmlRenderer.new(project).render
-    html = CGI::escapeHTML(html)
-    render text: html
+    html = ReportHtmlRenderer.new(report).render
+    render text: CGI::escapeHTML(html)
   end
 
   private
@@ -62,8 +61,8 @@ class Api::ReportsController < Api::BaseController
 end
 
 class ReportHtmlRenderer
-  def initialize(project)
-    @notes = NoteGrouper.new(project.notes).call
+  def initialize(report)
+    @notes = NoteGrouper.new(report.notes).call
   end
 
   def render

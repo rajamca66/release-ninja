@@ -21,7 +21,7 @@ div
             ' Export As
             span.caret
           ul.dropdown-menu.pull-right
-            li: a HTML
+            li: a target='_blank' href='/api/projects/{{report.project_id}}/reports/{{report.id}}/html' HTML
 
     li.list-group-item ng-if="reports.length == 0"
       | No Reports
