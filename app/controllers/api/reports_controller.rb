@@ -68,7 +68,7 @@ class ReportHtmlRenderer
 
   def render
     raw_html = ApplicationController.new.render_to_string(
-      template: 'api/reports/html',
+      template: 'reports/html',
       locals: { :@notes => @notes },
       layout: false
     )
