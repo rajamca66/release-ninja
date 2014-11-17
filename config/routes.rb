@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   namespace :api do
     resources :projects do
       resources :notes
+      resources :reports do
+        member do
+          post :add_note
+          delete :remove_note
+        end
+      end
     end
 
     namespace :github do

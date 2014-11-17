@@ -6,12 +6,7 @@ div content-for="header-body"
 
 .row
   .col-xs-4
-    h3 Reports
-    ul.list-group
-      li.list-group-item ng-repeat="report in ctrl.reports"
-        | {{report.title}}
-      li.list-group-item ng-if="ctrl.reports.length == 0"
-        | No Reports
+    reports-list project="ctrl.project" selected-notes="selected.notes" selected-mode="selected.active" selection="selected.fn"
 
   .col-xs-8
     h3.header.clearfix
@@ -25,6 +20,11 @@ div content-for="header-body"
     ul.list-group
       li.list-group-item ng-repeat="note in ctrl.notes | filter: { title: filterTitle } | orderBy: id"
         h4.list-group-item-heading.note-heading ng-hide="note.show" ng-click="note.show = !note.show"
+          span ng-if="selected.active && !selected.notes.some({id: note.id})" ng-click="selected.fn(note, false, $event)"
+            i.fa.fa-plus-circle
+          span ng-if="selected.active && selected.notes.some({id: note.id})" ng-click="selected.fn(note, true, $event)"
+            i.fa.fa-minus.circle
+
           span {{note.title}}
           span.label.label-success ng-if="note.published" published
           .pull-right

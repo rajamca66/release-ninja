@@ -11,18 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114203458) do
+ActiveRecord::Schema.define(version: 20141117023555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "notes", force: true do |t|
-    t.string   "title",                     null: false
-    t.string   "level",                     null: false
-    t.text     "markdown_body",             null: false
-    t.integer  "order",         default: 0, null: false
-    t.integer  "report_id"
-    t.integer  "project_id",                null: false
+    t.string   "title",         null: false
+    t.string   "level",         null: false
+    t.text     "markdown_body", null: false
+    t.integer  "project_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published"
@@ -30,7 +28,18 @@ ActiveRecord::Schema.define(version: 20141114203458) do
   end
 
   add_index "notes", ["project_id"], name: "index_notes_on_project_id", using: :btree
-  add_index "notes", ["report_id"], name: "index_notes_on_report_id", using: :btree
+
+  create_table "notes_reports", force: true do |t|
+    t.integer  "note_id",    null: false
+    t.integer  "report_id",  null: false
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes_reports", ["note_id", "report_id"], name: "index_notes_reports_on_note_id_and_report_id", unique: true, using: :btree
+  add_index "notes_reports", ["note_id"], name: "index_notes_reports_on_note_id", using: :btree
+  add_index "notes_reports", ["report_id"], name: "index_notes_reports_on_report_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title",      null: false
@@ -46,7 +55,10 @@ ActiveRecord::Schema.define(version: 20141114203458) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published",  default: false
+    t.integer  "project_id",                 null: false
   end
+
+  add_index "reports", ["project_id"], name: "index_reports_on_project_id", using: :btree
 
   create_table "repositories", force: true do |t|
     t.string   "full_name",      null: false

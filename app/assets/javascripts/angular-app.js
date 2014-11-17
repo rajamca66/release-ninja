@@ -1,7 +1,7 @@
 /*
  ==== Standard ====
  = require jquery
- = require bootstrap-sass-official
+ = require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets.js
 
  ==== Angular ====
  = require angular

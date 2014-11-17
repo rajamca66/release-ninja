@@ -3,7 +3,7 @@ class Note < ActiveRecord::Base
   MAJOR = "major"
   MINOR = "minor"
 
-  belongs_to :report
+  has_and_belongs_to_many :reports
   belongs_to :project
 
   before_save :set_published_at_if_published
