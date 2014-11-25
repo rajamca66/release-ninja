@@ -6,7 +6,7 @@ NoteGrouper = Struct.new(:notes) do
   private
 
   def notes_by_day
-    @notes_by_day ||= notes.group_by{ |note| note.published_at.to_date }.sort_by{ |note| note.published_at }
+    @notes_by_day ||= notes.group_by{ |note| note.published_at.to_date }.sort.reverse
   end
 
   def grouped_notes

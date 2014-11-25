@@ -34,7 +34,7 @@ class Api::ReportsController < Api::BaseController
 
   def html
     html = ReportHtmlRenderer.new(report).render
-    render text: CGI::escapeHTML(html)
+    render text: html
   end
 
   private
