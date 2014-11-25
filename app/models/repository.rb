@@ -8,7 +8,9 @@ class Repository < ActiveRecord::Base
       private: info["private"],
       url: info["html_url"],
       default_branch: info["default_branch"],
-      github_id: info["id"]
+      github_id: info["id"],
+      owner: info["owner"]["login"],
+      repo: info["name"]
     )
   end
 end

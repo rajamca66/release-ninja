@@ -60,6 +60,8 @@ RSpec.describe Api::ProjectsController, :type => :controller do
         expect(Project.last.repositories.last.url).to eq("https://github.com/sb8244/rspec-stripe")
         expect(Project.last.repositories.last.default_branch).to eq("master")
         expect(Project.last.repositories.last.github_id).to eq(24504509)
+        expect(Project.last.repositories.last.owner).to eq("sb8244")
+        expect(Project.last.repositories.last.repo).to eq("rspec-stripe")
       end
     end
   end
