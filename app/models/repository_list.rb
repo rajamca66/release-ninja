@@ -8,7 +8,7 @@ class RepositoryList
   def repositories
     @repositories ||= begin
       Rails.cache.fetch(expires_in: 2.minute) do
-        repos = client.repositories.list.to_a
+        repos = client.repositories.list(per_page: 100).to_a
         organizations.each do |org|
           repos = repos + client.repositories.list(org: org).to_a
         end
