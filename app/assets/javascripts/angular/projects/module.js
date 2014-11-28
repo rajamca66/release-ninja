@@ -44,4 +44,14 @@ angular.module("projects", [
         }
       }
     })
+    .state("projects.github_sync", {
+      url: "/:id/github_sync",
+      templateUrl: "projects/comment_sync.html",
+      controller: "CommentSyncController as ctrl",
+      resolve: {
+        project: function(Restangular, $stateParams) {
+          return Restangular.one("projects", $stateParams.id).get();
+        }
+      }
+    })
 }]);
