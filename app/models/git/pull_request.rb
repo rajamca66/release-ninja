@@ -3,7 +3,7 @@ module Git
     API_FIELDS = [:id, :number, :merged_at, :body, :title, :html_url]
     JSON_FIELDS = [:id, :number, :merged_at, :title, :html_url]
 
-    attr_accessor *API_FIELDS, :repository
+    attr_accessor *API_FIELDS, :repository, :has_note
 
     def self.from_api_response(pr, repository:, client:)
       new(client).tap do |instance|
@@ -40,6 +40,7 @@ module Git
       hash[:owner] = owner
       hash[:repo] = repo
       hash[:comments] = comments
+      hash[:has_note] = has_note
 
       hash
     end

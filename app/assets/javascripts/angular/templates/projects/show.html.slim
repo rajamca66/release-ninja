@@ -19,7 +19,7 @@ div content-for="header-body"
         input.form-control placeholder="Search by Title" ng-model="filterTitle"
 
     ul.list-group
-      li.list-group-item ng-repeat="note in ctrl.notes | filter: { title: filterTitle } | orderBy: id"
+      li.list-group-item ng-repeat="note in ctrl.notes | filter: { title: filterTitle } | orderBy:'id':true"
         h4.list-group-item-heading.note-heading ng-hide="note.show" ng-click="note.show = !note.show"
           span ng-if="selected.active && !selected.notes.some({id: note.id})" ng-click="selected.fn(note, false, $event)"
             i.fa.fa-plus-circle
@@ -42,7 +42,7 @@ div content-for="header-body"
                 label.control-label for="note_body" Body (Markdown):
                 p: a href="https://help.github.com/articles/markdown-basics/" target="_blank" Markdown Basics
               .col-xs-8
-                textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" required=true
+                textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" ng-required="note.level !== 'fix'"
             .row.bb
               .col-xs-4
                 label.control-label for="published_date" Published Date:
@@ -52,7 +52,6 @@ div content-for="header-body"
               .col-xs-4: label.control-label for="note_level" Severity
               .col-xs-8
                 select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
-                  option
             .row.bb
               .col-xs-4
               .col-xs-8

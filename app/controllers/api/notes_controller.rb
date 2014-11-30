@@ -8,7 +8,8 @@ class Api::NotesController < Api::BaseController
   end
 
   def create
-    respond_with :api, project, notes.create(note_params)
+
+    respond_with :api, project, create_note
   end
 
   def update
@@ -24,6 +25,14 @@ class Api::NotesController < Api::BaseController
 
   def project
     @project ||= current_user.projects.find(params[:project_id])
+  end
+
+  def create_note
+    notes.create(note_params).tap do |note|
+      if note.persisted? && params[:converted_pull_request_id]
+        note.create_converted_pull_request(project: project, pull_request_id: params[:converted_pull_request_id])
+      end
+    end
   end
 
   def notes

@@ -11,16 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125063952) do
+ActiveRecord::Schema.define(version: 20141130070500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "converted_pull_requests", force: true do |t|
+    t.integer  "note_id",         null: false
+    t.integer  "project_id",      null: false
+    t.integer  "pull_request_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "converted_pull_requests", ["note_id"], name: "index_converted_pull_requests_on_note_id", using: :btree
+  add_index "converted_pull_requests", ["project_id"], name: "index_converted_pull_requests_on_project_id", using: :btree
+  add_index "converted_pull_requests", ["pull_request_id"], name: "index_converted_pull_requests_on_pull_request_id", using: :btree
+
   create_table "notes", force: true do |t|
-    t.string   "title",         null: false
-    t.string   "level",         null: false
-    t.text     "markdown_body", null: false
-    t.integer  "project_id",    null: false
+    t.string   "title",                      null: false
+    t.string   "level",                      null: false
+    t.text     "markdown_body", default: "", null: false
+    t.integer  "project_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published"

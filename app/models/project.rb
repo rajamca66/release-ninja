@@ -3,4 +3,5 @@ class Project < ActiveRecord::Base
   has_many :repositories
   has_many :notes
   has_many :reports
+  has_many :converted_pull_requests
 end

@@ -16,7 +16,7 @@
             .note-body
               ul
                 - notes.each do |note|
-                  li = note.html_body.html_safe
+                  li = note.title.html_safe
       - else
         - notes.each do |note|
           .note class=severity

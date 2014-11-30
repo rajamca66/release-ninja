@@ -17,7 +17,16 @@ class Api::Github::PullRequestsController < Api::BaseController
     params.fetch(:size, 10)
   end
 
+  def project
+    current_user.projects.find(params[:project_id])
+  end
+
   def list
-    @list ||= Git::PullRequestList.new(current_user, repository, size, page).to_a
+    @list ||= begin
+      pull_requests = Git::PullRequestList.new(current_user, repository, size, page).to_a
+      pull_requests.each do |pr|
+        pr.has_note = true if project.converted_pull_requests.find_by(pull_request_id: pr.id)
+      end
+    end
   end
 end
