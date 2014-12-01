@@ -26,7 +26,7 @@ div content-for="header-body"
           span ng-if="selected.active && selected.notes.some({id: note.id})" ng-click="selected.fn(note, true, $event)"
             i.fa.fa-minus.circle
 
-          span {{note.title}}
+          span {{ note.title || (note.markdown_body | limitTo:50) }}
           span.label.label-success ng-if="note.published" published
           .pull-right
             button.btn.btn-primary.btn-xs Edit Note
@@ -35,14 +35,14 @@ div content-for="header-body"
           h4.list-group-item-heading.row
             label.control-label.col-xs-4 for="note_title" Title:
             .col-xs-8
-              input.form-control type="text" id="note_title" name="title" ng-model="note.title" placeholder="Feature X Rolled Out" required="note.level !== 'fix'"
+              input.form-control type="text" id="note_title" name="title" ng-model="note.title" placeholder="Feature X Rolled Out" ng-required="note.level !== 'fix'"
           div.list-group-item-text
             .row.bb
               .col-xs-4
                 label.control-label for="note_body" Body (Markdown):
                 p: a href="https://help.github.com/articles/markdown-basics/" target="_blank" Markdown Basics
               .col-xs-8
-                textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" ng-required=true
+                textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" required=true
             .row.bb
               .col-xs-4
                 label.control-label for="published_date" Published Date:

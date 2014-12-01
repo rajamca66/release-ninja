@@ -30,13 +30,13 @@ div content-for="header-body"
               .row
                 label.control-label.col-xs-4 for="note_title" Title:
                 .col-xs-8
-                  input.form-control type="text" id="note_title" name="title" ng-model="comment.title" placeholder="Feature X Rolled Out" required="comment.level !== 'fix'"
+                  input.form-control type="text" id="note_title" name="title" ng-model="comment.title" placeholder="Feature X Rolled Out" ng-required="comment.level !== 'fix'"
               .row.bb
                 .col-xs-4
                   label.control-label for="note_body" Body (Markdown):
                   p: a href="https://help.github.com/articles/markdown-basics/" target="_blank" Markdown Basics
                 .col-xs-8
-                  textarea.form-control id="note_body" name="markdown_body" ng-model="comment.markdown_body" ng-required=true
+                  textarea.form-control id="note_body" name="markdown_body" ng-model="comment.markdown_body" required=true
               .row
                 .col-xs-8.col-xs-offset-4
                   button.btn.btn-warning Convert to Release Note

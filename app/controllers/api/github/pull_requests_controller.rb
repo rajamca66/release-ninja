@@ -6,7 +6,7 @@ class Api::Github::PullRequestsController < Api::BaseController
   private
 
   def repository
-    @repository ||= current_user.repositories.find(params[:repository_id])
+    @repository ||= current_team.repositories.find(params[:repository_id])
   end
 
   def page
