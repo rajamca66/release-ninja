@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130070500) do
+ActiveRecord::Schema.define(version: 20141201041940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20141130070500) do
   add_index "converted_pull_requests", ["pull_request_id"], name: "index_converted_pull_requests_on_pull_request_id", using: :btree
 
   create_table "notes", force: true do |t|
-    t.string   "title",                      null: false
+    t.text     "title",         default: "", null: false
     t.string   "level",                      null: false
     t.text     "markdown_body", default: "", null: false
     t.integer  "project_id",                 null: false
