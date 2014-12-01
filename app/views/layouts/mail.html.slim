@@ -1,0 +1,29 @@
+doctype html
+html xmlns="http://www.w3.org/1999/xhtml"
+  head
+    meta content="width=device-width" name="viewport"
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    title You've Been Invited!
+    = render "layouts/mail_style"
+  body bgcolor="#FFFFFF"
+    /table.head-wrap bgcolor="#999999"
+      tr
+        td
+        td.header.container
+          .content
+            table bgcolor="#999999"
+              tr
+                td
+                  img src="http://placehold.it/200x50/"
+                td align="right"
+                  h6.collapse Basic
+        td
+    table.body-wrap
+      tr
+        td
+        td.container bgcolor="#FFFFFF"
+          .content
+            table
+              tr
+                td
+                  = yield

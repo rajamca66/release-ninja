@@ -30,6 +30,10 @@ gem 'slim-rails'
 gem 'github-markup'
 gem 'redcarpet'
 
+# Emails
+gem 'premailer-rails'
+gem 'nokogiri'
+
 group :development do
   gem 'spring-commands-rspec'
 end
