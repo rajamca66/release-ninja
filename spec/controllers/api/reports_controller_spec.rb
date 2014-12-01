@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Api::ReportsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
-  let!(:project) { FactoryGirl.create(:project, user: user) }
+  let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
 
   before(:each) {
     sign_in(user)

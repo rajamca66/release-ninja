@@ -18,7 +18,7 @@ class Api::Github::PullRequestsController < Api::BaseController
   end
 
   def project
-    current_user.projects.find(params[:project_id])
+    current_team.projects.find(params[:project_id])
   end
 
   def list

@@ -3,6 +3,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     name { Faker::Name.name }
     nickname { Faker::Name.name }
+    team
 
     factory :github_user do
       github_token { ENV["GITHUB_TEST_TOKEN"] }

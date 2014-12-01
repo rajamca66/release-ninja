@@ -9,8 +9,8 @@ RSpec.describe Api::ProjectsController, :type => :controller do
   }
 
   describe "GET index" do
-    let!(:project) { FactoryGirl.create(:project, user: user) }
-    let!(:project2) { FactoryGirl.create(:project, user: user) }
+    let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
+    let!(:project2) { FactoryGirl.create(:project, user: user, team: user.team) }
 
     it "lists the projects" do
       get :index
@@ -20,8 +20,8 @@ RSpec.describe Api::ProjectsController, :type => :controller do
   end
 
   describe "GET show" do
-    let!(:project) { FactoryGirl.create(:project, user: user) }
-    let!(:project2) { FactoryGirl.create(:project, user: user) }
+    let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
+    let!(:project2) { FactoryGirl.create(:project, user: user, team: user.team) }
 
     it "lists the project" do
       get :show, id: project.id
@@ -67,7 +67,7 @@ RSpec.describe Api::ProjectsController, :type => :controller do
   end
 
   describe "POST update" do
-    let!(:project) { FactoryGirl.create(:project, user: user) }
+    let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
 
     it "updates the project" do
       expect {
@@ -77,7 +77,7 @@ RSpec.describe Api::ProjectsController, :type => :controller do
   end
 
   describe "DELETE destroy" do
-    let!(:project) { FactoryGirl.create(:project, user: user) }
+    let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
 
     it "destroys the project" do
       expect {

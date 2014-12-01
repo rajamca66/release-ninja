@@ -24,7 +24,7 @@ class Api::NotesController < Api::BaseController
   private
 
   def project
-    @project ||= current_user.projects.find(params[:project_id])
+    @project ||= current_team.projects.find(params[:project_id])
   end
 
   def create_note

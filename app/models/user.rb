@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   belongs_to :team
   has_many :projects
-  has_many :repositories, through: :projects
 
   def github_client(page: true)
     @github_client ||= Github.new(oauth_token: github_token, auto_pagination: page) if github_token

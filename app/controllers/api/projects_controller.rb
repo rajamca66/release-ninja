@@ -9,7 +9,7 @@ class Api::ProjectsController < Api::BaseController
 
   def create
     project = Project.transaction do
-      projects.create(project_params).tap do |project|
+      projects.create(project_params.merge(user_id: current_user.id)).tap do |project|
         create_and_link_repositories!(project)
       end
     end
@@ -39,7 +39,7 @@ class Api::ProjectsController < Api::BaseController
   end
 
   def projects
-    @projects ||= current_user.projects
+    @projects ||= current_team.projects
   end
 
   def project
