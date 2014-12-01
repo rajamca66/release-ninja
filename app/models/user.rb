@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:github]
 
+  belongs_to :team
   has_many :projects
   has_many :repositories, through: :projects
 

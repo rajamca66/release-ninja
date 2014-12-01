@@ -3,6 +3,10 @@ Rails.application.routes.draw do
              only: [:omniauth_callbacks],
              controllers: { omniauth_callbacks: "oauth_callbacks" }
 
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+
   namespace :api do
     resources :projects do
       resources :notes

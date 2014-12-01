@@ -16,6 +16,12 @@ class OauthCallbacksController < Devise::OmniauthCallbacksController
       user.email = auth.info.email if user.email.blank?
       user.name = auth.info.name if user.name.blank?
       user.nickname = auth.info.nickname if user.nickname.blank?
+
+      if user.team.blank?
+        # Can check here if there is an invite code present in the session and assign to that team instead of creating
+        user.create_team(name: "#{user.name}'s Team")
+      end
+
       user.save
     end
   end
