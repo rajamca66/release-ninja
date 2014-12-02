@@ -77,4 +77,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   OmniAuth.config.full_host = "https://customer-know.herokuapp.com"
+
+  routes.default_url_options = {
+      host: ENV.fetch("HOST_URL")
+  }
 end
