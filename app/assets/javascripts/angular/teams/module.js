@@ -1,0 +1,24 @@
+/*
+ = require_self
+ = require_tree .
+ */
+
+angular.module("teams", [
+  "ui.router",
+  "restangular",
+  "shared"
+])
+
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+    .state('teams', {
+      url: "/teams",
+      abstract: true,
+      template: "<div ui-view></div>"
+    })
+    .state('teams.invite', {
+      url: "/invite",
+      templateUrl: "teams/invite.html",
+      controller: "TeamsInviteController as ctrl"
+    })
+}]);

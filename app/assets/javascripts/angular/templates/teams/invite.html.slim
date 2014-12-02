@@ -1,0 +1,12 @@
+div content-for="header-title" Team Management
+
+#invites
+  .row
+    .col-xs-6.col-xs-offset-3
+      h3 Send an Invite
+      hr
+      form#invite-form ng-submit="ctrl.sendInvite(invite.to)" ng-autodisable=true
+        .form-group
+          input.form-control type="email" placeholder="Email" required=true ng-model="invite.to"
+        .form-group.text-center
+          button.btn.btn-primary.btn-lg type="submit" Invite

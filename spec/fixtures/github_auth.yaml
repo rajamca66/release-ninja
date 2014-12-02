@@ -1,0 +1,57 @@
+--- !ruby/hash:OmniAuth::AuthHash
+provider: github
+uid: '1234'
+info: !ruby/hash:OmniAuth::AuthHash::InfoHash
+  nickname: sb8244
+  email: github@test.com
+  name: Stephen Bussey
+  image: https://avatars.githubusercontent.com/u/1231659?v=3
+  urls: !ruby/hash:OmniAuth::AuthHash
+    GitHub: https://github.com/sb8244
+    Blog: ''
+credentials: !ruby/hash:OmniAuth::AuthHash
+  token: token
+  expires: false
+extra: !ruby/hash:OmniAuth::AuthHash
+  raw_info: !ruby/hash:OmniAuth::AuthHash
+    login: sb8244
+    id: 1234
+    avatar_url: https://avatars.githubusercontent.com/u/1231659?v=3
+    gravatar_id: ''
+    url: https://api.github.com/users/sb8244
+    html_url: https://github.com/sb8244
+    followers_url: https://api.github.com/users/sb8244/followers
+    following_url: https://api.github.com/users/sb8244/following{/other_user}
+    gists_url: https://api.github.com/users/sb8244/gists{/gist_id}
+    starred_url: https://api.github.com/users/sb8244/starred{/owner}{/repo}
+    subscriptions_url: https://api.github.com/users/sb8244/subscriptions
+    organizations_url: https://api.github.com/users/sb8244/orgs
+    repos_url: https://api.github.com/users/sb8244/repos
+    events_url: https://api.github.com/users/sb8244/events{/privacy}
+    received_events_url: https://api.github.com/users/sb8244/received_events
+    type: User
+    site_admin: false
+    name: Stephen Bussey
+    company: SalesLoft
+    blog: ''
+    location: Atlanta
+    email: github@test.com
+    hireable: false
+    bio:
+    public_repos: 41
+    public_gists: 1
+    followers: 10
+    following: 11
+    created_at: '2011-11-30T19:32:36Z'
+    updated_at: '2014-12-01T04:43:46Z'
+    private_gists: 5
+    total_private_repos: 3
+    owned_private_repos: 3
+    disk_usage: 197566
+    collaborators: 2
+    plan: !ruby/hash:OmniAuth::AuthHash
+      name: micro
+      space: 614400
+      collaborators: 0
+      private_repos: 5
+):

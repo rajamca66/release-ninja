@@ -3,6 +3,7 @@ $header-bg: #315876;
 @import "font-awesome/css/font-awesome.min.css";
 @import "fonts";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+@import "angularjs-toaster/toaster";
 
 html, body {
   padding: 0;
@@ -83,3 +84,14 @@ textarea {
   }
 }
 
+#invites {
+  #invite-form {
+    input {
+      height: 50px;
+    }
+
+    button {
+      width: 50%;
+    }
+  }
+}
