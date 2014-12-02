@@ -21,6 +21,8 @@ module JsonHelpers
   end
 end
 
+OmniAuth.config.test_mode = true
+
 RSpec.configure do |config|
   config.include JsonHelpers, type: :controller
   config.include Devise::TestHelpers, type: :controller
