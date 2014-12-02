@@ -105,3 +105,11 @@ textarea {
 html#static body {
   background: lightslategrey;
 }
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.alert-notice {
+  @extend .alert-success;
+}

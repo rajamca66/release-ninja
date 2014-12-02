@@ -6,6 +6,9 @@
       .panel-body
         - if @invite.present?
           p.text-center You've been invited to #{@invite.team.name}
+        - flash.each do |type, msg|
+          div role="alert" class="alert alert-#{type}"
+            = msg
         .row
           .col-xs-6.col-xs-offset-3
             = link_to user_omniauth_authorize_path(:github), class: "btn btn-primary btn-block btn-lg" do
