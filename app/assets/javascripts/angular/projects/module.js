@@ -17,13 +17,13 @@ angular.module("projects", [
       template: "<div ui-view></div>"
     })
     .state('projects.list', {
-      url: "/all",
+      url: "",
       templateUrl: "projects/list.html",
       controller: "ProjectsListController as ctrl",
       resolve: {
-        projects: function(Restangular) {
+        projects: ['Restangular', function(Restangular) {
           return Restangular.all("projects").getList();
-        }
+        }]
       }
     })
     .state('projects.new', {
@@ -36,12 +36,12 @@ angular.module("projects", [
       templateUrl: "projects/show.html",
       controller: "ProjectsShowController as ctrl",
       resolve: {
-        project: function(Restangular, $stateParams) {
+        project: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
           return Restangular.one("projects", $stateParams.id).get();
-        },
-        notes: function(Restangular, $stateParams) {
+        }],
+        notes: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
           return Restangular.one("projects", $stateParams.id).all("notes").getList();
-        }
+        }]
       }
     })
     .state("projects.github_sync", {
@@ -49,9 +49,9 @@ angular.module("projects", [
       templateUrl: "projects/comment_sync.html",
       controller: "CommentSyncController as ctrl",
       resolve: {
-        project: function(Restangular, $stateParams) {
+        project: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
           return Restangular.one("projects", $stateParams.id).get();
-        }
+        }]
       }
     })
 }]);
