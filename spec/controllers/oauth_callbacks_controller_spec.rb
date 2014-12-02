@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe OauthCallbacksController, :type => :controller do
+  def github_auth
+    @github_auth ||= YAML.load(File.read( Rails.root.join("spec", "fixtures", "github_auth.yaml")))
+  end
+
   before(:all) do
-    github_auth = YAML.load(File.read( Rails.root.join("spec", "fixtures", "github_auth.yaml")))
     OmniAuth.config.mock_auth[:github] = github_auth
   end
 
@@ -22,6 +25,12 @@ RSpec.describe OauthCallbacksController, :type => :controller do
       expect {
         get :github
       }.to change{ Team.count }.by(1)
+    end
+
+    it "signs in the user" do
+      expect {
+        get :github
+      }.to change{ controller.current_user }.from(nil)
     end
 
     context "with an invite code" do
@@ -53,6 +62,22 @@ RSpec.describe OauthCallbacksController, :type => :controller do
           get :github
         }.to change{ invite.reload.redeemed }.from(false).to(true)
       end
+    end
+  end
+
+  context "with a user" do
+    let!(:user) { FactoryGirl.create(:user, email: github_auth.info.email) }
+
+    it "doesn't create a user" do
+      expect {
+        get :github
+      }.not_to change{ User.count }
+    end
+
+    it "signs in the user" do
+      expect {
+        get :github
+      }.to change{ controller.current_user }.from(nil).to(user)
     end
   end
 end
