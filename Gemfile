@@ -6,6 +6,10 @@ ruby '2.1.2'
 # rails
 gem 'rails', '4.1.7'
 
+# deploy
+gem 'puma'
+gem 'foreman'
+
 # env
 gem 'dotenv-rails'
 
