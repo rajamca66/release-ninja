@@ -16,6 +16,7 @@ Bundler.require(*Rails.groups)
 module CustomerKnow
   class Application < Rails::Application
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
     config.assets.precompile += %w( angular-app.js )
 
     config.generators do |g|
