@@ -3,7 +3,7 @@ class Api::InvitesController < Api::BaseController
     invite = current_user.invites.create(invite_params)
 
     if invite.persisted?
-      InviteMailer.invite(current_user, invite.to).deliver
+      InviteMailer.invite(invite).deliver
     end
 
     respond_with :api, invite

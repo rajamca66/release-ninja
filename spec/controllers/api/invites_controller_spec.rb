@@ -28,6 +28,10 @@ RSpec.describe Api::InvitesController, :type => :controller do
       expect {
         post :create, to: "test@test.com"
       }.to change{ ActionMailer::Base.deliveries.count }.by(1)
+
+      body = ActionMailer::Base.deliveries.last.parts.first.body.raw_source
+
+      expect(body).to include(root_url(invite_code: Invite.last.code))
     end
 
     context "with a pending invite" do
