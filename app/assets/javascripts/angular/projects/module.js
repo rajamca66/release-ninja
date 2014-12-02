@@ -17,7 +17,7 @@ angular.module("projects", [
       template: "<div ui-view></div>"
     })
     .state('projects.list', {
-      url: "",
+      url: "/all",
       templateUrl: "projects/list.html",
       controller: "ProjectsListController as ctrl",
       resolve: {
