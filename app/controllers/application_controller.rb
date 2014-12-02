@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
       render text: "", layout: "ng"
     else
       check_for_invite
+      @invite = invite
       render layout: "application"
     end
   end
@@ -16,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def check_for_invite
     session[:invite_code] = params.fetch(:invite_code, nil)
+  end
+
+  def invite
+    @invite ||= Invite.find_by(code: session[:invite_code]) if session[:invite_code]
   end
 end
