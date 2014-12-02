@@ -3,6 +3,7 @@ class OauthCallbacksController < Devise::OmniauthCallbacksController
     user = from_github(request.env["omniauth.auth"])
 
     sign_in(user) if user.persisted?
+    session[:invite_code] = nil
 
     redirect_to root_path
   end

@@ -62,6 +62,34 @@ RSpec.describe OauthCallbacksController, :type => :controller do
           get :github
         }.to change{ invite.reload.redeemed }.from(false).to(true)
       end
+
+      it "unsets the session" do
+        expect {
+          get :github
+        }.to change{ session[:invite_code] }.to(nil)
+      end
+
+      context "that is bad" do
+        before(:each) { session[:invite_code] = "bad" }
+
+        it "creates a user" do
+          expect {
+            get :github
+          }.to change{ User.count }.by(1)
+        end
+
+        it "creates a team" do
+          expect {
+            get :github
+          }.to change{ Team.count }.by(1)
+        end
+
+        it "unsets the session" do
+          expect {
+            get :github
+          }.to change{ session[:invite_code] }.to(nil)
+        end
+      end
     end
   end
 
