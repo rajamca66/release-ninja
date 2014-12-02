@@ -12,7 +12,7 @@ angular.module("teams", [
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider
     .state('teams', {
-      url: "/teams",
+      url: "/team",
       abstract: true,
       template: "<div ui-view></div>"
     })
