@@ -11,7 +11,7 @@ html ng-app="CustomerKnow"
       .navbar-collapse.collapse.pull-right
         ul.nav.navbar-nav
           li: a ui-sref="projects.list"  Projects
-          li: a ui-sref="team.invite"  Manage Team
+          li: a ui-sref="teams.invite"  Manage Team
           li
             - if user_signed_in?
               a href=users_sign_out_path ng-click="$event.stopPropagation()" Logout
