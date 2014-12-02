@@ -9,6 +9,7 @@ gem 'rails', '4.1.7'
 # deploy
 gem 'puma'
 gem 'foreman'
+gem 'newrelic_rpm'
 
 # env
 gem 'dotenv-rails'
