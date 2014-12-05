@@ -1,5 +1,5 @@
 class InviteMailer < ActionMailer::Base
-  default from: "noreply@customer-know.com"
+  default from: "invites@therelease.ninja"
   layout 'mail'
 
   def invite(invite)
