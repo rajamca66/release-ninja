@@ -18,3 +18,4 @@
 .env
 .keep
 /spec/fixtures/*.private.yaml
+.idea
