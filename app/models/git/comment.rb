@@ -12,7 +12,7 @@ Git::Comment = Struct.new(:body) do
 
   def type
     HEADERS.each do |header, type|
-      return type if body.starts_with?(header)
+      return type if body.present? && body.starts_with?(header)
     end
 
     nil
