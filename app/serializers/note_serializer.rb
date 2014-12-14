@@ -1,7 +1,3 @@
 class NoteSerializer < ActiveModel::Serializer
-  attributes :id, :created_at, :title, :markdown_body, :level, :html_preview, :published, :published_at
-
-  def html_preview
-    object.html_body
-  end
+  attributes :id, :created_at, :title, :markdown_body, :level, :html_title, :html_body, :published, :published_at
 end
