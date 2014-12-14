@@ -24,7 +24,7 @@ div content-for="header-title" {{ctrl.project.title}}
               span &nbsp;Published? Note will appear in the Public Change Log
 
       div ng-repeat="dateAndGrouping in ctrl.groupedNotes"
-        h2.date {{ dateAndGrouping[0] | date:'shortDate' }}
+        h2.date {{ dateAndGrouping[0] | date:'mediumDate' }}
         div ng-repeat="(level, notes) in dateAndGrouping[1]"
           .note.fix ng-if="level === 'fix'" ng-class=" { published: ctrl.anyPublished(notes) } "
             .note-title Fixes

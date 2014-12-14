@@ -7,12 +7,21 @@ angular.module("shared").service("NoteGrouper", function() {
    */
   return function(notes) {
     grouped = _(notes).groupBy(function(n) {
-      return new Date(n.created_at).toDateString();
+      var d = new Date(n.created_at);
+      d.setHours(0);
+      d.setMinutes(0);
+      d.setSeconds(0);
+      return d;
     });
 
     grouped = grouped.map(function(group, date) {
       var groupedBySeverity = _(group).groupBy("level").value();
-      return [date, groupedBySeverity];
+      // wrap in a new date or else it just becomes a string because of lodash
+      return [new Date(date), groupedBySeverity];
+    }).reverse();
+
+    grouped = grouped.sortBy(function(group, date) {
+      return date;
     });
 
     return grouped.value();
