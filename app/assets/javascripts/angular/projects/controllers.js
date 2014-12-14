@@ -44,47 +44,72 @@
     }
   };
 
-  var ShowCtrl = function($scope, project, notes) {
+  var ShowCtrl = function($scope, project, notes, NoteGrouper, $filter) {
     var self = this;
     this.project = project;
-    this.notes = notes;
-    this.reports = [];
+    this.notes = notes.plain();
+    this.groupedNotes = NoteGrouper(this.notes);
+
     this.severityLevels = {
       major: "Major",
       minor: "Minor",
       fix: "Fix"
     };
 
-    this.newNote = function() {
-      this.notes.unshift({new: true, show: true});
+    this.save = function(note) {
+      self.project.one("notes", note.id).customPUT(note).then(function() {
+        self.project.one("notes", note.id).get().then(function(note) {
+          replaceNote(note);
+        });
+      });
     };
 
-    this.save = function(note) {
-      if (note.new) {
-        self.project.all("notes").post(note).then(function(createdNote) {
-          self.notes = _.map(self.notes, function(el) {
-            return el == note ? createdNote : el;
-          });
-        });
-      } else {
-        note.put().then(function() {
-          note.show = false;
-        });
-      }
+    this.new = function(note) {
+      self.project.all("notes").post(note).then(function(createdNote) {
+        $scope.newNote = false;
+        self.notes.push(createdNote);
+        resetGroupedNotes();
+      });
     };
 
     this.remove = function(note) {
       self.project.one("notes", note.id).remove().then(function() {
-        _.remove(self.notes, function(el) {
-          return el == note;
-        });
+        _.remove(self.notes, {id: note.id});
+        resetGroupedNotes();
       });
     };
+
+    this.anyPublished = function(notes) {
+      return _(notes).any({published: true});
+    };
+
+    $scope.$watch('filterTitle', function() {
+      resetGroupedNotes();
+    });
+
+    function replaceNote(note) {
+      var index = _(self.notes).findIndex({id: note.id});
+      self.notes[index] = note;
+      self.groupedNotes = NoteGrouper(self.notes);
+      resetGroupedNotes();
+    }
+
+    function resetGroupedNotes() {
+      if($scope.filterTitle) {
+        var title = $scope.filterTitle.toLowerCase();
+        var notes = $filter('filter')(self.notes, function(note) {
+          return note.title.toLowerCase().indexOf(title) > -1 || note.markdown_body.toLowerCase().indexOf(title) > -1;
+        });
+        self.groupedNotes = NoteGrouper(notes);
+      } else {
+        self.groupedNotes = NoteGrouper(self.notes);
+      }
+    }
   };
 
   ListCtrl.$inject = ["projects", "$scope"];
   NewCtrl.$inject = ["$scope", "Restangular", "$state"];
-  ShowCtrl.$inject = ["$scope", "project", "notes"];
+  ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter"];
 
   angular.module("projects").controller('ProjectsListController', ListCtrl)
                             .controller('ProjectsNewController', NewCtrl)

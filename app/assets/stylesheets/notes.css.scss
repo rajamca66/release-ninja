@@ -1,0 +1,45 @@
+h2 {
+  margin-top: 0px;
+}
+
+.note-body {
+  img {
+    @extend .img-responsive;
+  }
+}
+
+.note {
+  @extend .panel;
+  @extend .panel-default;
+
+  &:not(.published) {
+    border-style: dashed;
+    border-width: 3px;
+    opacity: .4;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .note-title {
+    @extend .panel-heading;
+    font-size: 1.4em;
+
+    p {
+      margin: 0px;
+      display: inline;
+    }
+  }
+
+  .note-body {
+    @extend .panel-body;
+  }
+}
+
+.editing {
+  select {
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+}

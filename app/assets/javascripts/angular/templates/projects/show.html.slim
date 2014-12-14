@@ -1,76 +1,84 @@
 div content-for="header-title" {{ctrl.project.title}}
-div content-for="header-body"
-  .controls
-    a.btn.btn-primary ui-sref="projects.list" All Projects
-    a.btn.btn-primary ui-sref="projects.new" New Project
 
-.row
-  .col-xs-4
-    reports-list project="ctrl.project" selected-notes="selected.notes" selected-mode="selected.active" selection="selected.fn"
-
-  .col-xs-8
-    h3.header.clearfix
-      .pull-left
-        ' Release Notes
-        button.btn.btn-primary.btn-xs ng-click="ctrl.newNote()" Create a New Note
-        a.btn.btn-primary.btn-xs ng-href="/public/{{ctrl.project.id}}" target="_blank" Public Change Log
-        a.btn.btn-success.btn-xs ui-sref="projects.github_sync({id: ctrl.project.id})" Github Sync
-      .pull-right
-        input.form-control placeholder="Search by Title" ng-model="filterTitle"
-
-    ul.list-group
-      li.list-group-item ng-repeat="note in ctrl.notes | filter: { title: filterTitle } | orderBy:'id':true"
-        h4.list-group-item-heading.note-heading ng-hide="note.show" ng-click="note.show = !note.show"
-          span ng-if="selected.active && !selected.notes.some({id: note.id})" ng-click="selected.fn(note, false, $event)"
-            i.fa.fa-plus-circle
-          span ng-if="selected.active && selected.notes.some({id: note.id})" ng-click="selected.fn(note, true, $event)"
-            i.fa.fa-minus.circle
-
-          span {{ note.title || (note.markdown_body | limitTo:50) }}
-          span.label.label-success ng-if="note.published" published
-          .pull-right
-            button.btn.btn-primary.btn-xs Edit Note
-
-        form ng-submit="ctrl.save(note)" ng-class="{ hidden: !note.show }"
-          h4.list-group-item-heading.row
-            label.control-label.col-xs-4 for="note_title" Title:
-            .col-xs-8
-              input.form-control type="text" id="note_title" name="title" ng-model="note.title" placeholder="Feature X Rolled Out" ng-required="note.level !== 'fix'"
-          div.list-group-item-text
-            .row.bb
-              .col-xs-4
-                label.control-label for="note_body" Body (Markdown):
-                p: a href="https://help.github.com/articles/markdown-basics/" target="_blank" Markdown Basics
-              .col-xs-8
-                textarea.form-control id="note_body" name="markdown_body" ng-model="note.markdown_body" required=true
-            .row.bb
-              .col-xs-4
-                label.control-label for="published_date" Published Date:
-              .col-xs-8
-                input.form-control type="text" id="published_date" ng-model="note.published_at"
-            .row.bb
-              .col-xs-4: label.control-label for="note_level" Severity
-              .col-xs-8
+#content
+  .row
+    .col-sm-9
+      .new ng-show="!!newNote"
+        h2 New Note
+        .note.new.published
+          .note-title
+            .row
+              .col-xs-5: input.form-control.input-xs ng-model="note.title" placeholder="Title"
+              .col-xs-3
                 select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
-            .row.bb
-              .col-xs-4
-              .col-xs-8
-                label
-                  input type="checkbox" id="note_published" ng-model="note.published"
-                  span &nbsp;Published? Note will appear Public Change Log
-            .row.bb
-              .col-xs-4
-              .col-xs-8
+              .col-xs-4: .pull-right
+                .btn-pad-group
+                  .btn.btn-success.btn-sm ng-click="ctrl.new(note)" Save
+                  .btn.btn-default.btn-sm ng-click="newNote = false" Cancel
+
+          .note-body
+            textarea.form-control ng-model="note.markdown_body" required=true
+
+            label
+              input type="checkbox" id="note_published" ng-model="note.published"
+              span &nbsp;Published? Note will appear in the Public Change Log
+
+      div ng-repeat="dateAndGrouping in ctrl.groupedNotes"
+        h2.date {{ dateAndGrouping[0] | date:'shortDate' }}
+        div ng-repeat="(level, notes) in dateAndGrouping[1]"
+          .note.fix ng-if="level === 'fix'" ng-class=" { published: ctrl.anyPublished(notes) } "
+            .note-title Fixes
+            .note-body
+              ul.list-group.no-padding
+                li.clearfix.list-group-item ng-repeat="note in notes"
+                  div ng-hide="!!note.editing"
+                    .col-xs-10: span ng-bind-html="note.html_body"
+                    .col-xs-2
+                      .pull-right
+                        .btn-group
+                          button.btn.btn-sm.btn-default ng-click="note.editing = true" Edit
+                          button.btn.btn-sm.btn-danger ng-confirm-click="ctrl.remove(note)" ng-confirm-message="Are you sure you want to delete? This is not reversible"
+                            | X
+                  .editing ng-show="!!note.editing"
+                    .col-xs-10
+                      textarea.form-control ng-model="note.markdown_body" required=true
+                      select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
+                      label
+                        input type="checkbox" id="note_published" ng-model="note.published"
+                        span &nbsp;Published? Note will appear in the Public Change Log
+                    .col-xs-2
+                      .pull-right
+                        button.btn.btn-success ng-click="ctrl.save(note)" Save
+
+          .note ng-repeat="note in notes" ng-if="level !== 'fix'" ng-class="{ published: note.published }"
+            .note-title ng-hide="!!note.editing"
+              span ng-bind-html="note.html_title"
+              .label.label-primary {{ level }}
+              .pull-right
                 .btn-group
-                  button.btn.btn-success ng-if="note.new" Create Note
-                  button.btn.btn-success ng-if="!note.new" Update Note
-                  button.btn.btn-danger  ng-if="!note.new" type="button" ng-click="ctrl.remove(note)" Remove Note
-                  button.btn.btn-warning ng-if="!note.new" type="button" ng-click="note.show = false" Cancel
+                  button.btn.btn-default.btn-sm ng-click="note.editing = true" Edit
+                  button.btn.btn-danger.btn-sm ng-confirm-click="ctrl.remove(note)" ng-confirm-message="Are you sure you want to delete? This is not reversible"
+                    | X
 
-            .row ng-if="note.html_preview"
-              .col-xs-4: label.control-label Preview
-              .col-xs-8: div.scrollverflow ng-bind-html="note.html_preview"
+            .note-title ng-show="!!note.editing"
+              .row
+                .col-xs-5: input.form-control.input-xs ng-model="note.title"
+                .col-xs-3
+                  select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
+                .col-xs-4: .pull-right
+                  .btn-pad-group
+                    .btn.btn-success.btn-sm ng-hide="!note.editing" ng-click="ctrl.save(note)" Save
+                    .btn.btn-default.btn-sm ng-click="note.editing = false" Cancel
 
-      li.list-group-item ng-if="ctrl.notes.length == 0"
-        | No Notes
+            .note-body ng-bind-html="note.html_body" ng-hide="!!note.editing"
+            .note-body ng-show="!!note.editing"
+              textarea.form-control ng-model="note.markdown_body" required=true
 
+              label
+                input type="checkbox" id="note_published" ng-model="note.published"
+                span &nbsp;Published? Note will appear in the Public Change Log
+    .col-sm-3
+      input.form-control.btn-block placeholder="Search by Title" ng-model="filterTitle"
+      button.btn.btn-primary.btn-block ng-click="newNote = true" ng-hide="!!newNote" Create a New Note
+      a.btn.btn-primary.btn-block ng-href="/public/{{ctrl.project.id}}" target="_blank" Public Change Log
+      a.btn.btn-success.btn-block ui-sref="projects.github_sync({id: ctrl.project.id})" Github Sync

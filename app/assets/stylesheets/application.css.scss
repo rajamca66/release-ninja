@@ -3,11 +3,17 @@
  */
 $header-bg: #315876;
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300);
+
 @import "fonts";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
 @import "angularjs-toaster/toaster";
+@import "notes";
 
 html, body {
+  background: #f0f1f3;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
   padding: 0;
   margin: 0;
 }
@@ -112,4 +118,14 @@ html#static body {
 
 .alert-notice {
   @extend .alert-success;
+}
+
+.btn-pad-group {
+  .btn:not(:last-of-type) {
+    margin-right: 7px;
+  }
+}
+
+.list-group.no-padding {
+  margin-bottom: 0px;
 }
