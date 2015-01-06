@@ -4,7 +4,7 @@ class Note < ActiveRecord::Base
   MINOR = "minor"
 
   has_and_belongs_to_many :reports
-  has_one :converted_pull_request, dependent: :destroy
+  has_one :converted_pull_request
   belongs_to :project, touch: true
 
   before_save :set_published_at_if_published
