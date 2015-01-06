@@ -5,6 +5,7 @@ class InviteMailer < ActionMailer::Base
   def invite(invite)
     @inviter_name = invite.user.name
     @code = invite.code
+    @title = "You've Been Invited!"
 
     mail(to: invite.to, subject: "You've Been Invited to Release Ninja!")
   end
