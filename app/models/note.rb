@@ -5,7 +5,7 @@ class Note < ActiveRecord::Base
 
   has_and_belongs_to_many :reports
   has_one :converted_pull_request, dependent: :destroy
-  belongs_to :project
+  belongs_to :project, touch: true
 
   before_save :set_published_at_if_published
 

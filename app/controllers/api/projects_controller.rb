@@ -1,6 +1,6 @@
 class Api::ProjectsController < Api::BaseController
   def index
-    respond_with :api, projects
+    respond_with :api, projects.order(updated_at: :desc)
   end
 
   def show
