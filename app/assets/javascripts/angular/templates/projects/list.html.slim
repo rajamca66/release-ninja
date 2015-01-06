@@ -4,7 +4,11 @@ div content-for="header-body"
   .controls
     a.btn.btn-primary ui-sref="projects.new" New Project
 
-div
-  ul
-    li ng-repeat="project in ctrl.projects"
-      a ui-sref="projects.show({id: project.id})" {{ project.title }}
+#projects
+  .project-box.col-xs-3.col-xs-offset-1 ng-repeat="project in ctrl.projects"
+    .panel.panel-default ui-sref="projects.show({id: project.id})"
+      .panel-heading
+        .panel-title {{ project.title }}
+      .panel-body
+        ul.list-group.no-padding
+          li.list-group-item ng-repeat="repo in project.repositories" {{ repo.full_name }}

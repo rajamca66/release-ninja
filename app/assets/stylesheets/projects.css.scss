@@ -1,0 +1,28 @@
+#projects {
+  .project-box {
+    .panel-default {
+      &:hover {
+        cursor: pointer;
+        @extend .panel-primary;
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      height: 120px;
+      overflow: scroll;
+    }
+
+    .list-group-item {
+      @include border-bottom-radius(0);
+      @include border-top-radius(0);
+      @include border-left-radius(0);
+      @include border-right-radius(0);
+
+      margin-bottom: 1px;
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+    }
+  }
+}

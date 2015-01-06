@@ -1,6 +1,10 @@
 (function() {
-  var ListCtrl = function(projects, $scope) {
+  var ListCtrl = function(projects, $scope, $state) {
     this.projects = projects;
+
+    if(projects.length == 0) {
+      $state.go("projects.new")
+    }
   };
 
   var NewCtrl = function($scope, Restangular, $state) {
@@ -107,7 +111,7 @@
     }
   };
 
-  ListCtrl.$inject = ["projects", "$scope"];
+  ListCtrl.$inject = ["projects", "$scope", "$state"];
   NewCtrl.$inject = ["$scope", "Restangular", "$state"];
   ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter"];
 
