@@ -39,4 +39,12 @@ Git::Comment = Struct.new(:body) do
         body: note_body
     }
   end
+
+  def as_params
+    {
+        level: type,
+        title: title,
+        markdown_body: note_body
+    }
+  end
 end
