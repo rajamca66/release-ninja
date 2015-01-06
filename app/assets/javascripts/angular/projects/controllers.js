@@ -48,11 +48,17 @@
     }
   };
 
-  var ShowCtrl = function($scope, project, notes, NoteGrouper, $filter) {
+  var ShowCtrl = function($scope, project, notes, NoteGrouper, $filter, $location, $anchorScroll, $timeout) {
     var self = this;
     this.project = project;
     this.notes = notes.plain();
     this.groupedNotes = NoteGrouper(this.notes);
+
+    if ($location.hash()) {
+      $timeout(function() {
+        $anchorScroll();
+      }, 500);
+    }
 
     this.severityLevels = {
       major: "Major",
@@ -113,7 +119,7 @@
 
   ListCtrl.$inject = ["projects", "$scope", "$state"];
   NewCtrl.$inject = ["$scope", "Restangular", "$state"];
-  ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter"];
+  ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter", "$location", "$anchorScroll", "$timeout"];
 
   angular.module("projects").controller('ProjectsListController', ListCtrl)
                             .controller('ProjectsNewController', NewCtrl)
