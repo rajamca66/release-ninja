@@ -20,9 +20,9 @@ angular.module("shared").service("NoteGrouper", function() {
       return [new Date(date), groupedBySeverity];
     }).reverse();
 
-    grouped = grouped.sortBy(function(group, date) {
-      return date;
-    });
+    grouped = grouped.sortBy(function(grouped) {
+      return grouped[0];
+    }).reverse();
 
     return grouped.value();
   }
