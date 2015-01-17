@@ -1,8 +1,4 @@
 class Note < ActiveRecord::Base
-  FIX = "fix"
-  MAJOR = "major"
-  MINOR = "minor"
-
   has_and_belongs_to_many :reports
   has_one :converted_pull_request
   belongs_to :project, touch: true

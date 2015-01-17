@@ -20,6 +20,16 @@ RSpec.describe Git::Comment do
     "\n" \
     "With even more *coolness*"
   }
+  let(:feature_comment) {
+    "# Feature - Really awesome" \
+    "\n" \
+    "Test"
+  }
+  let(:fix_comment) {
+    "## Fix - Test test" \
+    "\n" \
+    "Test test"
+  }
 
   describe "#release_note?" do
     it "normal is false" do
@@ -37,6 +47,10 @@ RSpec.describe Git::Comment do
     it "major is true" do
       expect(Git::Comment.new(major_comment).release_note?).to eq(true)
     end
+
+    it "feature is true" do
+      expect(Git::Comment.new(feature_comment).release_note?).to eq(true)
+    end
   end
 
   describe "#type" do
@@ -44,16 +58,24 @@ RSpec.describe Git::Comment do
       expect(Git::Comment.new(normal_comment).type).to eq(nil)
     end
 
+    it "feature" do
+      expect(Git::Comment.new(feature_comment).type).to eq(:feature)
+    end
+
+    it "new fix style" do
+      expect(Git::Comment.new(fix_comment).type).to eq(:fix)
+    end
+
     it "fix" do
       expect(Git::Comment.new(bug_fix_comment).type).to eq(:fix)
     end
 
     it "minor" do
-      expect(Git::Comment.new(minor_comment).type).to eq(:minor)
+      expect(Git::Comment.new(minor_comment).type).to eq(:feature)
     end
 
     it "major" do
-      expect(Git::Comment.new(major_comment).type).to eq(:major)
+      expect(Git::Comment.new(major_comment).type).to eq(:feature)
     end
   end
 
@@ -62,16 +84,20 @@ RSpec.describe Git::Comment do
       expect(Git::Comment.new(normal_comment).title).to eq(nil)
     end
 
-    it "is empty" do
-      expect(Git::Comment.new("# Bug Fix\n").title).to eq("")
-    end
-
     it "finds the title after -" do
       expect(Git::Comment.new(minor_comment).title).to eq("Added a feature")
     end
 
     it "handles multiple -'s'" do
       expect(Git::Comment.new("# Bug Fix - This is - so - cool").title).to eq("This is - so - cool")
+    end
+
+    it "handles the new feature style" do
+      expect(Git::Comment.new(feature_comment).title).to eq("Really awesome")
+    end
+
+    it "handles the new bug style" do
+      expect(Git::Comment.new(fix_comment).title).to eq("Test test")
     end
   end
 
