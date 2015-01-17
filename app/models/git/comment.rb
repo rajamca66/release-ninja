@@ -4,7 +4,9 @@ Git::Comment = Struct.new(:body) do
       "# New Feature" => :feature,
       "# Major Feature" => :feature,
       "# Feature" => :feature,
-      "## Fix" => :fix
+      "## Fix" => :fix,
+      "## Bug" => :fix,
+      "## Bug Fix" => :fix
   }
   # Bug Fix, # New Feature, # Major Feature
 
