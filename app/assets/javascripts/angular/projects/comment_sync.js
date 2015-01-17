@@ -9,8 +9,7 @@
     }).value();
 
     self.severityLevels = {
-      major: "Major",
-      minor: "Minor",
+      feature: "Feature",
       fix: "Fix"
     };
   };

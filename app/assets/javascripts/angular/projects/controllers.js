@@ -61,8 +61,7 @@
     }
 
     this.severityLevels = {
-      major: "Major",
-      minor: "Minor",
+      feature: "Feature",
       fix: "Fix"
     };
 
