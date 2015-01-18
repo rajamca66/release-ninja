@@ -20,6 +20,6 @@ NoteGrouper = Struct.new(:notes) do
   end
 
   def severity_order
-    [Note::MAJOR, Note::MINOR, Note::FIX]
+    [:feature, :fix]
   end
 end
