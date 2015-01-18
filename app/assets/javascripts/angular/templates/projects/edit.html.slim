@@ -1,0 +1,16 @@
+div content-for="header-title"
+  ' {{ctrl.project.title}} - Edit
+
+#content
+  .row
+    .col-xs-6.col-xs-offset-3
+      .panel.panel-primary
+        .panel-heading
+          .panel-title Public Facing CSS
+        .panel-body
+          form ng-submit="ctrl.project.put()"
+            .form-group
+              label for="public_header_background" Public Header Background (#AABBCC)
+              input.form-control ng-model="ctrl.project.public_header_background" name="public_header_background" placeholder="#1695a3" maxlength=7
+            .form-group
+              button.btn.btn-primary.btn-block Save

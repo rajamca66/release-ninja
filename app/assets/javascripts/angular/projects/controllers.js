@@ -116,11 +116,18 @@
     }
   };
 
+  var EditCtrl = function($scope, project) {
+    var self = this;
+    self.project = project;
+  };
+
   ListCtrl.$inject = ["projects", "$scope", "$state"];
   NewCtrl.$inject = ["$scope", "Restangular", "$state"];
   ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter", "$location", "$anchorScroll", "$timeout"];
+  EditCtrl.$inject = ["$scope", "project"];
 
   angular.module("projects").controller('ProjectsListController', ListCtrl)
                             .controller('ProjectsNewController', NewCtrl)
-                            .controller('ProjectsShowController', ShowCtrl);
+                            .controller('ProjectsShowController', ShowCtrl)
+                            .controller('ProjectsEditController', EditCtrl);
 })();

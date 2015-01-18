@@ -47,6 +47,6 @@ class Api::ProjectsController < Api::BaseController
   end
 
   def project_params
-    params.permit(:title)
+    params.permit(:title, :public_header_background)
   end
 end

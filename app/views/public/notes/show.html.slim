@@ -1,3 +1,9 @@
+- if @project.public_header_background
+  css:
+    nav.navbar {
+      background: ##{@project.public_header_background.gsub('#', '')};
+    }
+
 - content_for(:nav)
   nav.navbar.navbar-default
     .container

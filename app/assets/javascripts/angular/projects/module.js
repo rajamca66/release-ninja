@@ -44,6 +44,16 @@ angular.module("projects", [
         }]
       }
     })
+    .state("projects.edit", {
+      url: "/:id/edit",
+      templateUrl: "projects/edit.html",
+      controller: "ProjectsEditController as ctrl",
+      resolve: {
+        project: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+          return Restangular.one("projects", $stateParams.id).get();
+        }]
+      }
+    })
     .state("projects.github_sync", {
       url: "/:id/github_sync",
       templateUrl: "projects/comment_sync.html",
