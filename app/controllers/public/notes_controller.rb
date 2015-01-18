@@ -7,7 +7,7 @@ class Public::NotesController < Public::BaseController
   private
 
   def project
-    @project ||= Project.find(params[:id])
+    @project ||= Project.friendly.find(params[:id])
   end
 
   def notes

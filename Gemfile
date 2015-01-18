@@ -17,6 +17,7 @@ gem 'dotenv-rails'
 # db
 gem 'pg'
 gem 'active_model_serializers'
+gem 'friendly_id'
 
 # users
 gem 'devise'

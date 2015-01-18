@@ -43,6 +43,11 @@ RSpec.describe Api::ProjectsController, :type => :controller do
       expect(Project.last.title).to eq("Test")
     end
 
+    it "generates a slug" do
+      post :create, params
+      expect(Project.last.slug).to eq("test")
+    end
+
     context "with repos" do
       let(:rspec_stripe_repo) { YAML.load(File.read(Rails.root.join("spec", "fixtures", "rspec-stripe.yaml"))) }
       let(:angular_repo) { YAML.load(File.read(Rails.root.join("spec", "fixtures", "angular-tutorial.yaml"))) }
