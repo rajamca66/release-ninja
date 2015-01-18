@@ -14,7 +14,7 @@
   - @grouped_notes.each do |date, severity_grouping|
     h2 = date.strftime("%A, %B %e")
     - severity_grouping.each do |severity, notes|
-      - if severity == :fix
+      - if severity.to_s == "fix"
         .note class=severity
           .note-title
             | Fixes&nbsp;
