@@ -9,13 +9,13 @@
     h2 = date.strftime("%A, %B %e")
     - severity_grouping.each do |severity, notes|
       - if severity == :fix
-          .note class=severity
-            .note-title
-              | Fixes&nbsp;
-            .note-body
-              ul
-                - notes.each do |note|
-                  li = note.html_body.html_safe
+        .note class=severity
+          .note-title
+            | Fixes&nbsp;
+          .note-body
+            ul
+              - notes.each do |note|
+                li = note.html_body.html_safe
       - else
         - notes.each do |note|
           .note class=severity
