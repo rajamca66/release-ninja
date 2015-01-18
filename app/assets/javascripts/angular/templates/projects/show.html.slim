@@ -82,5 +82,5 @@ div content-for="header-title"
     .col-sm-3
       input.form-control.btn-block placeholder="Search in Title or Body" ng-model="filterTitle"
       button.btn.btn-primary.btn-block ng-click="newNote = true" ng-hide="!!newNote" Create a New Note
-      a.btn.btn-info.btn-block ng-href="/public/{{ctrl.project.id}}" target="_blank" Public Change Log
+      a.btn.btn-info.btn-block ng-href="/public/{{ctrl.project.slug}}" target="_blank" Public Change Log
       a.btn.btn-success.btn-block ui-sref="projects.github_sync({id: ctrl.project.id})" Github Sync
