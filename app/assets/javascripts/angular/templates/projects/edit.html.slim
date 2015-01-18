@@ -8,7 +8,7 @@ div content-for="header-title"
         .panel-heading
           .panel-title Public Facing CSS
         .panel-body
-          form ng-submit="ctrl.project.put()"
+          form ng-submit="ctrl.save()"
             .form-group
               label for="public_header_background" Public Header Background (#AABBCC)
               input.form-control ng-model="ctrl.project.public_header_background" name="public_header_background" placeholder="#1695a3" maxlength=7

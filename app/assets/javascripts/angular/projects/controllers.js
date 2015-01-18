@@ -116,15 +116,21 @@
     }
   };
 
-  var EditCtrl = function($scope, project) {
+  var EditCtrl = function($scope, project, toaster) {
     var self = this;
     self.project = project;
+
+    self.save = function() {
+      self.project.put().then(function() {
+        toaster.pop("success", "Save Successful");
+      });
+    };
   };
 
   ListCtrl.$inject = ["projects", "$scope", "$state"];
   NewCtrl.$inject = ["$scope", "Restangular", "$state"];
   ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter", "$location", "$anchorScroll", "$timeout"];
-  EditCtrl.$inject = ["$scope", "project"];
+  EditCtrl.$inject = ["$scope", "project", "toaster"];
 
   angular.module("projects").controller('ProjectsListController', ListCtrl)
                             .controller('ProjectsNewController', NewCtrl)
