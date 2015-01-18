@@ -10,6 +10,7 @@ $header-bg: #315876;
 @import "angularjs-toaster/toaster";
 @import "notes";
 @import "projects";
+@import "logo";
 
 html, body {
   background: #f0f1f3;
@@ -129,4 +130,8 @@ html#static body {
 
 .list-group.no-padding {
   margin-bottom: 0px;
+}
+
+nav.navbar {
+  padding-left: 60px;
 }
