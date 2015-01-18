@@ -13,4 +13,10 @@ div content-for="header-title"
               label for="public_header_background" Public Header Background (#AABBCC)
               input.form-control ng-model="ctrl.project.public_header_background" name="public_header_background" placeholder="#1695a3" maxlength=7
             .form-group
+              label for="public_logo_url" Public Logo URL
+              input.form-control ng-model="ctrl.project.public_logo_url" name="public_logo_url" placeholder="http://www.example.com/logo.svg"
+            .form-group
+              label for="public_css" Arbitrary CSS
+              textarea.form-control ng-model="ctrl.project.public_css" name="public_css" placeholder="Any CSS you want publicly facing"
+            .form-group
               button.btn.btn-primary.btn-block Save

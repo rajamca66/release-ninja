@@ -25,6 +25,17 @@ html, body {
     line-height: $line-height-computed * 2;
     padding: (($navbar-height - $line-height-computed * 2) / 2) $navbar-padding-horizontal;
   }
+
+  #public-logo {
+    height: 75px;
+    margin-right: 25px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+  }
+
+  span.title {
+    vertical-align: middle;
+  }
 }
 
 .container {

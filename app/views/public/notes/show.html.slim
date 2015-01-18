@@ -4,11 +4,19 @@
       background: ##{@project.public_header_background.gsub('#', '')};
     }
 
+- if @project.public_css.present?
+  css:
+    #{@project.public_css}
+
 - content_for(:nav)
   nav.navbar.navbar-default
     .container
       .navbar-header
-        a.navbar-brand href="#" = @project.title
+        a.navbar-brand
+          div
+            - if @project.public_logo_url
+              = image_tag @project.public_logo_url, id: "public-logo"
+            span.title = @project.title
 
 #content
   - @grouped_notes.each do |date, severity_grouping|
