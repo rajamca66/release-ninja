@@ -31,6 +31,11 @@ Rails.application.routes.draw do
     get "/:id" => "notes#show"
   end
 
+  constraints lambda { |req| req.subdomain.present? && req.subdomain != "www" }  do
+    get '' => 'public/notes#show'
+    get '*path' => 'public/notes#show'
+  end
+
   get "*path", to: "application#index"
   root 'application#index'
 end

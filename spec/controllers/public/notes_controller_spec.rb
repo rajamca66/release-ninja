@@ -20,6 +20,12 @@ RSpec.describe Public::NotesController, :type => :controller do
     expect(response.body).to include(project.title)
   end
 
+  it "looks up by domain" do
+    request.host = "#{project.slug}.localhost"
+    get :show
+    expect(response.body).to include(project.title)
+  end
+
   it "contains the correct notes" do
     get :show, id: project.id
     [note1, note2, note3].each do |note|

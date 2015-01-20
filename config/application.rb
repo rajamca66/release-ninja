@@ -19,6 +19,8 @@ module CustomerKnow
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
     config.assets.precompile += %w( angular-app.js )
 
+    config.eager_load_paths << "lib"
+
     config.generators do |g|
       g.stylesheets false
       g.javascripts false

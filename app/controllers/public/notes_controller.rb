@@ -6,8 +6,12 @@ class Public::NotesController < Public::BaseController
 
   private
 
+  def id
+    params[:id] || request.subdomain
+  end
+
   def project
-    @project ||= Project.friendly.find(params[:id])
+    @project ||= Project.friendly.find(id)
   end
 
   def notes
