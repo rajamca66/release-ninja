@@ -41,6 +41,9 @@ gem 'redcarpet'
 gem 'premailer-rails'
 gem 'nokogiri'
 
+# Monitoring
+gem 'rollbar', '~> 1.3.1'
+
 group :development do
   gem 'spring-commands-rspec'
 end
