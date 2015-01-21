@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # rails
-gem 'rails', '4.1.7'
+gem 'rails', '4.2.0'
 
 # deploy
 gem 'puma'
@@ -16,8 +16,9 @@ gem 'dotenv-rails'
 
 # db
 gem 'pg'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.9.2'
 gem 'friendly_id'
+gem 'responders', '~> 2.0'
 
 # users
 gem 'devise'
@@ -50,7 +51,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'vcr'
   gem 'webmock'
 end
