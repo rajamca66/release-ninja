@@ -16,7 +16,7 @@ gem 'dotenv-rails'
 
 # db
 gem 'pg'
-gem 'active_model_serializers', '~> 0.9.2'
+gem 'active_model_serializers', '~> 0.9.3'
 gem 'friendly_id'
 gem 'responders', '~> 2.0'
 
