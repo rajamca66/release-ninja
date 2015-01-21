@@ -108,10 +108,19 @@ textarea {
 
 #login {
   padding-top: 80px;
+
+  .panel-body {
+    padding: 50px 15px;
+  }
 }
 
-html#static body {
-  background: lightslategrey;
+html#static {
+  height: 100%;
+
+  body {
+    background: #eee;
+    height: 100%;
+  }
 }
 
 .alert-alert {
