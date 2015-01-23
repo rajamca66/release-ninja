@@ -24,6 +24,7 @@ gem 'responders', '~> 2.0'
 gem 'devise'
 gem 'omniauth-github'
 gem "github_api"
+gem "octokit", "~> 3.0"
 
 # front end
 gem 'sass-rails', '~> 4.0.3'
