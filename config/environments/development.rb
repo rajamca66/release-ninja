@@ -38,7 +38,7 @@ Rails.application.configure do
   config.action_dispatch.tld_length = 0
 
   routes.default_url_options = {
-      host: 'localhost',
-      port: ENV.fetch("PORT", 3000)
+      host: ENV.fetch("HOST_URL", 'localhost'),
+      port: ENV.fetch("ROUTE_PORT", 3000)
   }
 end
