@@ -10,6 +10,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 VCR.configure do |c|
+  c.filter_sensitive_data("<GITHUB_TEST_TOKEN>")     { ENV["GITHUB_TEST_TOKEN"] }
   c.cassette_library_dir = Rails.root.join('spec', 'cassettes')
   c.hook_into :webmock
   c.configure_rspec_metadata!
