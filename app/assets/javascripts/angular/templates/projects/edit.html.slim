@@ -29,5 +29,7 @@ div content-for="header-title"
               .pull-left
                 ' {{ hook.repo }}
               .pull-right
-                .btn.btn-success.btn-xs ng-show="hook.created_at" installed
+                div ng-show="hook.created_at"
+                  .btn.btn-success.btn-xs installed
+                  .btn.btn-danger.btn-xs ng-click="ctrl.removeHook(hook.id, hook.repo_id)" remove hook
                 .btn.btn-info.btn-xs ng-hide="hook.created_at" ng-click="ctrl.installHook(hook.repo_id)" click to install

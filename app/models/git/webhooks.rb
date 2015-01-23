@@ -3,14 +3,19 @@ Git::Webhooks = Struct.new(:user, :repository) do
     list.select{ |h| h[:config][:url].try!(:include?, host) }.first
   end
 
-  def ensure_hook(url)
+  def ensure_hook(url, secret: ENV["HOOK_SECRET"])
     hook_options = {
       url: url,
-      content_type: "json"
+      content_type: "json",
+      secret: secret
     }
 
     user.github.create_hook(repository.full_name, "web", hook_options, events: ["pull_request"])
     ninja_hook
+  end
+
+  def delete_hook(id)
+    user.github.remove_hook(repository.full_name, id)
   end
 
   private

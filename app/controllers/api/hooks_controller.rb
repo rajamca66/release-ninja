@@ -12,6 +12,11 @@ module Api
       render json: hook_api(repository).ensure_hook(hook_url(Rails.application.default_url_options))
     end
 
+    def destroy
+      hook_api(repository).delete_hook(params[:id])
+      render json: { repo: repository.full_name, created_at: nil, repo_id: repository.id }
+    end
+
     private
 
     def hook_api(repo)

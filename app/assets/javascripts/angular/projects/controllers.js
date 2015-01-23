@@ -138,6 +138,15 @@
         toaster.pop("error", "Hook Error", error);
       });
     };
+
+    self.removeHook = function(id, repo_id) {
+      self.project.one("hooks", id).customDELETE("", {repository_id: repo_id}).then(function(newHook) {
+        var index = _(self.hooks).findIndex(function(hook) {
+          return hook.repo_id === repo_id;
+        });
+        self.hooks[index] = newHook;
+      });
+    };
   };
 
   ListCtrl.$inject = ["projects", "$scope", "$state"];
