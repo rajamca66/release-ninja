@@ -51,6 +51,9 @@ angular.module("projects", [
       resolve: {
         project: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
           return Restangular.one("projects", $stateParams.id).get();
+        }],
+        hooks: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+          return Restangular.one("projects", $stateParams.id).all("hooks").getList();
         }]
       }
     })

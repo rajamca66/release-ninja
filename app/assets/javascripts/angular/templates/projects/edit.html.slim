@@ -20,3 +20,14 @@ div content-for="header-title"
               textarea.form-control ng-model="ctrl.project.public_css" name="public_css" placeholder="Any CSS you want publicly facing"
             .form-group
               button.btn.btn-primary.btn-block Save
+      .panel.panel-primary
+        .panel-heading
+          .panel-title Github Integrations
+        .panel-body
+          ul.list-group
+            li.list-group-item.clearfix ng-repeat="hook in ctrl.hooks"
+              .pull-left
+                ' {{ hook.repo }}
+              .pull-right
+                .btn.btn-success.btn-xs ng-show="hook.created_at" installed
+                .btn.btn-info.btn-xs ng-hide="hook.created_at" ng-click="ctrl.installHook(hook.repo_id)" click to install
