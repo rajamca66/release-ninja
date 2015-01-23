@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :projects do
+      resources :hooks
       resources :notes
       resources :reports do
         member do
@@ -30,6 +31,8 @@ Rails.application.routes.draw do
   namespace :public do
     get "/:id" => "notes#show"
   end
+
+  match "/hook", to: "hooks#perform", via: [:get, :post]
 
   constraints lambda { |req| req.subdomain.present? && req.subdomain != "www" }  do
     get '' => 'public/notes#show'
