@@ -34,7 +34,11 @@ class Api::ProjectsController < Api::BaseController
   def create_and_link_repositories!(project)
     params.fetch(:repos, []).each do |full_name|
       info = repositories.find{ |p| p["full_name"] == full_name }
-      Repository.create_from_github!(project, info)
+
+      Repository.create_from_github!(project, info).tap do |repo|
+        url_for_hook = hook_url(Rails.application.default_url_options.merge(project_id: project.id, repository_id: repo.id))
+        Git::Webhooks.new(current_user, repo).ensure_hook(url_for_hook, secret: project.secret_token)
+      end
     end
   end
 

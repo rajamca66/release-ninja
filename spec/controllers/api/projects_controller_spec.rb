@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::ProjectsController, :type => :controller do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:github_user) }
 
   before(:each) {
     sign_in(user)
@@ -51,8 +51,10 @@ RSpec.describe Api::ProjectsController, :type => :controller do
     context "with repos" do
       let(:rspec_stripe_repo) { YAML.load(File.read(Rails.root.join("spec", "fixtures", "rspec-stripe.yaml"))) }
       let(:angular_repo) { YAML.load(File.read(Rails.root.join("spec", "fixtures", "angular-tutorial.yaml"))) }
+      let!(:hook_create_request) { stub_request(:post, "https://api.github.com/repos/sb8244/rspec-stripe/hooks") }
 
       before(:each) {
+        allow_any_instance_of(Git::Webhooks).to receive(:ninja_hook)
         allow_any_instance_of(RepositoryList).to receive(:repositories).and_return([ rspec_stripe_repo, angular_repo ])
       }
 
@@ -67,6 +69,12 @@ RSpec.describe Api::ProjectsController, :type => :controller do
         expect(Project.last.repositories.last.github_id).to eq(24504509)
         expect(Project.last.repositories.last.owner).to eq("sb8244")
         expect(Project.last.repositories.last.repo).to eq("rspec-stripe")
+      end
+
+      it "creates the webhook" do
+        post :create, title: "Test", repos: ["sb8244/rspec-stripe"]
+        expect(hook_create_request).to have_been_made.once
+        # Stubbing out the ninja_hook request is so fucked up that I'm just stubbing any instance of the class
       end
     end
   end
