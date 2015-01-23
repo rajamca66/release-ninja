@@ -13,6 +13,7 @@ RSpec.describe HooksController, :type => :controller do
     it "creates a converted pull request", vcr: { cassette_name: "hooks-controller_merged-featuree" } do
       expect {
         post :perform, params.merge(hook_params)
+        expect(response).to be_success
       }.to change{ ConvertedPullRequest.count }.by(1)
     end
 

@@ -1,5 +1,6 @@
 class HooksController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  before_filter :verify_payload unless Rails.env.test? # Too much PITA right now
 
   def perform
     if pull_request.state == "closed"
@@ -44,5 +45,13 @@ class HooksController < ApplicationController
         end
       end
     end
+  end
+
+  def verify_payload
+    payload_body = request.body.read
+    signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), project.secret_token, payload_body)
+
+    abort signature + " " + request.env['HTTP_X_HUB_SIGNATURE']
+    render text: "Signatures didn't match!", status: :unprocessable_entity unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
   end
 end
