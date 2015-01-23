@@ -11,7 +11,7 @@ module Api
     end
 
     def create
-      render json: hook_api(repository).ensure_hook(hook_url(Rails.application.default_url_options.merge(url_params)))
+      render json: hook_api(repository).ensure_hook(url_for_hook, secret: project.secret_token)
     end
 
     def destroy
@@ -23,6 +23,10 @@ module Api
 
     def url_params
       { project_id: project.id, repository_id: repository.id }
+    end
+
+    def url_for_hook
+      hook_url(Rails.application.default_url_options.merge(url_params))
     end
 
     def hook_api(repo)

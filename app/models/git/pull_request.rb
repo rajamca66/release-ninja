@@ -1,7 +1,7 @@
 module Git
   class PullRequest
-    API_FIELDS = [:id, :number, :merged_at, :body, :title, :html_url]
-    JSON_FIELDS = [:id, :number, :merged_at, :title, :html_url]
+    API_FIELDS = [:id, :number, :merged_at, :body, :title, :html_url, :state]
+    JSON_FIELDS = [:id, :number, :merged_at, :title, :html_url, :state]
 
     attr_accessor *API_FIELDS, :repository, :has_note
 

@@ -6,6 +6,8 @@ class Project < ActiveRecord::Base
   has_many :reports
   has_many :converted_pull_requests
 
+  before_create :create_secret_token
+
   delegate :users, to: :team
 
   extend FriendlyId
@@ -14,5 +16,9 @@ class Project < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     title_changed?
+  end
+
+  def create_secret_token
+    self.secret_token = SecureRandom.hex(20)
   end
 end
