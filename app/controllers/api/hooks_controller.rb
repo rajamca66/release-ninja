@@ -1,3 +1,5 @@
+## todo: Randomize the secret for each hook
+
 module Api
   class HooksController < BaseController
     def index
@@ -9,7 +11,7 @@ module Api
     end
 
     def create
-      render json: hook_api(repository).ensure_hook(hook_url(Rails.application.default_url_options))
+      render json: hook_api(repository).ensure_hook(hook_url(Rails.application.default_url_options.merge(url_params)))
     end
 
     def destroy
@@ -18,6 +20,10 @@ module Api
     end
 
     private
+
+    def url_params
+      { project_id: project.id, repository_id: repository.id }
+    end
 
     def hook_api(repo)
       Git::Webhooks.new(current_user, repo)
