@@ -3,6 +3,8 @@ class HooksController < ApplicationController
   before_filter :verify_payload unless Rails.env.test? # Too much PITA right now
 
   def perform
+    return render json: "no pr given" unless pull_request
+
     if pull_request.state == "closed"
       closed
     end
@@ -25,7 +27,9 @@ class HooksController < ApplicationController
   end
 
   def pull_request
-    @pull_request ||= Git::PullRequest.from_api_response(params[:pull_request], repository: repository, client: user.github_client)
+    @pull_request ||= if params[:pull_request]
+      Git::PullRequest.from_api_response(params[:pull_request], repository: repository, client: user.github_client)
+    end
   end
 
   def closed
@@ -50,8 +54,6 @@ class HooksController < ApplicationController
   def verify_payload
     payload_body = request.body.read
     signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), project.secret_token, payload_body)
-
-    abort signature + " " + request.env['HTTP_X_HUB_SIGNATURE']
     render text: "Signatures didn't match!", status: :unprocessable_entity unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
   end
 end
