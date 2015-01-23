@@ -131,7 +131,7 @@
       self.project.all("hooks").customPOST({repository_id: repo_id}).then(function(newHook) {
         toaster.pop("success", "Hook Installed");
         var index = _(self.hooks).findIndex(function(hook) {
-          return hook.repo_id = repo_id;
+          return hook.repo_id === repo_id;
         });
         self.hooks[index] = newHook;
       }, function(error) {
