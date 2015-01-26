@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HooksController, :type => :controller do
-  let(:user) { FactoryGirl.create(:user, github_token: ENV["GITHUB_TEST_TOKEN"]) }
+  let(:user) { FactoryGirl.create(:github_user) }
   let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
   let!(:repository) { FactoryGirl.create(:customer_know, project: project) }
 
