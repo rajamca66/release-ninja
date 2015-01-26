@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123054803) do
+ActiveRecord::Schema.define(version: 20150126022138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,21 @@ ActiveRecord::Schema.define(version: 20150123054803) do
     t.string   "owner",          limit: 255, null: false
     t.string   "repo",           limit: 255, null: false
   end
+
+  create_table "reviewers", force: :cascade do |t|
+    t.string   "email",               default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviewers", ["email"], name: "index_reviewers_on_email", unique: true, using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false

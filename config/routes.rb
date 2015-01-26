@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users,
-             only: [:omniauth_callbacks],
-             controllers: { omniauth_callbacks: "oauth_callbacks" }
+  devise_for :users, only: []
+  devise_for :reviewers, only: []
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
+
+  get '/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'auth'
+  get '/auth/:provider/callback', to: 'oauth_callbacks#create'
 
   namespace :api do
     resources :projects do

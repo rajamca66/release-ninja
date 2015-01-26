@@ -22,7 +22,9 @@ gem 'responders', '~> 2.0'
 
 # users
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 gem "github_api"
 gem "octokit", "~> 3.0"
 
@@ -42,9 +44,6 @@ gem 'redcarpet'
 gem 'premailer-rails'
 gem 'nokogiri'
 
-# Monitoring
-gem 'rollbar', '~> 1.3.1'
-
 group :development do
   gem 'spring-commands-rspec'
 end
@@ -60,4 +59,9 @@ group :test do
   gem 'webmock'
 end
 
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+
+  # Monitoring
+  gem 'rollbar', '~> 1.3.1'
+end

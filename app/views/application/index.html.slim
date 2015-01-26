@@ -12,6 +12,12 @@
       .panel-body
         .row
           .col-xs-6.col-xs-offset-3
-            = link_to user_omniauth_authorize_path(:github), class: "btn btn-primary btn-block btn-lg" do
+            = link_to auth_path(:github), class: "btn btn-primary btn-block btn-lg" do
               i.fa.fa-github
               '  Github Login
+
+        .row
+          .col-xs-6.col-xs-offset-3
+            = link_to auth_path(:google_oauth2), class: "btn btn-primary btn-block btn-lg" do
+              i.fa.fa-google
+              '  Google Login

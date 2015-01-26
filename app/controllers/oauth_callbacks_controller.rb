@@ -1,6 +1,18 @@
-class OauthCallbacksController < Devise::OmniauthCallbacksController
+class OauthCallbacksController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
+  def create
+    if params[:provider] == "github"
+      github
+    elsif params[:provider] == "google_oauth2"
+      google
+    end
+  end
+
+  private
+
   def github
-    user = from_github(request.env["omniauth.auth"])
+    user = from_github
 
     sign_in(user) if user.persisted?
     session[:invite_code] = nil
@@ -8,9 +20,15 @@ class OauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path
   end
 
-  private
+  def google
+    reviewer = from_google
 
-  def from_github(auth)
+    sign_in(reviewer) if reviewer.persisted?
+
+    redirect_to root_path
+  end
+
+  def from_github
     User.where(email: auth.info.email).first_or_initialize.tap do |user|
       user.github_token = auth.credentials.token
       user.github_uid = auth.info.uid
@@ -31,6 +49,14 @@ class OauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def from_google
+    Reviewer.where(email: auth.info.email).first_or_initialize.tap do |user|
+      user.email = auth.info.email if user.email.blank?
+      user.name = auth.info.name if user.name.blank?
+      user.save
+    end
+  end
+
   def invited_team
     invite.team if invite
   end
@@ -43,5 +69,9 @@ class OauthCallbacksController < Devise::OmniauthCallbacksController
 
   def new_session_path(scope)
     root_path
+  end
+
+  def auth
+    request.env["omniauth.auth"]
   end
 end
