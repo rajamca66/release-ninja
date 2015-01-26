@@ -65,3 +65,5 @@ group :production do
   # Monitoring
   gem 'rollbar', '~> 1.3.1'
 end
+
+gem "therubyracer"
