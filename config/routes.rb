@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :healths
+
   namespace :public do
     get "/:id" => "notes#show"
   end

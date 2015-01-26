@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  force_ssl unless: :ssl_not_required?
   protect_from_forgery with: :exception
 
   def index
@@ -14,6 +15,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def ssl_not_required?
+    Rails.env.test? || request.path == "/healths"
+  end
 
   def check_for_invite
     session[:invite_code] = params.fetch(:invite_code, nil)
