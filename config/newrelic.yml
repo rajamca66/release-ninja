@@ -17,6 +17,9 @@ common: &default_settings
   # New Relic service.
   license_key: '5a5a33e21fccbb5df9e90cf7c49c44aa55a57f95'
 
+  rules:
+    ignore_url_regexes: ["healths"]
+
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
   # Default is 'auto' which means the agent will install and run only
