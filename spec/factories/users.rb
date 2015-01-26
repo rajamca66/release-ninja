@@ -6,7 +6,7 @@ FactoryGirl.define do
     team
 
     factory :github_user do
-      github_token { ENV["GITHUB_TEST_TOKEN"] }
+      github_token { ENV.fetch("GITHUB_TEST_TOKEN", "test_token") }
     end
   end
 end
