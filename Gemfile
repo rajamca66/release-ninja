@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # ruby
-ruby '2.2.0'
+ruby '2.1.5'
 
 # rails
 gem 'rails', '4.2.0'
