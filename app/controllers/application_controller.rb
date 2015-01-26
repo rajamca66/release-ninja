@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
   def ssl_not_required?
-    Rails.env.test? || request.path == "/healths"
+    !Rails.env.production? || request.path == "/healths"
   end
 
   def check_for_invite
