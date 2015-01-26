@@ -1,0 +1,30 @@
+--- !ruby/hash:OmniAuth::AuthHash
+provider: google_oauth2
+uid: '114125580693099873975'
+info: !ruby/hash:OmniAuth::AuthHash::InfoHash
+  name: Stephen Bussey
+  email: sb8244@cs.ship.edu
+  first_name: Stephen
+  last_name: Bussey
+  image: https://lh5.googleusercontent.com/-5lC2iWj38ms/AAAAAAAAAAI/AAAAAAAAACI/rDvDMMbFP-s/photo.jpg?sz=50
+  urls: !ruby/hash:OmniAuth::AuthHash
+    Google: https://plus.google.com/+StephenBussey
+credentials: !ruby/hash:OmniAuth::AuthHash
+  token: ya29.BwH3MqTCvMHOXLGXcief_gYOILypjjmdwAGLLNsdNtoR5Af5oDXGihI65UyM2eH9KyhDF_Bdx9cygA
+  expires_at: 1422245554
+  expires: true
+extra: !ruby/hash:OmniAuth::AuthHash
+  id_token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjE2ZjgyOTViMjM3MGRkODhkZTRjMjJhZWQ4NWNhYmY1MmQyNzU3ZjUifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiaWQiOiIxMTQxMjU1ODA2OTMwOTk4NzM5NzUiLCJzdWIiOiIxMTQxMjU1ODA2OTMwOTk4NzM5NzUiLCJhenAiOiI3MDk1NDk5NTc2ODYtZmRwZ2FwaWF0ajBwZWdyaDVxOXViYW0yM21sdGY5aWwuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6InNiODI0NEBjcy5zaGlwLmVkdSIsImF0X2hhc2giOiJ1RVozWDdqVi1PUTdReC1ldWZjZW1RIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF1ZCI6IjcwOTU0OTk1NzY4Ni1mZHBnYXBpYXRqMHBlZ3JoNXE5dWJhbTIzbWx0ZjlpbC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImhkIjoiY3Muc2hpcC5lZHUiLCJ0b2tlbl9oYXNoIjoidUVaM1g3alYtT1E3UXgtZXVmY2VtUSIsInZlcmlmaWVkX2VtYWlsIjp0cnVlLCJjaWQiOiI3MDk1NDk5NTc2ODYtZmRwZ2FwaWF0ajBwZWdyaDVxOXViYW0yM21sdGY5aWwuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJpYXQiOjE0MjIyNDE2NTUsImV4cCI6MTQyMjI0NTU1NX0.K4lMhhhHwotrgNKgZol5gZTdkmYKfLAl6Uqd7Rhu2X69JDFe3SFeyejEFFlVCcuGd52tEbrYEnmrvhHeL064SuDK5twgI4WcXNevx3D5vT0AFg55Z2q26p54S1z-Kfjn1wZL3PQAACaXsJ77vgLm_Xuxw2916m7gHMHiEJLTLF8
+  raw_info: !ruby/hash:OmniAuth::AuthHash
+    kind: plus#personOpenIdConnect
+    gender: male
+    sub: '114125580693099873975'
+    name: Stephen Bussey
+    given_name: Stephen
+    family_name: Bussey
+    profile: https://plus.google.com/+StephenBussey
+    picture: https://lh5.googleusercontent.com/-5lC2iWj38ms/AAAAAAAAAAI/AAAAAAAAACI/rDvDMMbFP-s/photo.jpg?sz=50
+    email: sb8244@cs.ship.edu
+    email_verified: 'true'
+    locale: en
+    hd: cs.ship.edu

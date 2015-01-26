@@ -33,8 +33,8 @@ class OauthCallbacksController < ApplicationController
       user.github_token = auth.credentials.token
       user.github_uid = auth.info.uid
       user.email = auth.info.email if user.email.blank?
-      user.name = auth.info.name if user.name.blank?
-      user.nickname = auth.info.nickname if user.nickname.blank?
+      user.name = auth.info.name
+      user.nickname = auth.info.nickname
 
       if user.team.blank?
         if invited_team
@@ -52,7 +52,7 @@ class OauthCallbacksController < ApplicationController
   def from_google
     Reviewer.where(email: auth.info.email).first_or_initialize.tap do |user|
       user.email = auth.info.email if user.email.blank?
-      user.name = auth.info.name if user.name.blank?
+      user.name = auth.info.name
       user.save
     end
   end

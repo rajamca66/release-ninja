@@ -5,107 +5,152 @@ RSpec.describe OauthCallbacksController, :type => :controller do
     @github_auth ||= YAML.load(File.read( Rails.root.join("spec", "fixtures", "github_auth.yaml")))
   end
 
+  def google_auth
+    @google_auth ||= YAML.load(File.read( Rails.root.join("spec", "fixtures", "google_auth.yaml")))
+  end
+
   before(:all) do
     OmniAuth.config.mock_auth[:github] = github_auth
+    OmniAuth.config.mock_auth[:google_oauth2] = google_auth
   end
 
-  before(:each) do
-    request.env["devise.mapping"] = Devise.mappings[:user]
-    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
+  context "for google" do
+    before(:each) do
+      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    end
+
+    context "without a reviewer" do
+      it "creates a reviewer" do
+        expect {
+          get :create, provider: :google_oauth2
+        }.to change{ Reviewer.count }.by(1)
+
+        expect(Reviewer.last.email).to eq(google_auth.info.email)
+        expect(Reviewer.last.name).to eq(google_auth.info.name)
+      end
+
+      it "signs in the reviewer" do
+        expect {
+          get :create, provider: :google_oauth2
+        }.to change{ controller.current_reviewer }.from(nil)
+      end
+    end
+
+    context "with a reviewer" do
+      let!(:reviewer) { FactoryGirl.create(:reviewer, email: google_auth.info.email, name: "junk") }
+
+      it "doesn't create a reviewer" do
+        expect {
+          get :create, provider: :google_oauth2
+        }.not_to change{ Reviewer.count }
+      end
+
+      it "updates the name" do
+        expect {
+          get :create, provider: :google_oauth2
+        }.to change{ reviewer.reload.name }.from("junk").to(google_auth.info.name)
+      end
+    end
   end
 
-  context "without an existing user" do
-    it "creates a user" do
-      expect {
-        get :github
-      }.to change{ User.count }.by(1)
+  context "for github" do
+    before(:each) do
+      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
     end
 
-    it "creates a team" do
-      expect {
-        get :github
-      }.to change{ Team.count }.by(1)
-    end
-
-    it "signs in the user" do
-      expect {
-        get :github
-      }.to change{ controller.current_user }.from(nil)
-    end
-
-    context "with an invite code" do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:team) { user.team }
-      let(:invite) { team.invites.create!(user: user, to: "test@test.com") }
-
-      before(:each) { session[:invite_code] = invite.code }
-
+    context "without an existing user" do
       it "creates a user" do
         expect {
-          get :github
+          get :create, provider: :github
         }.to change{ User.count }.by(1)
       end
 
-      it "doesn't create a team" do
+      it "creates a team" do
         expect {
-          get :github
-        }.not_to change{ Team.count }
+          get :create, provider: :github
+        }.to change{ Team.count }.by(1)
       end
 
-      it "assigns the team" do
-        get :github
-        expect(User.last.team).to eq(team)
-      end
-
-      it "redeems the invite" do
+      it "signs in the user" do
         expect {
-          get :github
-        }.to change{ invite.reload.redeemed }.from(false).to(true)
+          get :create, provider: :github
+        }.to change{ controller.current_user }.from(nil)
       end
 
-      it "unsets the session" do
-        expect {
-          get :github
-        }.to change{ session[:invite_code] }.to(nil)
-      end
+      context "with an invite code" do
+        let(:user) { FactoryGirl.create(:user) }
+        let(:team) { user.team }
+        let(:invite) { team.invites.create!(user: user, to: "test@test.com") }
 
-      context "that is bad" do
-        before(:each) { session[:invite_code] = "bad" }
+        before(:each) { session[:invite_code] = invite.code }
 
         it "creates a user" do
           expect {
-            get :github
+            get :create, provider: :github
           }.to change{ User.count }.by(1)
         end
 
-        it "creates a team" do
+        it "doesn't create a team" do
           expect {
-            get :github
-          }.to change{ Team.count }.by(1)
+            get :create, provider: :github
+          }.not_to change{ Team.count }
+        end
+
+        it "assigns the team" do
+          get :create, provider: :github
+          expect(User.last.team).to eq(team)
+        end
+
+        it "redeems the invite" do
+          expect {
+            get :create, provider: :github
+          }.to change{ invite.reload.redeemed }.from(false).to(true)
         end
 
         it "unsets the session" do
           expect {
-            get :github
+            get :create, provider: :github
           }.to change{ session[:invite_code] }.to(nil)
+        end
+
+        context "that is bad" do
+          before(:each) { session[:invite_code] = "bad" }
+
+          it "creates a user" do
+            expect {
+              get :create, provider: :github
+            }.to change{ User.count }.by(1)
+          end
+
+          it "creates a team" do
+            expect {
+              get :create, provider: :github
+            }.to change{ Team.count }.by(1)
+          end
+
+          it "unsets the session" do
+            expect {
+              get :create, provider: :github
+            }.to change{ session[:invite_code] }.to(nil)
+          end
         end
       end
     end
-  end
 
-  context "with a user" do
-    let!(:user) { FactoryGirl.create(:user, email: github_auth.info.email) }
+    context "with a user" do
+      let!(:user) { FactoryGirl.create(:user, email: github_auth.info.email) }
 
-    it "doesn't create a user" do
-      expect {
-        get :github
-      }.not_to change{ User.count }
-    end
+      it "doesn't create a user" do
+        expect {
+          get :create, provider: :github
+        }.not_to change{ User.count }
+      end
 
-    it "signs in the user" do
-      expect {
-        get :github
-      }.to change{ controller.current_user }.from(nil).to(user)
+      it "signs in the user" do
+        expect {
+          get :create, provider: :github
+        }.to change{ controller.current_user }.from(nil).to(user)
+      end
     end
   end
 end
