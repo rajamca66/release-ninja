@@ -77,7 +77,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  OmniAuth.config.full_host = "http://www.therelease.ninja" # do not make https
+  OmniAuth.config.full_host = "https://www.therelease.ninja"
 
   routes.default_url_options = {
       host: ENV.fetch("HOST_URL")

@@ -20,6 +20,7 @@ class OauthCallbacksController < ApplicationController
     redirect_to root_path
   end
 
+
   def google
     reviewer = from_google
 
