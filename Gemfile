@@ -60,8 +60,6 @@ group :test do
 end
 
 group :production do
-  gem 'rails_12factor'
-
   # Monitoring
   gem 'rollbar', '~> 1.3.1'
 end
