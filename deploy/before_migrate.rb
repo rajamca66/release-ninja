@@ -21,5 +21,5 @@ execute "rake assets:precompile" do
   cwd release_path
   command "bundle exec rake assets:precompile"
   environment "RAILS_ENV" => rails_env
-  returns [0, '']
+  only_if { node[:deploy][:release_ninja].fetch(:assets, true) != false  }
 end
