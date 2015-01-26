@@ -19,6 +19,6 @@ Chef::Log.info("Precompiling assets for #{rails_env}...")
 
 execute "rake assets:precompile" do
   cwd release_path
-  command "bundle exec rake assets:precompile"
+  command "bundle exec rake assets:precompile && echo 'hi'"
   environment "RAILS_ENV" => rails_env
 end
