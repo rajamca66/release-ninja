@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     remove_converted!
     note = NoteSync.new(project, pull_request).call(require_merge: false)
 
-    if note
+    if note.is_a?(Note)
       project.reviewers.each do |reviewer|
         NotesMailer.reviewer(project, note, user_who_opened, to: reviewer.email).deliver_now
       end
