@@ -11,4 +11,11 @@ class NotesMailer < ActionMailer::Base
     emails = project.users.pluck(:email).uniq.reject(&:blank?)
     mail(to: emails, subject: "Release Ninja Updates - #{project.title}")
   end
+
+  def reviewer(project, note, to:)
+    @project = project
+    @note = note
+
+    mail(to: to, subject: "[RELEASE NINJA] New Release Ready")
+  end
 end

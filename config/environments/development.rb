@@ -37,8 +37,24 @@ Rails.application.configure do
 
   config.action_dispatch.tld_length = 0
 
+  host = ENV.fetch("HOST_URL", 'localhost')
+  port = ENV.fetch("ROUTE_PORT", 3000)
+
   routes.default_url_options = {
-      host: ENV.fetch("HOST_URL", 'localhost'),
-      port: ENV.fetch("ROUTE_PORT", 3000)
+      host: host,
+      port: port
+  }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.asset_host = "http://#{host}:#{port}"
+  config.action_mailer.default_url_options = {
+      host: host,
+      port: port
+  }
+
+  config.action_mailer.smtp_settings = {
+      address: "localhost",
+      port: 1025,
+      domain: "therelease.ninja"
   }
 end

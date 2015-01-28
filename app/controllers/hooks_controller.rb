@@ -7,6 +7,8 @@ class HooksController < ApplicationController
 
     if pull_request.state == "closed"
       closed
+    elsif params[:hook][:action] == "opened"
+      opened
     end
 
     render json: true
@@ -33,22 +35,19 @@ class HooksController < ApplicationController
   end
 
   def closed
-    pr = pull_request
-    pr.has_note = true if project.converted_pull_requests.find_by(pull_request_id: pr.id)
+    NoteSync.new(project, pull_request).call
+  end
 
-    unless pr.has_note
-      comment_to_convert = pr.comments.first
-      return unless comment_to_convert && pr.merged_at
+  def opened
+    message = <<-eos.gsub /^\s+/, ""
+      Howdy from Release Ninja! When your pull request is ready, do one of the following:
 
-      params = comment_to_convert.as_params.merge(created_at: pr.merged_at)
-      project.notes.create(params).tap do |note|
-        if note.persisted?
-          note.create_converted_pull_request(project: project, pull_request_id: pr.id)
-        else
-          Rails.logger.error("Note not persisted: #{note.errors.full_messages}")
-        end
-      end
-    end
+      * [Notify Release Team](#{create_reviews_url(pull_request_id: pull_request.number, project_id: project.id, repository_id: repository.id)})
+      * Don't notify anyone because it's a small change or doesn't concern them
+
+      Whatever you do though, make sure you :tada:
+    eos
+    GithubClient.new(project).add_comment(repository.full_name, pull_request.number, message)
   end
 
   def verify_payload

@@ -7,6 +7,11 @@ RSpec.describe HooksController, :type => :controller do
 
   let(:hook_params) { { project_id: project.id, repository_id: repository.id } }
 
+  before(:each) {
+    request.env["HTTP_ACCEPT"] = "*/*"
+    request.env["CONTENT_TYPE"] = "application/json"
+  }
+
   describe "merged" do
     let(:params) { JSON.parse(File.read("spec/fixtures/github_hooks/merged.json")) }
 
@@ -71,6 +76,18 @@ RSpec.describe HooksController, :type => :controller do
     it "doesn't create a note", vcr: { cassette_name: "hooks-controller_reopened" } do
       expect {
         post :perform, params.merge(hook_params)
+      }.not_to change{ Note.count }
+    end
+  end
+
+  describe "opened" do
+    let(:params) { JSON.parse(File.read("spec/fixtures/github_hooks/opened.json")) }
+
+    # Spec verified visually
+    it "doesn't create a note", vcr: { cassette_name: "hooks-controller_opened" } do
+      expect {
+        post :perform, params.merge(hook_params).merge(hook: { action: "opened" })
+        expect(response).to be_success
       }.not_to change{ Note.count }
     end
   end

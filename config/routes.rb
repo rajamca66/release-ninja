@@ -30,6 +30,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reviews do
+    collection do
+      get "create", action: :create, as: :create
+    end
+  end
+
   resource :healths
 
   namespace :public do

@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_team
+    @current_team ||= current_user.try!(:team)
+  end
+
   private
 
   def ssl_not_required?
