@@ -6,7 +6,7 @@ module Git
     attr_accessor *API_FIELDS, :repository, :has_note
 
     def self.from_api_response(pr, repository:, client:)
-      new(client).tap do |instance|
+      new(client, raw: pr).tap do |instance|
         instance.repository = repository
         API_FIELDS.map do |field|
           instance.send("#{field}=", pr[field])
@@ -14,8 +14,13 @@ module Git
       end
     end
 
-    def initialize(client)
+    def initialize(client, raw: nil)
       @github_client = client
+      @raw = raw
+    end
+
+    def user_nickname
+      @raw.try!(:user).try!(:login)
     end
 
     def comments

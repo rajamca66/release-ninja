@@ -12,10 +12,12 @@ class NotesMailer < ActionMailer::Base
     mail(to: emails, subject: "Release Ninja Updates - #{project.title}")
   end
 
-  def reviewer(project, note, to:)
+  def reviewer(project, note, user_who_opened, to:)
     @project = project
     @note = note
+    emails = [to]
+    emails << user_who_opened.email if user_who_opened.try!(:email)
 
-    mail(to: to, subject: "[RELEASE NINJA] New Release Ready")
+    mail(to: emails, subject: "[RELEASE NINJA] New Release Ready")
   end
 end

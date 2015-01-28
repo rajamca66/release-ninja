@@ -36,6 +36,16 @@ RSpec.describe ReviewsController, :type => :controller do
         expect {
           post :create, pull_request_id: 6, repository_id: repository.id, project_id: project.id
         }.to change{ ActionMailer::Base.deliveries.count }.by(2)
+        expect(ActionMailer::Base.deliveries.last.to).to eq([r2.email])
+      end
+
+      context "with a user who wrote it", vcr: { cassette_name: "reviews-controller_create-note" } do
+        before(:each) { user.update!(nickname: "sb8244") }
+
+        it "sends them an email" do
+          post :create, pull_request_id: 6, repository_id: repository.id, project_id: project.id
+          expect(ActionMailer::Base.deliveries.last.to).to match_array([r2.email, user.email])
+        end
       end
 
       context "with a converted pull request" do

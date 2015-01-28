@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
 
     if note
       project.reviewers.each do |reviewer|
-        NotesMailer.reviewer(project, note, to: reviewer.email).deliver_now
+        NotesMailer.reviewer(project, note, user_who_opened, to: reviewer.email).deliver_now
       end
       render text: "Awesome, emails have been sent. Excuse the ugly."
     else
@@ -43,5 +43,9 @@ class ReviewsController < ApplicationController
       pull = client.pull_request(repository.full_name, params[:pull_request_id])
       Git::PullRequest.from_api_response(pull, repository: repository, client: client)
     end
+  end
+
+  def user_who_opened
+    User.find_by(nickname: pull_request.user_nickname)
   end
 end
