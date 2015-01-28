@@ -9,9 +9,12 @@ class ReviewsController < ApplicationController
       project.reviewers.each do |reviewer|
         NotesMailer.reviewer(project, note, user_who_opened, to: reviewer.email).deliver_now
       end
+
       render text: "Awesome, emails have been sent. Excuse the ugly."
+    elsif note == :no_comment
+      render text: "Stop horsing around and give me a valid format comment to work with!"
     else
-      render text: "No email sent. Something wrong?"
+      render text: "No email sent. Something wrong, punk?"
     end
 
   end

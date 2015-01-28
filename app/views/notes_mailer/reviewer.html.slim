@@ -1,6 +1,8 @@
 h3 Howdy from The Release Ninja!
 p.lead There is a new release ready for #{@project.title.titleize}. Here are the notes
-       prepared by the engineering team.
-p.lead = @note.html_body.html_safe
+       prepared by the engineering team. This ia #{@note.level} level release.
+
+h4 = @note.html_title.html_safe
+p = @note.html_body.html_safe
 p.callout
   ' Have any concerns?
