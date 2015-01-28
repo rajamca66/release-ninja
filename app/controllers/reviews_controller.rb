@@ -10,6 +10,8 @@ class ReviewsController < ApplicationController
         NotesMailer.reviewer(project, note, user_who_opened, to: reviewer.email).deliver_now
       end
 
+      add_github_comment(project.reviewers.pluck(:email))
+
       render text: "Awesome, emails have been sent. Excuse the ugly."
     elsif note == :no_comment
       render text: "Stop horsing around and give me a valid format comment to work with!"
@@ -50,5 +52,14 @@ class ReviewsController < ApplicationController
 
   def user_who_opened
     User.find_by(nickname: pull_request.user_nickname)
+  end
+
+  def add_github_comment(emails)
+    message = <<-eos.gsub /^\s+/, ""
+      Howdy from Release Ninja! I just sent out emails to #{emails.join(", ")}
+
+      :tada:
+    eos
+    GithubClient.new(project).add_comment(repository.full_name, pull_request.number, message)
   end
 end
