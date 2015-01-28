@@ -18,16 +18,8 @@ module Git
       @github_client = client
     end
 
-    def owner
-      repository.owner
-    end
-
-    def repo
-      repository.repo
-    end
-
     def comments
-      CommentFetcher.new(owner, repo, number, body, @github_client).call
+      CommentFetcher.new(repository, number, body, @github_client).call
     end
 
     def as_json
@@ -37,8 +29,8 @@ module Git
         hash[field] = self.send(field)
       end
 
-      hash[:owner] = owner
-      hash[:repo] = repo
+      hash[:owner] = repository.owner
+      hash[:repo] = repository.repo
       hash[:comments] = comments
       hash[:has_note] = has_note
 
@@ -47,7 +39,7 @@ module Git
 
     private
 
-    CommentFetcher = Struct.new(:owner, :repo, :number, :body, :client) do
+    CommentFetcher = Struct.new(:repo, :number, :body, :client) do
       def call
         comments.select{ |cp| cp.release_note? }
       end
@@ -56,7 +48,7 @@ module Git
 
       def comments
         @comments ||= begin
-          ret = client.issues.comments.list(owner, repo, number: number).map{ |c| Comment.new(c.body) }
+          ret = client.issue_comments(repo.full_name, number).map{ |c| Comment.new(c.body) }
           ret << Comment.new(body)
         end
       end

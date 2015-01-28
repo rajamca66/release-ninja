@@ -25,7 +25,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-gem "github_api"
 gem "octokit", "~> 3.0"
 
 # front end

@@ -3,7 +3,7 @@ div content-for="header-title"
 
 #content
   .row
-    .col-xs-6.col-xs-offset-3
+    .col-xs-8.col-xs-offset-2
       .panel.panel-primary
         .panel-heading
           .panel-title Public Facing CSS
@@ -24,6 +24,20 @@ div content-for="header-title"
         .panel-heading
           .panel-title Github Integrations
         .panel-body
+          form ng-submit="ctrl.save()"
+            .form-group
+              label for="robot_token" Background Connection Token
+              p We will use this token to communicate to your repository from the background. If you do not provide it,
+                we will use the first user that we find on the project, which may result in comments being created on
+                their behalf!
+              p Create a personal access token with "repo, write:repo_hook" and enter it here.
+              input.form-control ng-model="ctrl.project.robot_token" name="robot_token"
+            .form-group
+              button.btn.btn-primary.btn-block Save
+
+          hr
+
+          h4 Hooks
           ul.list-group
             li.list-group-item.clearfix ng-repeat="hook in ctrl.hooks"
               .pull-left

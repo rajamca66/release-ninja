@@ -28,7 +28,7 @@ class HooksController < ApplicationController
 
   def pull_request
     @pull_request ||= if params[:pull_request]
-      Git::PullRequest.from_api_response(params[:pull_request], repository: repository, client: user.github_client)
+      Git::PullRequest.from_api_response(params[:pull_request], repository: repository, client: GithubClient.new(project))
     end
   end
 
