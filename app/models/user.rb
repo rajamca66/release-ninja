@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   has_many :invites
 
   def github
-    @github ||= Octokit::Client.new(access_token: github_token) if github_token
+    @github ||= GithubClient.new(nil, access_token: github_token) if github_token
   end
 end

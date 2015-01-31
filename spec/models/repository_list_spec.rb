@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RepositoryList do
   let!(:user) { FactoryGirl.create(:github_user) }
+  before(:each) { Rails.cache.clear }
 
   subject { RepositoryList.new(user) }
 
@@ -13,6 +14,8 @@ RSpec.describe RepositoryList do
   it "gives visibility to all repos", vcr: { cassette_name: "private/repository-list-1" } do
     if File.exist?("spec/cassettes/private/repository-list-1.yml") # This is blocking CI because I'm not putting my private data on it
       expect(subject.repositories.map(&:full_name)).to include(*your_repos)
+    else
+      pending "for test environment"
     end
   end
 end

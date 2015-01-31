@@ -21,10 +21,12 @@ Git::Webhooks = Struct.new(:user, :repository) do
   private
 
   def list
-    user.github.hooks(repository.full_name, auto_paginate: true).map do |h|
-      h[:repo] = repository.full_name
-      h[:repo_id] = repository.id
-      h.to_h
+    user.github.with_pagination do
+      user.github.hooks(repository.full_name, auto_paginate: true).map do |h|
+        h[:repo] = repository.full_name
+        h[:repo_id] = repository.id
+        h.to_h
+      end
     end
   end
 end
