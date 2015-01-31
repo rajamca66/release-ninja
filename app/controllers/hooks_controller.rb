@@ -42,7 +42,7 @@ class HooksController < ApplicationController
     message = <<-eos.gsub /^\s+/, ""
       Howdy from Release Ninja! When your pull request is ready, do one of the following:
 
-      * [Notify Release Team](#{create_reviews_url(pull_request_id: pull_request.number, project_id: project.id, repository_id: repository.id)})
+      * [Notify Release Team](#{workflow_review_url(pull_request_id: pull_request.number, project_id: project.id, repository_id: repository.id)})
       * Don't notify anyone because it's a small change or doesn't concern them
 
       Whatever you do though, make sure you :tada:

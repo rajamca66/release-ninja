@@ -3,13 +3,12 @@ html
   head
     title Release Ninja
     = stylesheet_link_tag 'public', media: 'all'
+    = csrf_meta_tags
 
   body
     #logo
     = yield :nav
     .container.main
       = yield
-
-    = javascript_include_tag 'public'
 
 = render partial: "layouts/rollbar"

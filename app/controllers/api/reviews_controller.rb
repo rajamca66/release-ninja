@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class Api::ReviewsController < Api::BaseController
   before_filter :authenticate_user!
 
   def create
@@ -12,11 +12,9 @@ class ReviewsController < ApplicationController
 
       add_github_comment(project.reviewers.pluck(:email))
 
-      render text: "Awesome, emails have been sent. Excuse the ugly."
+      render json: { message: "Awesome, emails have been sent!" }
     elsif note == :no_comment
-      render text: "Stop horsing around and give me a valid format comment to work with!"
-    else
-      render text: "No email sent. Something wrong, punk?"
+      render json: { message: "Stop horsing around and give me a valid format comment to work with!" }, status: :unprocessable_entity
     end
 
   end

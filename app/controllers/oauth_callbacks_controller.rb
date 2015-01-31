@@ -30,6 +30,7 @@ class OauthCallbacksController < ApplicationController
   end
 
   def from_github
+    # this should be resilient to user email changes
     User.where(email: auth.info.email).first_or_initialize.tap do |user|
       user.github_token = auth.credentials.token
       user.github_uid = auth.info.uid
@@ -37,6 +38,7 @@ class OauthCallbacksController < ApplicationController
       user.name = auth.info.name
       user.nickname = auth.info.nickname
 
+      # This should always use the invited team if it's present
       if user.team.blank?
         if invited_team
           user.team = invited_team

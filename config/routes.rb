@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :projects do
       resources :hooks
       resources :notes
+
       resources :reports do
         member do
           post :add_note
@@ -28,12 +29,9 @@ Rails.application.routes.draw do
       resources :repositories, only: [:index]
       resources :pull_requests, only: [:index]
     end
-  end
 
-  resources :reviews do
-    collection do
-      get "create", action: :create, as: :create
-    end
+    resources :repositories
+    resources :reviews
   end
 
   resource :healths
@@ -49,6 +47,7 @@ Rails.application.routes.draw do
     get '*path' => 'public/notes#show'
   end
 
+  get "/workflow/review", to: "application#index", as: :workflow_review
   get "*path", to: "application#index"
   root 'application#index'
 end

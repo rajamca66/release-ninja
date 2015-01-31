@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ReviewsController, :type => :controller do
+RSpec.describe Api::ReviewsController, :type => :controller do
   let(:user) { FactoryGirl.create(:github_user) }
   let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
   let!(:repository) { FactoryGirl.create(:customer_know, project: project) }
@@ -11,16 +11,12 @@ RSpec.describe ReviewsController, :type => :controller do
   }
 
   describe "POST create" do
-    it "redirects not logged in" do
-      sign_out(user)
-      post :create
-      expect(response).not_to be_success
-    end
-
     it "creates a note", vcr: { cassette_name: "reviews-controller_create-note"  } do
       expect {
         post :create, pull_request_id: 6, repository_id: repository.id, project_id: project.id
       }.to change{ project.notes.count }.by(1)
+
+      expect(response_json).to include("message")
     end
 
     context "with reviewers" do

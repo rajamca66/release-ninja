@@ -20,7 +20,7 @@ class RepositoryList
   private
 
   def client
-    @client ||= user.github_client
+    @client ||= user.github
   end
 
   def organizations

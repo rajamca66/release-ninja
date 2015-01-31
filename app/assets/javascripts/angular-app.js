@@ -20,6 +20,7 @@
  = require ./angular/shared/module
  = require ./angular/projects/module
  = require ./angular/teams/module
+ = require ./angular/workflows/module
  = require_self
  */
 
@@ -31,12 +32,15 @@ var APP = angular.module('CustomerKnow', [
   'restangular',
   'projects',
   'teams',
+  'workflows',
   'ngSanitize',
   'toaster',
   'ngAutodisable'
 ]);
 
-APP.config(['$urlRouterProvider', '$locationProvider', 'RestangularProvider',
+APP
+
+  .config(['$urlRouterProvider', '$locationProvider', 'RestangularProvider',
   function($urlRouterProvider, $locationProvider, RestangularProvider) {
     RestangularProvider.setBaseUrl("/api");
     RestangularProvider.setDefaultRequestParams({format: "json"});
