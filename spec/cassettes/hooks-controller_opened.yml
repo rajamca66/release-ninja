@@ -6,7 +6,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"body":"Howdy from Release Ninja! When your pull request is ready,
-        do one of the following:\n* [Notify Release Team](http://test.host/reviews/create?project_id=395\u0026pull_request_id=7\u0026repository_id=209)\n*
+        do one of the following:\n* [Notify Release Team](http://test.host/workflow/review?project_id=1491\u0026pull_request_id=7\u0026repository_id=688)\n*
         Don''t notify anyone because it''s a small change or doesn''t concern them\nWhatever
         you do though, make sure you :tada:\n"}'
     headers:
@@ -28,23 +28,23 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 28 Jan 2015 06:33:08 GMT
+      - Sat, 31 Jan 2015 04:54:30 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1503'
+      - '1505'
       Status:
       - 201 Created
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4983'
+      - '4978'
       X-Ratelimit-Reset:
-      - '1422427123'
+      - '1422683034'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"de5aae72242c46d8a06fa5bfa7035f74"'
+      - '"f42ce366251dd31d4e4251ea5dfa8a79"'
       X-Oauth-Scopes:
       - repo, user
       X-Accepted-Oauth-Scopes:
@@ -52,7 +52,7 @@ http_interactions:
       X-Oauth-Client-Id:
       - ed93d165cafee4693e3e
       Location:
-      - https://api.github.com/repos/sb8244/CustomerKnow/issues/comments/71787882
+      - https://api.github.com/repos/sb8244/CustomerKnow/issues/comments/72304800
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
@@ -72,20 +72,20 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Github-Request-Id:
-      - 32A7D542:202D:3BA63A:54C882A4
+      - 32A7D542:7FA3:6CCC6DE:54CC6006
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - a30e6f9aa7cf5731b87dfb3b9992202d
+      - 07ff1c8a09e44b62e277fae50a1b1dc4
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/comments/71787882","html_url":"https://github.com/sb8244/CustomerKnow/pull/7#issuecomment-71787882","issue_url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/7","id":71787882,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-28T06:33:08Z","updated_at":"2015-01-28T06:33:08Z","body":"Howdy
+      string: '{"url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/comments/72304800","html_url":"https://github.com/sb8244/CustomerKnow/pull/7#issuecomment-72304800","issue_url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/7","id":72304800,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-31T04:54:30Z","updated_at":"2015-01-31T04:54:30Z","body":"Howdy
         from Release Ninja! When your pull request is ready, do one of the following:\n*
-        [Notify Release Team](http://test.host/reviews/create?project_id=395&pull_request_id=7&repository_id=209)\n*
+        [Notify Release Team](http://test.host/workflow/review?project_id=1491&pull_request_id=7&repository_id=688)\n*
         Don''t notify anyone because it''s a small change or doesn''t concern them\nWhatever
         you do though, make sure you :tada:\n"}'
     http_version: 
-  recorded_at: Wed, 28 Jan 2015 06:33:08 GMT
+  recorded_at: Sat, 31 Jan 2015 04:54:29 GMT
 recorded_with: VCR 2.9.3

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     get '*path' => 'public/notes#show'
   end
 
+  get "/reviews/create" => redirect(path: '/workflow/review')
   get "/workflow/review", to: "application#index", as: :workflow_review
   get "*path", to: "application#index"
   root 'application#index'
