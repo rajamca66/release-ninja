@@ -8,9 +8,9 @@ class RepositoryList
   def repositories
     @repositories ||= begin
       Rails.cache.fetch(expires_in: 2.minute) do
-        repos = client.repositories.list(per_page: 100).to_a
+        repos = client.repositories(per_page: 100)
         organizations.each do |org|
-          repos = repos + client.repositories.list(org: org).to_a
+          repos = repos + client.repositories(org: org)
         end
         repos
       end
@@ -24,6 +24,6 @@ class RepositoryList
   end
 
   def organizations
-    @organizations ||= client.organizations.list.map(&:login)
+    @organizations ||= client.organizations.map(&:login)
   end
 end
