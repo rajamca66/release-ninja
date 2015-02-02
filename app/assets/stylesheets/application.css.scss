@@ -2,6 +2,12 @@
  *= require font-awesome
  */
 $header-bg: #315876;
+$brand-primary: #D33E0B;
+$accent-color: #E87422;
+
+$navbar-inverse-link-color: #ddd;
+$navbar-inverse-bg: #444;
+$container-lg: 960px;
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300);
 
@@ -21,8 +27,79 @@ html, body {
   margin: 0;
 }
 
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+
+  @include border-bottom-radius(5px);
+  border: 2px solid darken(#f0f1f3, 5%);
+  padding: 0;
+
+  background: white;
+
+  > .border {
+    position: relative;
+    top: -5px;
+    height: 5px;
+    width: 100%;
+    background: $accent-color;
+    @include border-top-radius(5px);
+  }
+
+  > .container-inner {
+    padding: 15px;
+    color: #292B2D;
+    min-height: 300px;
+  }
+
+  $sidebar-height: 70px;
+  > #sidebar {
+    @include border-left-radius(5px);
+    border: 2px solid darken(#f0f1f3, 5%);
+    border-right: none;
+
+    position: absolute;
+    width: $sidebar-height;
+    left: -$sidebar-height;
+    background: white;
+    top: 50px;
+
+    hr {
+      margin: 0 10px;
+    }
+
+    .option {
+      width: 100%;
+      display: inline-block;
+      height: $sidebar-height + 14px;
+      text-align: center;
+      padding-top: 25%;
+      color: inherit;
+
+      &.active {
+        border-left: 2px solid $brand-primary;
+      }
+
+      span {
+        display: block;
+      }
+
+      i.fa {
+        font-size: 32px;
+      }
+    }
+  }
+}
+
 a {
   cursor: pointer;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  &.title {
+    margin-bottom: 14px;
+  }
 }
 
 .jumbotron {
@@ -53,8 +130,6 @@ a {
 
   .title {
     font-size: 2em;
-    border-left: 2px solid #ccc;
-    padding-left: 20px;
     margin-bottom: 0.5em;
   }
 }

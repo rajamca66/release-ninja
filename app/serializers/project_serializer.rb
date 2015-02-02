@@ -10,6 +10,10 @@ class ProjectSerializer < ActiveModel::Serializer
   has_many :repositories, each_serializer: RepositorySerializer
 
   def url
-    root_url(subdomain: object.slug)
+    if Rails.env.aproduction?
+      root_url(subdomain: object.slug)
+    else
+      public_url(object.id)
+    end
   end
 end

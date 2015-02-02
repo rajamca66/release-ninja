@@ -6,7 +6,7 @@ html ng-app="CustomerKnow"
     = stylesheet_link_tag 'application', media: 'all'
   body
     #logo
-    nav.navbar.navbar-default.navbar-static-top role="navigation" style=("margin-bottom: 0")
+    nav.navbar.navbar-inverse.navbar-static-top role="navigation" style=("margin-bottom: 0")
       .navbar-header
         a.navbar-brand href="/"  Release Ninja
       .navbar-collapse.collapse.pull-right
@@ -19,13 +19,20 @@ html ng-app="CustomerKnow"
             - else
               = link_to "Login (Github)", user_omniauth_authorize_path(:github)
 
-    .jumbotron
-      .container
-        h1 yield-to="header-title"
-        div yield-to="header-body"
-
     .container
-      div ui-view=true
+      #sidebar
+        a.option ui-sref="projects.list" ui-sref-active="active"
+          i.fa.fa-book
+          span Projects
+
+        hr
+
+        a.option ui-sref="teams.invite" ui-sref-active="active"
+          i.fa.fa-users
+          span Team
+
+      .border
+      .container-inner ui-view=true
     toaster-container
 
     = javascript_include_tag 'angular-app'

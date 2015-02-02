@@ -1,8 +1,6 @@
-div content-for="header-title"
-  ' {{ctrl.project.title}}
-  a.btn.btn-primary ui-sref="projects.edit({id: ctrl.project.id})" Edit Project
-
 #content
+  h1.text-center.title Viewing Project - {{ctrl.project.title}}
+
   .row
     .col-sm-9
       .new ng-show="!!newNote"
@@ -84,3 +82,4 @@ div content-for="header-title"
       button.btn.btn-primary.btn-block ng-click="newNote = true" ng-hide="!!newNote" Create a New Note
       a.btn.btn-info.btn-block ng-href="{{ctrl.project.url}}" target="_blank" Public Change Log
       a.btn.btn-success.btn-block ui-sref="projects.github_sync({id: ctrl.project.id})" Github Sync
+      a.btn.btn-primary.btn-block ui-sref="projects.edit({id: ctrl.project.id})" Edit Project

@@ -1,13 +1,10 @@
-div content-for="header-title" {{ctrl.project.title}}
-div content-for="header-body"
-  .controls
-    a.btn.btn-primary ui-sref="projects.list" All Projects
-    a.btn.btn-primary ui-sref="projects.new" New Project
-
 .row
-  .col-xs-4
-    a.btn.btn-primary ui-sref="projects.show({id: ctrl.project.id})" Back to Project
-  .col-xs-8
+  .col-xs-10.col-xs-offset-1
+    h2.text-center.title
+      span Github Sync - {{ ctrl.project.title }}
+      .pull-right
+        a.btn.btn-info ui-sref="projects.show({id: ctrl.project.id})" &laquo; Back to Project
+
     .panel.panel-primary ng-repeat="repository in ctrl.repositories"
       .panel-heading
         h3.panel-title {{ repository.name }}

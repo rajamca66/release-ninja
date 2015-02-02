@@ -1,11 +1,12 @@
-div content-for="header-title" Your Projects
-div content-for="header-body"
-  p Projects are used to release notes for one or more services.
-  .controls
-    a.btn.btn-primary ui-sref="projects.new" New Project
-
 #projects
-  .project-box.col-xs-3.col-xs-offset-1 ng-repeat="project in ctrl.projects"
+  h2.title.text-center
+    span
+      i.fa.fa-book
+      |  Projects
+    .pull-right
+      a.btn.btn-success ui-sref="projects.new" New Project
+
+  .project-box.col-xs-4 ng-repeat="project in ctrl.projects"
     .panel.panel-default ui-sref="projects.show({id: project.id})"
       .panel-heading
         .panel-title {{ project.title }}
