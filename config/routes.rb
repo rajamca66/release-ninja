@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'oauth_callbacks#create'
 
   namespace :api do
+    namespace :project do
+      resources :reviewers
+    end
+
     resources :projects do
       resources :hooks
       resources :notes
