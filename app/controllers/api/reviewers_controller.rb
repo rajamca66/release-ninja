@@ -1,4 +1,4 @@
-class Api::Project::ReviewersController < Api::BaseController
+class Api::ReviewersController < Api::BaseController
   def index
     respond_with :api, project, reviewers
   end
@@ -8,9 +8,9 @@ class Api::Project::ReviewersController < Api::BaseController
   end
 
   def create
-    reviewer = Reviewer.first_or_create!(reviewer_params)
-    reviewer.projects << project
-    respond_with :api, project, reviewer
+    new_reviewer = Reviewer.where(email: reviewer_params[:email]).first_or_create!
+    new_reviewer.projects << project
+    respond_with :api, project, new_reviewer
   end
 
   def destroy

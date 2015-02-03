@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::Project::ReviewersController, :type => :controller do
+RSpec.describe Api::ReviewersController, :type => :controller do
   let(:user) { FactoryGirl.create(:github_user) }
   let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
 
@@ -26,11 +26,15 @@ RSpec.describe Api::Project::ReviewersController, :type => :controller do
   end
 
   describe "POST create" do
+    let!(:reviewer1) { FactoryGirl.create(:reviewer) }
+
     context "a new reviewer" do
       it "creates a reviewer" do
         expect {
           post :create, project_id: project.id, email: "test@test.com"
         }.to change{ Reviewer.count }.by(1)
+
+        expect(response_json["email"]).to eq("test@test.com")
       end
 
       it "adds the reviewer to the project" do
@@ -40,8 +44,6 @@ RSpec.describe Api::Project::ReviewersController, :type => :controller do
     end
 
     context "existing reviewer" do
-      let!(:reviewer1) { FactoryGirl.create(:reviewer) }
-
       it "doesn't create a reviewer" do
         expect {
           post :create, project_id: project.id, email: reviewer1.email

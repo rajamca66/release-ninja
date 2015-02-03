@@ -57,6 +57,19 @@ angular.module("projects", [
         }]
       }
     })
+    .state("projects.workflow", {
+      url: "/:id/workflow",
+      templateUrl: "projects/workflow.html",
+      controller: "ProjectsWorkflowController as ctrl",
+      resolve: {
+        project: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+          return Restangular.one("projects", $stateParams.id).get();
+        }],
+        reviewers: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+          return Restangular.one("projects", $stateParams.id).all("reviewers").getList();
+        }]
+      }
+    })
     .state("projects.github_sync", {
       url: "/:id/github_sync",
       templateUrl: "projects/comment_sync.html",
