@@ -2,14 +2,14 @@
  *= require font-awesome
  */
 $header-bg: #315876;
-$brand-primary: #D33E0B;
-$accent-color: #E87422;
+$brand-primary: #E87422;
+$accent-color: #D33E0B;
 
 $navbar-inverse-link-color: #ddd;
 $navbar-inverse-bg: #444;
 $container-lg: 960px;
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300);
 
 @import "fonts";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
@@ -78,7 +78,7 @@ html, body {
       color: inherit;
 
       &.active {
-        border-left: 2px solid $brand-primary;
+        border-left: 2px solid $accent-color;
       }
 
       span {

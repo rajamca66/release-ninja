@@ -21,6 +21,8 @@ Rails.application.routes.draw do
           get :html
         end
       end
+
+      resources :reviewers
     end
 
     resources :invites
