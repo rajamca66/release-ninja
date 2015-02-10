@@ -19,7 +19,7 @@
             p ng-show="pr.has_note"
               ' This pull request has already been converted into a release note.
 
-            form.comment ng-repeat="comment in pr.comments" ng-submit="comment.convertToNote()" ng-hide="pr.has_note"
+            form.comment ng-repeat="comment in pr.comments" ng-submit="comment.convertToNote()"
               .row
                 label.control-label.col-xs-4 for="level" Severity:
                 .col-xs-8
