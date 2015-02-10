@@ -48,7 +48,8 @@ Git::Comment = Struct.new(:body) do
     {
         type: type,
         title: title,
-        body: note_body
+        body: note_body,
+        internal: internal?
     }
   end
 
@@ -56,7 +57,8 @@ Git::Comment = Struct.new(:body) do
     {
         level: type,
         title: title,
-        markdown_body: note_body
+        markdown_body: note_body,
+        internal: internal?
     }
   end
 end
