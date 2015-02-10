@@ -101,6 +101,18 @@ RSpec.describe Git::Comment do
     end
   end
 
+  describe "#internal?" do
+    it "is false for normal" do
+      expect(Git::Comment.new(minor_comment).internal?).to eq(false)
+    end
+
+    it "is true with (internal)" do
+      expect(Git::Comment.new("# Bug Fix (internal) - Test").internal?).to eq(true)
+      expect(Git::Comment.new("# Bug Fix (internal) - Test").title).to eq("Test")
+      expect(Git::Comment.new("# Bug Fix (internal) - Test").type).to eq(:fix)
+    end
+  end
+
   describe "#note_body" do
     it "is empty for wrong format" do
       expect(Git::Comment.new(normal_comment).title).to eq(nil)

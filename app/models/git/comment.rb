@@ -37,6 +37,13 @@ Git::Comment = Struct.new(:body) do
     end
   end
 
+  def internal?
+    @internal ||= if release_note?
+      title_line = body.split("\n").first.downcase
+      title_line.include?("(internal)")
+    end
+  end
+
   def as_json
     {
         type: type,
