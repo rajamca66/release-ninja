@@ -60,7 +60,7 @@
     };
   };
 
-  CommentFactory = function(Restangular) {
+  CommentFactory = function(Restangular, toaster) {
     return function Comment(comment, pullRequestID, projectID, onNoteCreate) {
       var self = this;
 
@@ -76,6 +76,7 @@
           converted_pull_request_id: pullRequestID
         };
         Restangular.one("projects", projectID).all("notes").post(data).then(function(note) {
+          toaster.pop("success", "Note created!");
           onNoteCreate(note);
         });
       };
@@ -85,7 +86,7 @@
   Ctrl.$inject = ["$scope", "project", "Repository"];
   RepositoryFactory.$inject = ["Restangular", "PullRequest"];
   PullRequestFactory.$inject = ["Comment"];
-  CommentFactory.$inject = ["Restangular"];
+  CommentFactory.$inject = ["Restangular", "toaster"];
 
   angular.module("projects").controller("CommentSyncController", Ctrl)
                             .factory('Repository', RepositoryFactory)
