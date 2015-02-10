@@ -8,7 +8,6 @@ class Api::NotesController < Api::BaseController
   end
 
   def create
-
     respond_with :api, project, create_note
   end
 
@@ -44,6 +43,6 @@ class Api::NotesController < Api::BaseController
   end
 
   def note_params
-    params.permit(:title, :level, :markdown_body, :order, :published, :published_at)
+    params.permit(:title, :level, :markdown_body, :order, :published, :published_at, :internal)
   end
 end

@@ -9,6 +9,7 @@ RSpec.describe Public::NotesController, :type => :controller do
   let!(:note2) { FactoryGirl.create(:note, project: project, created_at: 5.days.ago, published_at: 4.days.ago, published: true) }
   let!(:note3) { FactoryGirl.create(:note, project: project, created_at: 2.days.ago, published_at: 2.days.ago, published: true) }
   let!(:unpublished) { FactoryGirl.create(:note, project: project) }
+  let!(:internal) { FactoryGirl.create(:note, project: project, published: true, internal: true) }
 
   it "shows the current project" do
     get :show, id: project.id
@@ -36,5 +37,10 @@ RSpec.describe Public::NotesController, :type => :controller do
   it "doesn't contain the unpublished note" do
     get :show, id: project.slug
     expect(response.body).not_to include(unpublished.html_body)
+  end
+
+  it "doesn't contain the internal note" do
+    get :show, id: project.slug
+    expect(response.body).not_to include(internal.html_body)
   end
 end

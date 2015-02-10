@@ -15,6 +15,6 @@ class Public::NotesController < Public::BaseController
   end
 
   def notes
-    project.notes.where(published: true).where.not(published_at: nil)
+    project.notes.where(published: true).where.not(published_at: nil, internal: true)
   end
 end

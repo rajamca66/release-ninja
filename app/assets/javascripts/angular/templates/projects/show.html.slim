@@ -22,6 +22,9 @@
             label
               input type="checkbox" id="note_published" ng-model="note.published"
               span &nbsp;Published? Note will appear in the Public Change Log
+            label
+              input type="checkbox" id="note_internal" ng-model="note.internal"
+              span &nbsp;Internal Only? Note will not appear in the public change log, but still must be published!
 
       div ng-repeat="dateAndGrouping in ctrl.groupedNotes"
         h2.date id="{{ dateAndGrouping[0] | date:'M-d-yy' }}" {{ dateAndGrouping[0] | date:'mediumDate' }}
@@ -46,6 +49,9 @@
                       label
                         input type="checkbox" id="note_published" ng-model="note.published"
                         span &nbsp;Published? Note will appear in the Public Change Log
+                      label
+                        input type="checkbox" id="note_internal" ng-model="note.internal"
+                        span &nbsp;Internal Only? Note will not appear in the public change log, but still must be published!
                     .col-xs-2
                       .pull-right
                         button.btn.btn-success ng-click="ctrl.save(note)" Save
@@ -77,6 +83,9 @@
               label
                 input type="checkbox" id="note_published" ng-model="note.published"
                 span &nbsp;Published? Note will appear in the Public Change Log
+              label
+                input type="checkbox" id="note_internal" ng-model="note.internal"
+                span &nbsp;Internal Only? Note will not appear in the public change log, but still must be published!
     .col-sm-3
       input.form-control.btn-block placeholder="Search in Title or Body" ng-model="filterTitle"
       button.btn.btn-primary.btn-block ng-click="newNote = true" ng-hide="!!newNote" Create a New Note
