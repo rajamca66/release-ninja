@@ -1,5 +1,6 @@
 Git::Comment = Struct.new(:body) do
   HEADERS = {
+      "# Fix" => :fix,
       "# Bug Fix" => :fix,
       "# New Feature" => :feature,
       "# Major Feature" => :feature,
