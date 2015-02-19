@@ -12,9 +12,10 @@ $navbar-default-brand-hover-color: $navbar-default-color;
 @import "logo";
 
 html, body {
-  background: #f0f1f3;
+  background: #e9eaed;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
+  height:100%;
 }
 
 .navbar {

@@ -36,15 +36,19 @@ var APP = angular.module('CustomerKnow', [
   'ngSanitize',
   'toaster',
   'ngAutodisable'
-]);
+]).
 
-APP
+config(['$urlRouterProvider', '$locationProvider', 'RestangularProvider',
+function($urlRouterProvider, $locationProvider, RestangularProvider) {
+  RestangularProvider.setBaseUrl("/api");
+  RestangularProvider.setDefaultRequestParams({format: "json"});
 
-  .config(['$urlRouterProvider', '$locationProvider', 'RestangularProvider',
-  function($urlRouterProvider, $locationProvider, RestangularProvider) {
-    RestangularProvider.setBaseUrl("/api");
-    RestangularProvider.setDefaultRequestParams({format: "json"});
+  $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise("/projects");
+}]).
 
-    $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise("/projects");
-  }]);
+run(['$rootScope', '$stateParams', '$state',
+function($rootScope, $stateParams, $state) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+}]);

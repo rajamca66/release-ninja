@@ -21,13 +21,10 @@ html ng-app="CustomerKnow"
 
     .container
       #sidebar
-        a.option ui-sref="projects.list" ui-sref-active="active"
+        a.option ui-sref="projects.list" ng-class="{active: $state.includes('projects') }"
           i.fa.fa-book
           span Projects
-
-        hr
-
-        a.option ui-sref="teams.invite" ui-sref-active="active"
+        a.option ui-sref="teams.invite" ng-class="{active: $state.includes('teams') }"
           i.fa.fa-users
           span Team
 
