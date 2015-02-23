@@ -5,6 +5,9 @@
       .pull-right
         a.btn.btn-info ui-sref="projects.show({id: ctrl.project.id})" &laquo; Back to Project
 
+    p Pull Requests are automatically synced, by default, but you can sync them here or sync non-merged
+      pull requests into notes.
+
     .panel.panel-primary ng-repeat="repository in ctrl.repositories"
       .panel-heading
         h3.panel-title {{ repository.name }}

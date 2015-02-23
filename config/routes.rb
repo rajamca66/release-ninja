@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  get "/plain/:id" => "projects#plain", as: :report
+
   resource :healths
 
   namespace :public do

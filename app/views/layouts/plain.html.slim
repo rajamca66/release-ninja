@@ -1,0 +1,11 @@
+doctype 5
+html
+  head
+    title Release Ninja
+    = stylesheet_link_tag 'plain', media: 'all'
+    = csrf_meta_tags
+
+  body
+    = yield
+
+= render partial: "layouts/rollbar"

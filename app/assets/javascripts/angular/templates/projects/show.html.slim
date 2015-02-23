@@ -88,6 +88,9 @@
     .col-sm-3
       input.form-control.btn-block placeholder="Search in Title or Body" ng-model="filterTitle"
       button.btn.btn-primary.btn-block ng-click="newNote = true" ng-hide="!!newNote" Create a New Note
-      a.btn.btn-info.btn-block ng-href="{{ctrl.project.url}}" target="_blank" Public Change Log
-      a.btn.btn-success.btn-block ui-sref="projects.github_sync({id: ctrl.project.id})" Github Sync
+      a.btn.btn-info.btn-block ui-sref="projects.github_sync({id: ctrl.project.id})" Github Sync
+      hr
+      a.btn.btn-default.btn-block ng-href="{{ctrl.project.url}}" target="_blank" Public Change Log
+      a.btn.btn-default.btn-block ng-href="{{ctrl.project.report_url}}" target="_blank" Reporting View
+      hr
       a.btn.btn-primary.btn-block ui-sref="projects.edit({id: ctrl.project.id})" Edit Project

@@ -1,0 +1,23 @@
+- @grouped_notes.each do |date, severity_grouping|
+  - severity_grouping.each do |severity, notes|
+    - if severity.to_s == "fix"
+      .note class=severity
+        .note-title
+          h3 Bug Fixes
+          .label = date
+        .note-body
+          ul
+            - notes.each do |note|
+              li = note.html_body.html_safe
+      hr
+    - else
+      - notes.each do |note|
+        .note class=severity
+          .note-title
+            h3 = note.html_title.html_safe
+            .label.label-primary = severity
+            .label = date
+            - if note.internal?
+              .label Not Public Facing
+          .note-body = note.html_body.html_safe
+        hr
