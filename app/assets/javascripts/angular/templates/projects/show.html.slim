@@ -71,6 +71,10 @@
             .note-body ng-show="!!note.editing"
               textarea.form-control ng-model="note.markdown_body" required=true
 
+              .form-group
+                label for="published_at" Published At
+                input.form-control#published_at ng-model="note.published_at"
+
               label
                 input type="checkbox" id="note_published" ng-model="note.published"
                 span &nbsp;Published? Note will appear in the Public Change Log
