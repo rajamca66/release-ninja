@@ -29,19 +29,14 @@
       div ng-repeat="dateAndGrouping in ctrl.groupedNotes"
         h2.date id="{{ dateAndGrouping[0] | date:'M-d-yy' }}" {{ dateAndGrouping[0] | date:'mediumDate' }}
         div ng-repeat="(level, notes) in dateAndGrouping[1]"
-          .note.fix ng-if="level === 'fix'" ng-class=" { published: ctrl.anyPublished(notes) } "
+          .note.fix ng-if="level === 'fix'"
             .note-title Fixes
             .note-body
               ul.list-group.no-padding
-                li.clearfix.list-group-item ng-repeat="note in notes"
-                  div ng-hide="!!note.editing"
-                    .col-xs-10: span ng-bind-html="note.html_body"
-                    .col-xs-2
-                      .pull-right
-                        .btn-group
-                          button.btn.btn-sm.btn-default ng-click="note.editing = true" Edit
-                          button.btn.btn-sm.btn-danger ng-confirm-click="ctrl.remove(note)" ng-confirm-message="Are you sure you want to delete? This is not reversible"
-                            | X
+                li.clearfix.list-group-item ng-repeat="note in notes" ng-class="{ published: note.published }"
+                  .options ng-hide="!!note.editing"
+                    .pull-left ng-bind-html="note.html_body"
+                    .pull-right ng-include="'projects/_note_options.html'"
                   .editing ng-show="!!note.editing"
                     .col-xs-10
                       textarea.form-control ng-model="note.markdown_body" required=true
@@ -60,11 +55,7 @@
             .note-title ng-hide="!!note.editing"
               span ng-bind-html="note.html_title"
               .label.label-primary {{ level }}
-              .pull-right
-                .btn-group
-                  button.btn.btn-default.btn-sm ng-click="note.editing = true" Edit
-                  button.btn.btn-danger.btn-sm ng-confirm-click="ctrl.remove(note)" ng-confirm-message="Are you sure you want to delete? This is not reversible"
-                    | X
+              .pull-right ng-include="'projects/_note_options.html'"
 
             .note-title ng-show="!!note.editing"
               .row

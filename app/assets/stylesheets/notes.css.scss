@@ -8,17 +8,23 @@ h2 {
   }
 }
 
+%dashed-border {
+  border-style: dashed;
+  border-width: 3px;
+  opacity: .4;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .note {
   @extend .panel;
   @extend .panel-default;
 
-  &:not(.published) {
-    border-style: dashed;
-    border-width: 3px;
-    opacity: .4;
-
-    &:hover {
-      opacity: 1;
+  &:not(.fix) {
+    &:not(.published) {
+      @extend %dashed-border;
     }
   }
 
@@ -34,6 +40,12 @@ h2 {
 
   .note-body {
     @extend .panel-body;
+  }
+
+  > .note-body > ul > li {
+    &:not(.published) {
+      @extend %dashed-border;
+    }
   }
 }
 
