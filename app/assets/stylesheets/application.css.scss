@@ -34,6 +34,7 @@ html, body {
   position: relative;
 
   @include border-bottom-radius(5px);
+  @include border-top-radius(5px);
   border: 2px solid darken(#f0f1f3, 5%);
   padding: 0;
 
