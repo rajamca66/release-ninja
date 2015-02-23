@@ -42,7 +42,7 @@ h2 {
     @extend .panel-body;
   }
 
-  > .note-body > ul > li {
+  > .note-body > ul.list-group > li {
     &:not(.published) {
       @extend %dashed-border;
     }
