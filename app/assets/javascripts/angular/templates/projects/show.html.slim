@@ -41,6 +41,10 @@
                     .col-xs-10
                       textarea.form-control ng-model="note.markdown_body" required=true
                       select.form-control ng-model="note.level" name="level" required=true ng-options="key as value for (key , value) in ctrl.severityLevels"
+
+                      .form-group
+                        label for="published_at" Published At
+                        input.form-control#published_at ng-model="note.published_at"
                       label
                         input type="checkbox" id="note_published" ng-model="note.published"
                         span &nbsp;Published? Note will appear in the Public Change Log

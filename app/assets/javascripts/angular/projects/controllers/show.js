@@ -28,6 +28,7 @@
       self.project.all("notes").post(note).then(function(createdNote) {
         $scope.newNote = false;
         self.notes.push(createdNote);
+        $scope.note = {};
         resetGroupedNotes();
       });
     };
