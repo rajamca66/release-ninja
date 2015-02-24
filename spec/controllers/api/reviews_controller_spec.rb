@@ -42,6 +42,12 @@ RSpec.describe Api::ReviewsController, :type => :controller do
           post :create, pull_request_id: 6, repository_id: repository.id, project_id: project.id
           expect(ActionMailer::Base.deliveries.last.to).to match_array([r2.email, user.email])
         end
+
+        it "respects mailing_email" do
+          user.update!(mailing_email: "mailing@test.com")
+          post :create, pull_request_id: 6, repository_id: repository.id, project_id: project.id
+          expect(ActionMailer::Base.deliveries.last.to).to match_array([r2.email, "mailing@test.com"])
+        end
       end
 
       context "with a converted pull request" do

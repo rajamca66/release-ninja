@@ -8,7 +8,7 @@ class NotesMailer < ActionMailer::Base
     @project = project
     @notes_added = updates.map{ |r, notes| notes.count }.reduce(&:+)
 
-    emails = project.users.pluck(:email).uniq.reject(&:blank?)
+    emails = project.users.pluck(:mailing_email).uniq.reject(&:blank?)
     mail(to: emails, subject: "Release Ninja Updates - #{project.title}")
   end
 
@@ -16,7 +16,7 @@ class NotesMailer < ActionMailer::Base
     @project = project
     @note = note
     emails = [to]
-    emails << user_who_opened.email if user_who_opened.try!(:email)
+    emails << user_who_opened.mailing_email if user_who_opened.try!(:mailing_email)
 
     mail(to: emails, subject: "[RELEASE NINJA] New Release Ready")
   end

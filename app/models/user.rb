@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   def github
     @github ||= GithubClient.new(nil, access_token: github_token) if github_token
   end
+
+  def mailing_email
+    super || email
+  end
 end
