@@ -10,7 +10,7 @@ Provide your product manager, internal stakeholders, and customers with real-tim
 1. `bundle install`
 2. `rake db:setup`
 3. `cp .template.env .env`
-4. Obtain your Github Client ID and Secret from https://github.com/settings/applications. Place these in the .env file in the correct place.
+4. Obtain your Github Client ID and Secret from https://github.com/settings/applications. Place these in the .env file in the correct place. The settings should look like the github settings at the bottom of this document.
 5. Create a new Github Personal Access Token with [repo, write_repo_hook]
 6. `cp spec/fixtures/your_repos.template.yaml spec/fixtures/your_repos.private.yaml`
 7. Enter in some repos that you have both private / public / organizationally. This will allow for the RepositoryList spec to come out of it's pending state. These private files should not go in VCS.
@@ -28,3 +28,11 @@ This project is provided under the MIT License, see LICENSE for a copy.
 * [ ] Reviewers are in groups and groups can be notified in the workflow
 * [ ] Workflow editor that triggers on different events
 * [ ] UI for project settings is more intuitive
+
+## Github Settings - Local
+![image](https://cloud.githubusercontent.com/assets/1231659/7026641/f94a29e8-dd18-11e4-846f-5a6339e4dcc5.png)
+
+## Github Settings - Production
+![image](https://cloud.githubusercontent.com/assets/1231659/7026660/1091f6b2-dd19-11e4-8b5b-3dee9dae3d70.png)
+
+Your production URL will obviously be different than mine.
