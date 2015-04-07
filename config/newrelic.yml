@@ -15,7 +15,8 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: '5a5a33e21fccbb5df9e90cf7c49c44aa55a57f95'
+  # license_key: ENV['NEW_RELIC_LICENSE_KEY']
+  # license_key provided in the ENV means this is not necessary.
 
   rules:
     ignore_url_regexes: ["healths"]
@@ -52,7 +53,7 @@ common: &default_settings
   # See https://newrelic.com/docs/site/renaming-applications for more details
   # on renaming your New Relic applications.
   #
-  app_name: My Application
+  app_name: Release Ninja
 
   # When "true", the agent collects performance data about your
   # application and reports this data to the New Relic service at
@@ -195,7 +196,7 @@ development:
   <<: *default_settings
   # Turn on communication to New Relic service in development mode
   monitor_mode: true
-  app_name: My Application (Development)
+  app_name: Release Ninja (Development)
 
   # Rails Only - when running in Developer Mode, the New Relic Agent will
   # present performance information on the last 100 transactions you have
@@ -224,4 +225,4 @@ production:
 staging:
   <<: *default_settings
   monitor_mode: true
-  app_name: My Application (Staging)
+  app_name: Release Ninja (Staging)
