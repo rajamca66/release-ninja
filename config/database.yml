@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
-  database: cknow_development
+  database: release_nina_development
 
 test:
   adapter: postgresql
-  database: cknow_test
+  database: release_ninja_test
