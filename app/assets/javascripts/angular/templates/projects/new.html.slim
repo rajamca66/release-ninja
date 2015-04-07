@@ -4,13 +4,13 @@
   .step
     .title.row
       .col-xs-5 Name it
-      .col-xs-3
+      .col-xs-6
         input.form-control type="text" placeholder="Your Super Cool Weekly Update" ng-model="data.title"
 
   .step
     .title.row
       .col-xs-5 Select your repositories
-      .col-xs-3: input.form-control placeholder="Filter" ng-model="filter"
+      .col-xs-6: input.form-control placeholder="Filter" ng-model="filter"
 
     div ng-hide="!!ctrl.repos"
       | Loading...
