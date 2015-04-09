@@ -27,6 +27,12 @@ RSpec.describe Public::NotesController, :type => :controller do
     expect(response.body).to include(project.title)
   end
 
+  it "looks up by the most top-level domain" do
+    request.host = "#{project.slug}.test.herokuapp.com"
+    get :show
+    expect(response.body).to include(project.title)
+  end
+
   it "contains the correct notes" do
     get :show, id: project.id
     [note1, note2, note3].each do |note|

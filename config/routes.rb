@@ -46,7 +46,18 @@ Rails.application.routes.draw do
 
   match "/hook", to: "hooks#perform", via: [:get, :post]
 
-  constraints lambda { |req| req.subdomain.present? && req.subdomain != "www" }  do
+  subdomain_constraint_params = lambda do |req|
+    on_heroku = req.subdomains.include?("herokuapp")
+    top = req.subdomains.first
+
+    if on_heroku
+      req.subdomains.count > 3
+    else
+      top.present? && top != "www"
+    end
+  end
+
+  constraints subdomain_constraint_params do
     get '' => 'public/notes#show'
     get '*path' => 'public/notes#show'
   end

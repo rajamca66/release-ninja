@@ -7,7 +7,7 @@ class Public::NotesController < Public::BaseController
   private
 
   def id
-    params[:id] || request.subdomain
+    params[:id] || request.subdomains.first
   end
 
   def project
