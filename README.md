@@ -10,10 +10,10 @@ Provide your product manager, internal stakeholders, and customers with real-tim
 1. `bundle install`
 2. `rake db:setup`
 3. `cp .template.env .env`
-4. Obtain your Github Client ID and Secret from https://github.com/settings/applications. Place these in the .env file in the correct place. The settings should look like the github settings at the bottom of this document.
+4. Obtain your Github Client ID and Secret from https://github.com/settings/applications > Register a new application. Place these in the .env file in the correct place. The settings should look like the github settings at the bottom of this document.
 5. Create a new Github Personal Access Token with [repo, write_repo_hook]
 6. `cp spec/fixtures/your_repos.template.yaml spec/fixtures/your_repos.private.yaml`
-7. Enter in some repos that you have both private / public / organizationally. This will allow for the RepositoryList spec to come out of it's pending state. These private files should not go in VCS.
+7. Enter in some repos that you have both private / public / organizationally in `spec/fixtures/your_repos.private.yaml`. This will allow for the RepositoryList spec to come out of it's pending state. These private files should not go in VCS.
 8. `rspec` and your specs pass!...hopefully
 
 ## License
