@@ -11,10 +11,11 @@ Provide your product manager, internal stakeholders, and customers with real-tim
 2. `rake db:setup`
 3. `cp .template.env .env`
 4. Obtain your Github Client ID and Secret from https://github.com/settings/applications > Register a new application. Place these in the .env file in the correct place. The settings should look like the github settings at the bottom of this document.
-5. Create a new Github Personal Access Token with [repo, write_repo_hook]
-6. `cp spec/fixtures/your_repos.template.yaml spec/fixtures/your_repos.private.yaml`
-7. Enter in some repos that you have both private / public / organizationally in `spec/fixtures/your_repos.private.yaml`. This will allow for the RepositoryList spec to come out of it's pending state. These private files should not go in VCS.
-8. `rspec` and your specs pass!...hopefully
+5. Create a new Github Personal Access Token with [repo, write_repo_hook] and enter this into the .env you created.
+6. Create a Google API Application and copy your id and secret to your .env. The settings are at the bottom of this document.
+7. `cp spec/fixtures/your_repos.template.yaml spec/fixtures/your_repos.private.yaml`
+8. Enter in some repos that you have both private / public / organizationally in `spec/fixtures/your_repos.private.yaml`. This will allow for the RepositoryList spec to come out of it's pending state. These private files should not go in VCS.
+9. `rspec` and your specs pass!...hopefully
 
 ## License
 
@@ -36,3 +37,8 @@ This project is provided under the MIT License, see LICENSE for a copy.
 ![image](https://cloud.githubusercontent.com/assets/1231659/7026660/1091f6b2-dd19-11e4-8b5b-3dee9dae3d70.png)
 
 Your production URL will obviously be different than mine.
+
+## Google API Settings - Local & Production
+You can use the same API settings for local and production, but I recommend having 2 separate applications so you can easily cycle keys. Create a new project at console.developers.google.com and update your settings to look like this (local & production merged)
+
+![image](https://cloud.githubusercontent.com/assets/1231659/7073496/dea328a6-dec1-11e4-8d78-77e4b5af8267.png)
