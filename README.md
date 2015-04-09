@@ -3,7 +3,7 @@
 Provide your product manager, internal stakeholders, and customers with real-time release notes from your Github based project. By seamlessly integrating with Github, The Release Ninja is able to provide a format for "release notes" that are synced, edited, and finally published.
 
 ## Getting Started
-[[Heroku placeholder]]
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/SalesLoft/release-ninja)
 
 ## 0 to Tests Passing
 
