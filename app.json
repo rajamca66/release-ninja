@@ -1,6 +1,6 @@
 {
   "name": "Release Ninja",
-  "description": "Provide your product manager, internal stakeholders, and customers with real-time release notes from your Github based project. By seamlessly integrating with Github, The Release Ninja is able to provide a format for \"release notes\" that are synced, edited, and finally published.",
+  "description": "Provide your product manager, internal stakeholders, and customers with real-time release notes from your Github based project.",
   "website": "https://github.com/SalesLoft/release-ninja",
   "repository": "https://github.com/SalesLoft/release-ninja",
   "keywords": [
