@@ -17,6 +17,9 @@
     "mandrill"
   ],
   "env": {
+    "PUMA_WORKERS": 2,
+    "MIN_THREADS": 1,
+    "MAX_THREADS": 4,
     "GITHUB_ID": {
       "description": "Production Github ID",
       "value": ""
