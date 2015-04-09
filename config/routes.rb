@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     on_heroku = req.subdomains.include?("herokuapp")
     top = req.subdomains.first
 
+    Rails.logger.info req.subdomains.inspect
     if on_heroku
       req.subdomains.count > 3
     else
