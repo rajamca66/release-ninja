@@ -22,7 +22,7 @@ This project is provided under the MIT License, see LICENSE for a copy.
 
 ## In Due Time
 
-* [ ] Emails for a user are customizable
+* [X] Emails for a user are customizable
 * [ ] Releases are in an rss feed
 * [X] Releases are in beautiful 1 page format
 * [ ] Reviewers are in groups and groups can be notified in the workflow
