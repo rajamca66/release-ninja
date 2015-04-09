@@ -1,0 +1,41 @@
+{
+  "name": "Release Ninja",
+  "description": "Provide your product manager, internal stakeholders, and customers with real-time release notes from your Github based project. By seamlessly integrating with Github, The Release Ninja is able to provide a format for \"release notes\" that are synced, edited, and finally published.",
+  "website": "https://github.com/SalesLoft/release-ninja",
+  "repository": "https://github.com/SalesLoft/release-ninja",
+  "keywords": [
+    "product management",
+    "customer success",
+    "github integration"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "addons": [
+    "newrelic:wayne",
+    "rollbar",
+    "mandrill"
+  ],
+  "env": {
+    "GITHUB_ID": {
+      "description": "Production Github ID",
+      "value": ""
+    },
+    "GITHUB_SECRET": {
+      "description": "Production Github Secret",
+      "value": ""
+    },
+    "GOOGLE_CLIENT_ID": {
+      "description": "Production Google Client ID",
+      "value": ""
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "description": "Production Google Client Secret",
+      "value": ""
+    },
+    "HOST_URL": {
+      "description": "URL of your app to be used in mailers",
+      "value": ""
+    }
+  }
+}
