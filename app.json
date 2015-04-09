@@ -27,11 +27,13 @@
     },
     "GOOGLE_CLIENT_ID": {
       "description": "Production Google Client ID",
-      "value": ""
+      "value": "",
+      "required": false
     },
     "GOOGLE_CLIENT_SECRET": {
       "description": "Production Google Client Secret",
-      "value": ""
+      "value": "",
+      "required": false
     },
     "HOST_URL": {
       "description": "URL of your app to be used in mailers",
