@@ -47,12 +47,12 @@ Rails.application.routes.draw do
   match "/hook", to: "hooks#perform", via: [:get, :post]
 
   subdomain_constraint_params = lambda do |req|
-    on_heroku = req.subdomains.include?("herokuapp")
+    on_heroku = req.domain.include?("herokuapp.com")
     top = req.subdomains.first
 
     Rails.logger.info req.subdomains.inspect
     if on_heroku
-      req.subdomains.count > 3
+      req.subdomains.count > 1
     else
       top.present? && top != "www"
     end
