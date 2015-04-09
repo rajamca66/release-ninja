@@ -38,6 +38,10 @@
     "HOST_URL": {
       "description": "URL of your app to be used in mailers",
       "value": ""
+    },
+    "EMAIL_DOMAIN": {
+      "description": "The domain your emails will send from",
+      "value": ""
     }
   }
 }
