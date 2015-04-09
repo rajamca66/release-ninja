@@ -27,6 +27,29 @@ RSpec.describe Api::ProjectsController, :type => :controller do
       get :show, id: project.id
       expect(response_json["id"]).to eq(project.id)
     end
+
+    describe "url" do
+      before(:each) { project.update!(slug: "project") }
+
+      context "in production" do
+        before(:each) { allow_any_instance_of(ProjectSerializer).to receive(:production?).and_return(true) }
+
+        it "shows the stubbed url" do
+          get :show, id: project.id
+          expect(response_json["url"]).to eq(root_url(subdomain: "project"))
+        end
+
+        context "hosted at herokuapp.com" do
+          before(:each) { ENV["HOST_URL"] = "https://release-ninja.herokuapp.com" }
+
+          it "doesn't show the stubbed url" do
+            get :show, id: project.id
+            expect(response_json["url"]).not_to eq(root_url(subdomain: "project"))
+            expect(response_json["url"]).to eq(public_url(project.id))
+          end
+        end
+      end
+    end
   end
 
   describe "POST create" do

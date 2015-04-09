@@ -11,7 +11,7 @@ class ProjectSerializer < ActiveModel::Serializer
   has_many :repositories, each_serializer: RepositorySerializer
 
   def url
-    if Rails.env.production?
+    if production? && !heroku?
       root_url(subdomain: object.slug)
     else
       public_url(object.id)
@@ -20,5 +20,15 @@ class ProjectSerializer < ActiveModel::Serializer
 
   def report_url
     Rails.application.routes.url_helpers.report_url(object.id)
+  end
+
+  private
+
+  def production?
+    Rails.env.production?
+  end
+
+  def heroku?
+    ENV.fetch("HOST_URL", "").include?("herokuapp.com")
   end
 end
