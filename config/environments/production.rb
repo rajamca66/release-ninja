@@ -77,7 +77,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  OmniAuth.config.full_host = "https://www.therelease.ninja"
+  OmniAuth.config.full_host = ENV.fetch("HOST_URL")
 
   routes.default_url_options = {
       host: ENV.fetch("HOST_URL")
@@ -90,6 +90,6 @@ Rails.application.configure do
       :user_name => ENV["MANDRILL_APIKEY"] || ENV["MANDRILL_USERNAME"],
       :password  => ENV["MANDRILL_PASSWORD"], # SMTP password is any valid API key
       :authentication => 'login', # Mandrill supports 'plain' or 'login'
-      :domain => 'therelease.ninja'
+      :domain => ENV["EMAIL_DOMAIN"]
   }
 end
