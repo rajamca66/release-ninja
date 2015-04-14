@@ -8,8 +8,8 @@ http_interactions:
       string: '{"body":"Howdy from Release Ninja! You should write a release note
         targeted at a semi-technical end user who is\nnot familiar with the code base.
         Include at least 1 image, wherever possible. [Review the help article](http://test.host/help)
-        if\nyou are not familiar with Release Ninja.\nWhen your pull request is ready,
-        do one of the following:\n* [Notify Release Team](http://test.host/workflow/review?project_id=819\u0026pull_request_id=7\u0026repository_id=226)\n*
+        if\nyou are not familiar with Release Ninja.\n\nWhen your pull request is
+        ready, do one of the following:\n\n* [Notify Release Team](http://test.host/workflow/review?project_id=1050\u0026pull_request_id=7\u0026repository_id=325)\n*
         Don''t notify anyone because it''s a small change or doesn''t concern them\nWhatever
         you do though, make sure you :tada:\n"}'
     headers:
@@ -31,29 +31,29 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Tue, 14 Apr 2015 04:14:58 GMT
+      - Tue, 14 Apr 2015 04:25:47 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1767'
+      - '1772'
       Status:
       - 201 Created
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4988'
+      - '4963'
       X-Ratelimit-Reset:
       - '1428988408'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - '"07324ec44a09cb183ea7d2f5b4a8018f"'
+      - '"74f9748af02687404767d888c4fdd753"'
       X-Oauth-Scopes:
       - repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
       Location:
-      - https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/92594151
+      - https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/92594859
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
@@ -73,23 +73,23 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Github-Request-Id:
-      - 32B4D41E:58FE:12C5965:552C9441
+      - 32B4D41E:5902:379ED49:552C96CB
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - a30e6f9aa7cf5731b87dfb3b9992202d
+      - 13d09b732ebe76f892093130dc088652
     body:
       encoding: UTF-8
-      string: '{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/92594151","html_url":"https://github.com/SalesLoft/release-ninja/pull/7#issuecomment-92594151","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/7","id":92594151,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-04-14T04:14:57Z","updated_at":"2015-04-14T04:14:57Z","body":"Howdy
+      string: '{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/92594859","html_url":"https://github.com/SalesLoft/release-ninja/pull/7#issuecomment-92594859","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/7","id":92594859,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-04-14T04:25:47Z","updated_at":"2015-04-14T04:25:47Z","body":"Howdy
         from Release Ninja! You should write a release note targeted at a semi-technical
         end user who is\nnot familiar with the code base. Include at least 1 image,
         wherever possible. [Review the help article](http://test.host/help) if\nyou
-        are not familiar with Release Ninja.\nWhen your pull request is ready, do
-        one of the following:\n* [Notify Release Team](http://test.host/workflow/review?project_id=819&pull_request_id=7&repository_id=226)\n*
+        are not familiar with Release Ninja.\n\nWhen your pull request is ready, do
+        one of the following:\n\n* [Notify Release Team](http://test.host/workflow/review?project_id=1050&pull_request_id=7&repository_id=325)\n*
         Don''t notify anyone because it''s a small change or doesn''t concern them\nWhatever
         you do though, make sure you :tada:\n"}'
     http_version: 
-  recorded_at: Tue, 14 Apr 2015 04:14:58 GMT
+  recorded_at: Tue, 14 Apr 2015 04:25:47 GMT
 recorded_with: VCR 2.9.3

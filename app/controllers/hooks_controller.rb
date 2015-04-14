@@ -62,12 +62,12 @@ class HooksController < ApplicationController
     end
 
     def opened_comment
-      <<-eos.gsub /^\s+/, ""
+      <<-eos.gsub(/^\s+/, "").gsub(/<BR>/, "\n")
       Howdy from Release Ninja! You should write a release note targeted at a semi-technical end user who is
       not familiar with the code base. Include at least 1 image, wherever possible. [Review the help article](#{help_url}) if
       you are not familiar with Release Ninja.
 
-      When your pull request is ready, do one of the following:
+      <BR>When your pull request is ready, do one of the following:<BR>
 
       * [Notify Release Team](#{workflow_review_url(pull_request_id: pull_request.number, project_id: project.id, repository_id: repository.id)})
       * Don't notify anyone because it's a small change or doesn't concern them
