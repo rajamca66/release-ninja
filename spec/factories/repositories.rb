@@ -1,13 +1,13 @@
 FactoryGirl.define do
   factory :customer_know, class: Repository do
     project
-    full_name "sb8244/CustomerKnow"
+    full_name "salesloft/release-ninja"
     user
     private { true }
-    url "https://github.com/sb8244/CustomerKnow"
+    url "https://github.com/salesloft/release-ninja"
     default_branch "master"
     github_id 26443195
-    owner "sb8244"
-    repo "CustomerKnow"
+    owner "salesloft"
+    repo "release-ninja"
   end
 end

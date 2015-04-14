@@ -1,0 +1,51 @@
+#help-index
+  h2 You have questions? I have answers!
+
+  ul#quick-links
+
+  .question
+    .title How should I format my Github release note?
+    blockquote
+      p Your Github release note will contain 2 sections, the title and the body. The title is where you will place
+        any contextual markup that the system understands, as well as a title. The body is simply read and used, without
+        any interpretation or changes. Github-flavored Markdown is used throughout.
+  .question
+    .title How should I format the title?
+    blockquote
+      p The title block can start with any of the following options:
+      ul.list-unstyled
+        li # Fix
+        li # Bug Fix
+        li ## Fix
+        li ## Bug
+        li ## Bug Fix
+        li # Feature
+        li # New Feature
+        li # Major Feature
+      p These options provide contextual clue for the system as to the type of note (bug fix or feature).
+      p Notes that denote a bug fix do not need a title. This is because the title will not be displayed to the end
+        user. If you give a title, that is great, but understand it won't be shown.
+      p Notes that denote a feature require a title; place a - after the type and then the title. An example of a
+        finished title looks like:
+      p <strong># Feature - This is a new thing</strong>
+  .question
+    .title How should I format the body?
+    blockquote
+      p Both bug fixes and features require bodies. The body is where the actual description of the change lies. The
+        text should be written in a way that a person not familiar with the code base (but is the product) could read
+        and understand. Aiming to be read by a paying customer is a great way to think about it.
+      p The body comes after the title, with a blank line in between. The following is the example of a completed note
+        with a body:
+      pre # Feature - This is a new thing
+
+          I am a description of the *feature* that takes markdown styling. I can
+          be on multiple lines and have images.
+  .question
+    .title Can I have an internal release note?
+    blockquote
+      p Glad you asked! You can certainly mark a release note as internal. Maybe you want it documented but don't
+        want the potential for customers to see it. You can do this by adding <code>(internal)</code> on the title line.
+        The following is an example of an internal bug fix. One caveat is that the line still has to start with the allowed
+        tags.
+      p: strong ## Bug Fix (internal)
+

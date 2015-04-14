@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   end
 
   get "/plain/:id" => "projects#plain", as: :report
+  get "/help" => "help#index", as: :help
 
   resource :healths
 

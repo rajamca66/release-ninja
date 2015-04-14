@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/sb8244/CustomerKnow/issues/2/comments
+    uri: https://api.github.com/repos/salesloft/release-ninja/issues/2/comments
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Wed, 28 Jan 2015 03:39:48 GMT
+      - Tue, 14 Apr 2015 04:14:57 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,19 +35,17 @@ http_interactions:
       X-Ratelimit-Limit:
       - '5000'
       X-Ratelimit-Remaining:
-      - '4988'
+      - '4989'
       X-Ratelimit-Reset:
-      - '1422418584'
+      - '1428988408'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Etag:
-      - W/"2539a68b7460dfc71374b091021db5b2"
+      - W/"601a0d519367a2c369f58c2dc917c581"
       X-Oauth-Scopes:
-      - repo, user
+      - repo, write:repo_hook
       X-Accepted-Oauth-Scopes:
       - ''
-      X-Oauth-Client-Id:
-      - ed93d165cafee4693e3e
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       - Accept-Encoding
@@ -67,18 +65,18 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Github-Request-Id:
-      - 32A7D542:7FA3:281181:54C85A04
+      - 32B4D41E:5905:7D4335B:552C9441
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - d594a23ec74671eba905bf91ef329026
+      - 2811da37fbdda4367181b328b22b2499
     body:
       encoding: UTF-8
-      string: '[{"url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/comments/71150256","html_url":"https://github.com/sb8244/CustomerKnow/pull/2#issuecomment-71150256","issue_url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/2","id":71150256,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-23T05:42:39Z","updated_at":"2015-01-23T05:42:39Z","body":"#
-        Feature - Doesn''t matter\r\n\r\nIt''s junk"},{"url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/comments/71767640","html_url":"https://github.com/sb8244/CustomerKnow/pull/2#issuecomment-71767640","issue_url":"https://api.github.com/repos/sb8244/CustomerKnow/issues/2","id":71767640,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-28T01:56:04Z","updated_at":"2015-01-28T01:56:04Z","body":"Hi
-        Harry"}]'
+      string: '[{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/71150256","html_url":"https://github.com/SalesLoft/release-ninja/pull/2#issuecomment-71150256","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/2","id":71150256,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-23T05:42:39Z","updated_at":"2015-01-23T05:42:39Z","body":"#
+        Feature - Doesn''t matter\r\n\r\nIt''s junk"},{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/71767640","html_url":"https://github.com/SalesLoft/release-ninja/pull/2#issuecomment-71767640","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/2","id":71767640,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-28T01:56:04Z","updated_at":"2015-01-28T01:56:04Z","body":"Hi
+        Harry"},{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/71777305","html_url":"https://github.com/SalesLoft/release-ninja/pull/2#issuecomment-71777305","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/2","id":71777305,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-28T03:56:30Z","updated_at":"2015-01-28T03:56:30Z","body":"Test"}]'
     http_version: 
-  recorded_at: Wed, 28 Jan 2015 03:39:48 GMT
+  recorded_at: Tue, 14 Apr 2015 04:14:57 GMT
 recorded_with: VCR 2.9.3

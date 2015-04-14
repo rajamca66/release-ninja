@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$("#help-index .question .title").each(function(i) {
+  var title = $(this).text().trim();
+  var id = "title-" + i;
+
+  $(this).attr('id', id);
+
+  var li = $("<li>");
+  var link = $("<a>", { text: title, href: "#" + id }).appendTo(li);
+
+  $("#quick-links").append(li);
+});

@@ -39,20 +39,41 @@ class HooksController < ApplicationController
   end
 
   def opened
-    message = <<-eos.gsub /^\s+/, ""
-      Howdy from Release Ninja! When your pull request is ready, do one of the following:
-
-      * [Notify Release Team](#{workflow_review_url(pull_request_id: pull_request.number, project_id: project.id, repository_id: repository.id)})
-      * Don't notify anyone because it's a small change or doesn't concern them
-
-      Whatever you do though, make sure you :tada:
-    eos
-    GithubClient.new(project).add_comment(repository.full_name, pull_request.number, message)
+    CommentManager.new(project, repository, pull_request).add_opened_comment
   end
 
   def verify_payload
     payload_body = request.body.read
     signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), project.secret_token, payload_body)
     render text: "Signatures didn't match!", status: :unprocessable_entity unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
+  end
+
+  CommentManager = Struct.new(:project, :repository, :pull_request) do
+    include Rails.application.routes.url_helpers
+
+    def add_opened_comment
+      add_comment(opened_comment)
+    end
+
+    private
+
+    def add_comment(message)
+      GithubClient.new(project).add_comment(repository.full_name, pull_request.number, message)
+    end
+
+    def opened_comment
+      <<-eos.gsub /^\s+/, ""
+      Howdy from Release Ninja! You should write a release note targeted at a semi-technical end user who is
+      not familiar with the code base. Include at least 1 image, wherever possible. [Review the help article](#{help_url}) if
+      you are not familiar with Release Ninja.
+
+      When your pull request is ready, do one of the following:
+
+      * [Notify Release Team](#{workflow_review_url(pull_request_id: pull_request.number, project_id: project.id, repository_id: repository.id)})
+      * Don't notify anyone because it's a small change or doesn't concern them
+
+      Whatever you do though, make sure you :tada:
+      eos
+    end
   end
 end
