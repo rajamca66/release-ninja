@@ -31,10 +31,9 @@ class OauthCallbacksController < ApplicationController
 
   def from_github
     # this should be resilient to user email changes
-    User.where(email: auth.info.email).first_or_initialize.tap do |user|
+    User.where(email: auth.info.email.downcase).first_or_initialize.tap do |user|
       user.github_token = auth.credentials.token
       user.github_uid = auth.info.uid
-      user.email = auth.info.email if user.email.blank?
       user.name = auth.info.name
       user.nickname = auth.info.nickname
 
