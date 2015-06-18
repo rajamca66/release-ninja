@@ -48,7 +48,7 @@ class HooksController < ApplicationController
       end
 
       CommentManager.new(project, repository, pull_request).add_emailed_comment(project.reviewers.pluck(:email))
-    elsif note == :no_comment
+    elsif note == :no_comment && pull_request.merged_at
       CommentManager.new(project, repository, pull_request).merged_without_note
     end
   end
