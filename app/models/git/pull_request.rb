@@ -20,7 +20,7 @@ module Git
     end
 
     def user_nickname
-      @raw.try!(:user).try!(:login)
+      @raw[:user][:login] if @raw
     end
 
     def comments
