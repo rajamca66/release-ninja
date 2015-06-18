@@ -11,6 +11,11 @@
         that tell them about pending pull-requests and can give a final thumbs-up
         or ask questions! They will receive these emails from the comment posted in your Github PRs.
 
+      .settings.checkbox
+        label
+          input.checkbox type="checkbox" ng-model="ctrl.project.auto_notify" ng-change="ctrl.autoNotifyChanged()"
+          ' Automatically Notify on Merge
+
       .panel.panel-default
         .panel-heading
           .panel-title.clearfix
