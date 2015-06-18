@@ -48,10 +48,11 @@ Rails.application.routes.draw do
   match "/hook", to: "hooks#perform", via: [:get, :post]
 
   subdomain_constraint_params = lambda do |req|
-    on_heroku = req.domain.include?("herokuapp")
+    skip_words = ["herokuapp", "ngrok"]
+    skip = skip_words.any?{ |word| req.domain.include?(word) || req.subdomain.include?(word) }
     top = req.subdomains.first
 
-    if on_heroku
+    if skip
       false
     else
       top.present? && top != "www"
