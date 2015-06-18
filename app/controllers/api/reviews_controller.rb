@@ -16,7 +16,6 @@ class Api::ReviewsController < Api::BaseController
     elsif note == :no_comment
       render json: { message: "Stop horsing around and give me a valid format comment to work with!" }, status: :unprocessable_entity
     end
-
   end
 
   private

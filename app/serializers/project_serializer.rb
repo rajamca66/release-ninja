@@ -6,7 +6,7 @@ class ProjectSerializer < ActiveModel::Serializer
   end
 
   attributes :id, :created_at, :title, :public_header_background, :public_logo_url, :public_css, :slug, :url, :robot_token,
-             :report_url
+             :report_url, :auto_notify
 
   has_many :repositories, each_serializer: RepositorySerializer
 
