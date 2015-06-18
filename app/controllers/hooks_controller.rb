@@ -34,8 +34,21 @@ class HooksController < ApplicationController
     end
   end
 
+  def user_who_opened
+    User.find_by(nickname: pull_request.user_nickname)
+  end
+
   def closed
-    NoteSync.new(project, pull_request).call
+    note_sync = NoteSync.new(project, pull_request)
+    note = note_sync.call
+
+    if note_sync.did_create_note? && project.auto_notify?
+      project.reviewers.each do |reviewer|
+        NotesMailer.reviewer(project, note, user_who_opened, to: reviewer.email).deliver_now
+      end
+
+      CommentManager.new(project, repository, pull_request).add_emailed_comment(project.reviewers.pluck(:email))
+    end
   end
 
   def opened
@@ -51,8 +64,13 @@ class HooksController < ApplicationController
   CommentManager = Struct.new(:project, :repository, :pull_request) do
     include Rails.application.routes.url_helpers
 
+
     def add_opened_comment
       add_comment(opened_comment)
+    end
+
+    def add_emailed_comment(emails)
+      add_comment(emailed_comment(emails))
     end
 
     private
@@ -73,6 +91,14 @@ class HooksController < ApplicationController
       * Don't notify anyone because it's a small change or doesn't concern them
 
       Whatever you do though, make sure you :tada:
+      eos
+    end
+
+    def emailed_comment(emails)
+      <<-eos.gsub /^\s+/, ""
+      Howdy from Release Ninja! I just created a note and sent out emails to #{emails.join(", ")}
+
+      :tada:
       eos
     end
   end

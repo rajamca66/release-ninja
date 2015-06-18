@@ -53,7 +53,7 @@ class Api::ReviewsController < Api::BaseController
 
   def add_github_comment(emails)
     message = <<-eos.gsub /^\s+/, ""
-      Howdy from Release Ninja! I just sent out emails to #{emails.join(", ")}
+      Howdy from Release Ninja! I just created a note and sent out emails to #{emails.join(", ")}
 
       :tada:
     eos

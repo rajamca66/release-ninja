@@ -1,0 +1,167 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/salesloft/release-ninja/issues/4/comments
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.7.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <GITHUB_TEST_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 18 Jun 2015 20:52:42 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4993'
+      X-Ratelimit-Reset:
+      - '1434664051'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - W/"bbbd0c611bc24c681adeb1a3ac5a0add"
+      X-Oauth-Scopes:
+      - repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 68C88FA8:7353:1F0497A:55832F9A
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - b0ef53392caa42315c6206737946d931
+    body:
+      encoding: UTF-8
+      string: '[{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/71148902","html_url":"https://github.com/SalesLoft/release-ninja/pull/4#issuecomment-71148902","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/4","id":71148902,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-01-23T05:16:01Z","updated_at":"2015-01-23T05:16:01Z","body":"#
+        Feature - Something\r\n\r\nNot Really"},{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/113284400","html_url":"https://github.com/SalesLoft/release-ninja/pull/4#issuecomment-113284400","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/4","id":113284400,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-06-18T20:47:31Z","updated_at":"2015-06-18T20:47:31Z","body":"Howdy
+        from Release Ninja! I just sent out emails to \n:tada:\n"},{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/113284855","html_url":"https://github.com/SalesLoft/release-ninja/pull/4#issuecomment-113284855","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/4","id":113284855,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-06-18T20:49:37Z","updated_at":"2015-06-18T20:49:37Z","body":"Howdy
+        from Release Ninja! I just sent out emails to santos@leannongreenholt.biz,
+        jaquan@monahanlindgren.name\n:tada:\n"},{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/113285660","html_url":"https://github.com/SalesLoft/release-ninja/pull/4#issuecomment-113285660","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/4","id":113285660,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-06-18T20:52:08Z","updated_at":"2015-06-18T20:52:08Z","body":"Howdy
+        from Release Ninja! I just sent out emails to test@test.com, other@test.com\n:tada:\n"}]'
+    http_version: 
+  recorded_at: Thu, 18 Jun 2015 20:52:42 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/salesloft/release-ninja/issues/4/comments
+    body:
+      encoding: UTF-8
+      string: '{"body":"Howdy from Release Ninja! I just created a note and sent out
+        emails to test@test.com, other@test.com\n:tada:\n"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 3.7.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token <GITHUB_TEST_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 18 Jun 2015 20:52:43 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1313'
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4992'
+      X-Ratelimit-Reset:
+      - '1434664051'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Etag:
+      - '"1250746332baee22e193e03d3873441e"'
+      X-Oauth-Scopes:
+      - repo, write:repo_hook
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/113285797
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 68C88FA8:7351:138FAC4:55832F9B
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 065b43cd9674091fec48a221b420fbb3
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/comments/113285797","html_url":"https://github.com/SalesLoft/release-ninja/pull/4#issuecomment-113285797","issue_url":"https://api.github.com/repos/SalesLoft/release-ninja/issues/4","id":113285797,"user":{"login":"sb8244","id":1231659,"avatar_url":"https://avatars.githubusercontent.com/u/1231659?v=3","gravatar_id":"","url":"https://api.github.com/users/sb8244","html_url":"https://github.com/sb8244","followers_url":"https://api.github.com/users/sb8244/followers","following_url":"https://api.github.com/users/sb8244/following{/other_user}","gists_url":"https://api.github.com/users/sb8244/gists{/gist_id}","starred_url":"https://api.github.com/users/sb8244/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/sb8244/subscriptions","organizations_url":"https://api.github.com/users/sb8244/orgs","repos_url":"https://api.github.com/users/sb8244/repos","events_url":"https://api.github.com/users/sb8244/events{/privacy}","received_events_url":"https://api.github.com/users/sb8244/received_events","type":"User","site_admin":false},"created_at":"2015-06-18T20:52:43Z","updated_at":"2015-06-18T20:52:43Z","body":"Howdy
+        from Release Ninja! I just created a note and sent out emails to test@test.com,
+        other@test.com\n:tada:\n"}'
+    http_version: 
+  recorded_at: Thu, 18 Jun 2015 20:52:43 GMT
+recorded_with: VCR 2.9.3

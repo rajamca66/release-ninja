@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe HooksController, :type => :controller do
   let(:user) { FactoryGirl.create(:github_user) }
+  let(:team) { user.team }
   let!(:project) { FactoryGirl.create(:project, user: user, team: user.team) }
   let!(:repository) { FactoryGirl.create(:customer_know, project: project) }
 
@@ -34,6 +35,24 @@ RSpec.describe HooksController, :type => :controller do
     it "does not publish the note", vcr: { cassette_name: "hooks-controller_merged-featuree" } do
       post :perform, params.merge(hook_params)
       expect(Note.last.published?).to eq(false)
+    end
+
+    context "with auto notify", vcr: { cassette_name: "hooks-controller_merged-auto-notify", match_requests_on: [:uri, :body] } do
+      before(:each) { project.update!(auto_notify: true) }
+
+      let!(:r1) { FactoryGirl.create(:reviewer, email: "test@test.com") }
+      let!(:r2) { FactoryGirl.create(:reviewer, email: "other@test.com") }
+
+      before(:each) {
+        project.reviewers << r1
+        project.reviewers << r2
+      }
+
+      it "sends emails for the note" do
+        expect {
+          post :perform, params.merge(hook_params)
+        }.to change{ ActionMailer::Base.deliveries.count }.by(2)
+      end
     end
 
     context "with a converted PR" do
