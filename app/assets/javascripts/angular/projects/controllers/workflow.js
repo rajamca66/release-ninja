@@ -22,6 +22,14 @@
         toaster.pop("success", "Reviewer Removed");
       });
     };
+
+    self.autoNotifyChanged = function() {
+      self.project.save().then(function() {
+        toaster.pop("success", "Auto Notify Saved");
+      }, function() {
+        toaster.pop("error", "Error Saving Auto Notify");
+      });
+    }
   };
 
   Ctrl.$inject = ["$scope", "project", "reviewers", "toaster"];
