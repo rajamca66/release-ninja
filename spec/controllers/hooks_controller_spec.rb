@@ -53,6 +53,22 @@ RSpec.describe HooksController, :type => :controller do
           post :perform, params.merge(hook_params)
         }.to change{ ActionMailer::Base.deliveries.count }.by(2)
       end
+
+      context "without a comment", vcr: { cassette_name: "hooks-controller_merged_without_comment-auto-notify" } do
+        let(:params) { JSON.parse(File.read("spec/fixtures/github_hooks/merged_without_comments.json")) }
+
+        it "doesn't create a note" do
+          expect {
+            post :perform, params.merge(hook_params)
+          }.not_to change{ Note.count }
+        end
+
+        it "doesn't send emails" do
+          expect {
+            post :perform, params.merge(hook_params)
+          }.not_to change{ ActionMailer::Base.deliveries.count }
+        end
+      end
     end
 
     context "with a converted PR" do

@@ -48,6 +48,8 @@ class HooksController < ApplicationController
       end
 
       CommentManager.new(project, repository, pull_request).add_emailed_comment(project.reviewers.pluck(:email))
+    elsif note == :no_comment
+      CommentManager.new(project, repository, pull_request).merged_without_note
     end
   end
 
@@ -71,6 +73,10 @@ class HooksController < ApplicationController
 
     def add_emailed_comment(emails)
       add_comment(emailed_comment(emails))
+    end
+
+    def merged_without_note
+      add_comment(merged_without_note_comment)
     end
 
     private
@@ -97,6 +103,14 @@ class HooksController < ApplicationController
     def emailed_comment(emails)
       <<-eos.gsub /^\s+/, ""
       Howdy from Release Ninja! I just created a note and sent out emails to #{emails.join(", ")}
+
+      :tada:
+      eos
+    end
+
+    def merged_without_note_comment
+      <<-eos.gsub /^\s+/, ""
+      Howdy from Release Ninja! It appears that you merged without a release note comment? It's never too late!
 
       :tada:
       eos
