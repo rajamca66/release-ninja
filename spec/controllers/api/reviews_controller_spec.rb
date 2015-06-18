@@ -40,13 +40,15 @@ RSpec.describe Api::ReviewsController, :type => :controller do
 
         it "sends them an email" do
           post :create, pull_request_id: 6, repository_id: repository.id, project_id: project.id
-          expect(ActionMailer::Base.deliveries.last.to).to match_array([r2.email, user.email])
+          expect(ActionMailer::Base.deliveries.last.to).to match_array([r2.email])
+          expect(ActionMailer::Base.deliveries.last.reply_to).to match_array([user.email])
         end
 
         it "respects mailing_email" do
           user.update!(mailing_email: "mailing@test.com")
           post :create, pull_request_id: 6, repository_id: repository.id, project_id: project.id
-          expect(ActionMailer::Base.deliveries.last.to).to match_array([r2.email, "mailing@test.com"])
+          expect(ActionMailer::Base.deliveries.last.to).to match_array([r2.email])
+          expect(ActionMailer::Base.deliveries.last.reply_to).to match_array(["mailing@test.com"])
         end
       end
 
