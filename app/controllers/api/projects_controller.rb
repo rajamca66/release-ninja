@@ -26,7 +26,7 @@ class Api::ProjectsController < Api::BaseController
   end
 
   def rss
-    @projects ||= public_project
+    @project ||= public_project
   end
 
   private
