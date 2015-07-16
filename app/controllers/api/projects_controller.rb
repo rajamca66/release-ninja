@@ -26,7 +26,7 @@ class Api::ProjectsController < Api::BaseController
   end
 
   def rss
-    render xml: public_project, status: :ok
+    @projects ||= public_project
   end
 
   private
