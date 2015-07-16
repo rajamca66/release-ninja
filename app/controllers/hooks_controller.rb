@@ -11,10 +11,25 @@ class HooksController < ApplicationController
       opened
     end
 
+    persist_pr
+
     render json: true
   end
 
   private
+
+  def persist_pr
+    pr = PullRequest.find_or_initialize_by(github_id: pull_request.id)
+    pr.update(
+      github_state: pull_request.state,
+      github_user_name: pull_request.user_nickname,
+      title: pull_request.title,
+      html_url: pull_request.html_url,
+      body: pull_request.body,
+      github_created_at: pull_request.created_at,
+      github_updated_at: pull_request.updated_at
+    )
+  end
 
   def project
     @project ||= Project.find(params[:project_id])

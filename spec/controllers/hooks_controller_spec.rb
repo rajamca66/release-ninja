@@ -117,13 +117,39 @@ RSpec.describe HooksController, :type => :controller do
 
   describe "opened" do
     let(:params) { JSON.parse(File.read("spec/fixtures/github_hooks/opened.json")) }
+    let(:pull_request) { PullRequest.first }
+    let(:pull_request_opened) do
+      post :perform, params.merge(hook_params).merge(hook: { action: "opened" })
+    end
 
     # Spec verified visually
     it "doesn't create a note", vcr: { cassette_name: "hooks-controller_opened" } do
       expect {
-        post :perform, params.merge(hook_params).merge(hook: { action: "opened" })
+        pull_request_opened
         expect(response).to be_success
       }.not_to change{ Note.count }
+    end
+
+    it "creates PullRequest", vcr: { cassette_name: "hooks-controller_opened" } do
+      expect {
+        pull_request_opened
+        expect(response).to be_success
+      }.to change{ PullRequest.count }.from(0).to(1)
+    end
+
+    it "persists pull_request state", vcr: { cassette_name: "hooks-controller_opened" } do
+      pull_request_opened
+      expect(pull_request.github_state).to eq 'open'
+    end
+
+    context 'when PullRequest exists' do
+      before { FactoryGirl.create(:pull_request, github_id: params['pull_request']['id']) }
+      it 'modifies', vcr: { cassette_name: "hooks-controller_opened" } do
+        expect {
+          pull_request_opened
+          expect(response).to be_success
+        }.not_to change{ PullRequest.count }
+      end
     end
   end
 end
