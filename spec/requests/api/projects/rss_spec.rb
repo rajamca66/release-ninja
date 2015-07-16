@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Api::Products Rss' do
+RSpec.describe 'Api::Products Rss' do
 
   context 'when project is valid' do
     it 'returns 200' do
