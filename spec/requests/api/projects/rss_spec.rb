@@ -50,16 +50,20 @@ RSpec.describe 'Api::Products Rss' do
           level: :minor,
           published_at: Time.new(2015, 07, 16, 11, 27, 0, -4 * 3600),
           published: true
-        )
+        ).update_columns(published_at: Time.new(2015, 07, 16, 11, 27, 0, -4 * 3600))
       end
       it 'includes items' do
         expect(project_rss).to include "<item>"
       end
       it 'item includes title' do
-        expect(project_rss).to include "<item><title>Fix all the things>/title>"
+        # including both project title and item title to ensure both exist and i'm not falsely
+        # removing one for the other. Probably should come up with a better matcher, 
+        # but regexes are nasty.
+        expect(project_rss).to include '<title>ReleaseNinja</title>'
+        expect(project_rss).to include '<title>Fix all the things>/title>'
       end
       it 'item includes pubDate' do
-        expect(project_rss).to include "<pubDate>Thu, 16 Jul 2015 11:27:00 -0400<pubDate>"
+        expect(project_rss).to include "<pubDate>Thu, 16 Jul 2015 15:27:00 +0000</pubDate>"
       end
     end
   end
