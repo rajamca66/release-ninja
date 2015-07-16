@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :projects do
+      get :rss
       resources :hooks
       resources :notes
 

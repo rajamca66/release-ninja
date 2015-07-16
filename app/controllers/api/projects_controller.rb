@@ -25,6 +25,10 @@ class Api::ProjectsController < Api::BaseController
     respond_with :api, project.destroy
   end
 
+  def rss
+    respond_with :api, public_project
+  end
+
   private
 
   def repositories
@@ -48,6 +52,10 @@ class Api::ProjectsController < Api::BaseController
 
   def project
     @project ||= projects.find(params[:id])
+  end
+
+  def public_project
+    Project.find(params[:project_id])
   end
 
   def project_params
