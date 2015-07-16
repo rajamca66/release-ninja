@@ -19,7 +19,7 @@ then it should keep it up to date! This is only needed if we added a cool featur
 1. `bundle install`
 2. `rake db:setup`
 3. `cp .template.env .env`
-4. Obtain your Github Client ID and Secret from https://github.com/settings/applications > Register a new application.
+4. Obtain your Github Client ID and Secret from https://github.com/settings/developers > `Register new application`.
    Place these in the .env file in the correct place. The settings should look like the github settings at the bottom of this document.
 5. Create a new Github Personal Access Token with [repo, write_repo_hook] and enter this into the .env you created.
 6. Create a Google API Application and copy your id and secret to your .env. The settings are at the bottom of this document.
