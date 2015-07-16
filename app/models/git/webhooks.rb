@@ -10,7 +10,7 @@ Git::Webhooks = Struct.new(:user, :repository) do
       secret: secret
     }
 
-    user.github.create_hook(repository.full_name, "web", hook_options, events: ["pull_request"])
+    user.github.create_hook(repository.full_name, "web", hook_options, events: ["pull_request", "pull_request_review_comment"])
     ninja_hook
   end
 
