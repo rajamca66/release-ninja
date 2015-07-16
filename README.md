@@ -51,6 +51,7 @@ Your production URL will obviously be different than mine.
 
 ## Google API Settings - Local & Production
 You can use the same API settings for local and production, but I recommend having 2 separate applications so you can easily cycle keys.
-Create a new project at console.developers.google.com and update your settings to look like this (local & production merged)
+Create a new project at console.developers.google.com > APIs & auth > credentials > `Create new Client ID`
+and update your settings to look like this (local & production merged)
 
-![image](https://cloud.githubusercontent.com/assets/1231659/7073496/dea328a6-dec1-11e4-8d78-77e4b5af8267.png)
+![image](https://cloud.githubusercontent.com/assets/503436/8713837/36bf92b0-2b3c-11e5-9b24-319e5a81938f.png)
