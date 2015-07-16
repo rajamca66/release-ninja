@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :projects do
-      get :rss
+      get :rss, defaults: { format: 'xml' }
       resources :hooks
       resources :notes
 

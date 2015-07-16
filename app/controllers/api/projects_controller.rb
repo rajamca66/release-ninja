@@ -26,7 +26,7 @@ class Api::ProjectsController < Api::BaseController
   end
 
   def rss
-    respond_with :api, public_project
+    render xml: public_project, status: :ok
   end
 
   private
