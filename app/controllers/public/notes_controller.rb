@@ -5,7 +5,7 @@ class Public::NotesController < Public::BaseController
   end
 
   def rss
-    @project ||= Project.find(project_id)
+    @project ||= Project.eager_load(:notes).find(project_id)
   end
 
   private
