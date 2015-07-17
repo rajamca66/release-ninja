@@ -11,14 +11,14 @@ class HooksController < ApplicationController
       opened
     end
 
-    persist_pr
+    persist_pull_request
 
     render json: true
   end
 
   private
 
-  def persist_pr
+  def persist_pull_request
     pr = PullRequest.find_or_initialize_by(github_id: pull_request.id)
     pr.update(
       github_state: pull_request.state,
