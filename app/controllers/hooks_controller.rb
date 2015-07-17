@@ -7,7 +7,7 @@ class HooksController < ApplicationController
 
     if pull_request.state == "closed"
       closed
-    elsif pull_request.state == "open"
+    elsif params[:hook][:action] == "opened" && pull_request.state == "open"
       opened
     end
 
