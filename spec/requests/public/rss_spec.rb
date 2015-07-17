@@ -9,7 +9,7 @@ RSpec.describe 'Public Rss' do
     )
   end
 
-  let(:project_rss_request) { get(public_rss_path(project.id)) }
+  let(:project_rss_request) { get(public_rss_path(project.friendly_id)) }
   let(:project_rss) { project_rss_request; response.body }
 
   context 'when project is invalid' do

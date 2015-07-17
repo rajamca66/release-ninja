@@ -5,7 +5,7 @@ class Public::NotesController < Public::BaseController
   end
 
   def rss
-    @project ||= Project.eager_load(:notes).find(project_id)
+    @project ||= Project.eager_load(:notes).friendly.find(id)
   rescue ActiveRecord::RecordNotFound
     render text: 'Invalid Project', status: :not_found
   end
@@ -22,9 +22,5 @@ class Public::NotesController < Public::BaseController
 
   def notes
     project.notes.where(published: true).where.not(published_at: nil, internal: true)
-  end
-
-  def project_id
-    params.require(:id)
   end
 end
