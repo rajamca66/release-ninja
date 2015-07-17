@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Api::Products Rss' do
+RSpec.describe 'Public Rss' do
 
   let(:project) do
     FactoryGirl.create(:project,
@@ -9,7 +9,7 @@ RSpec.describe 'Api::Products Rss' do
     )
   end
 
-  let(:project_rss_request) { get(api_project_rss_path(project.id)) }
+  let(:project_rss_request) { get(public_rss_path(project.id)) }
   let(:project_rss) { project_rss_request; response.body }
 
   context 'when project is valid' do
@@ -60,7 +60,7 @@ RSpec.describe 'Api::Products Rss' do
         # removing one for the other. Probably should come up with a better matcher, 
         # but regexes are nasty.
         expect(project_rss).to include '<title>ReleaseNinja</title>'
-        expect(project_rss).to include '<title>Fix all the things>/title>'
+        expect(project_rss).to include '<title>Fix all the things</title>'
       end
       it 'item includes pubDate' do
         expect(project_rss).to include "<pubDate>Thu, 16 Jul 2015 15:27:00 +0000</pubDate>"

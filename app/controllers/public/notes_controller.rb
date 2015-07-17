@@ -4,6 +4,10 @@ class Public::NotesController < Public::BaseController
     @grouped_notes = NoteGrouper.new(notes).call
   end
 
+  def rss
+    @project ||= Project.find(project_id)
+  end
+
   private
 
   def id
@@ -16,5 +20,9 @@ class Public::NotesController < Public::BaseController
 
   def notes
     project.notes.where(published: true).where.not(published_at: nil, internal: true)
+  end
+
+  def project_id
+    params.require(:id)
   end
 end

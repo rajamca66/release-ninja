@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :projects do
-      get :rss, defaults: { format: 'xml' }
       resources :hooks
       resources :notes
 
@@ -44,6 +43,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     get "/:id" => "notes#show"
+    get "/:id/rss" => "notes#rss", as: :rss, defaults: { format: :xml }
   end
 
   match "/hook", to: "hooks#perform", via: [:get, :post]
