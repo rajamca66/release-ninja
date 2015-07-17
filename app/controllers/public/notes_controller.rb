@@ -6,6 +6,8 @@ class Public::NotesController < Public::BaseController
 
   def rss
     @project ||= Project.eager_load(:notes).find(project_id)
+  rescue ActiveRecord::RecordNotFound
+    render text: 'Invalid Project', status: :not_found
   end
 
   private

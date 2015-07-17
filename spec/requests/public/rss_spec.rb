@@ -12,8 +12,13 @@ RSpec.describe 'Public Rss' do
   let(:project_rss_request) { get(public_rss_path(project.id)) }
   let(:project_rss) { project_rss_request; response.body }
 
+  context 'when project is invalid' do
+    it 'returns not_found' do
+      expect(get(public_rss_path(0))).to eq 404
+    end
+  end
   context 'when project is valid' do
-    it 'returns 200' do
+    it 'returns ok' do
       expect(project_rss_request).to eq 200
     end
     it 'includes title' do
