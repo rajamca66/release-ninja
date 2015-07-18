@@ -28,7 +28,7 @@ RSpec.describe 'Public Rss' do
       expect(project_rss).to include '<description>ReleaseNinja</description>'
     end
     it 'includes link' do
-      expect(project_rss).to include "public/#{project.id}</link>"
+      expect(project_rss).to include "public/#{project.friendly_id}/rss</link>"
     end
     context 'without notes' do
       it 'does not include items' do
