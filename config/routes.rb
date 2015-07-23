@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     get "/:id" => "notes#show"
+    get "/:id/rss" => "notes#rss", as: :rss, defaults: { format: :xml }
   end
 
   match "/hook", to: "hooks#perform", via: [:get, :post]

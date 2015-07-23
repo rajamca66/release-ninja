@@ -4,6 +4,12 @@ class Public::NotesController < Public::BaseController
     @grouped_notes = NoteGrouper.new(notes).call
   end
 
+  def rss
+    @project ||= Project.eager_load(:notes).friendly.find(id)
+  rescue ActiveRecord::RecordNotFound
+    render text: 'Invalid Project', status: :not_found
+  end
+
   private
 
   def id
