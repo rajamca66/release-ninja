@@ -6,7 +6,7 @@ class Public::NotesController < Public::BaseController
 
   def rss
     @project ||= project
-    @notes = notes
+    @notes = notes.order(published_at: :desc)
   end
 
   private
