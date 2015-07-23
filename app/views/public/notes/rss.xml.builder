@@ -8,7 +8,7 @@ xml.rss version: '2.0' do
     @notes.each do |note|
       next unless note.published?
       xml.item do
-        xml.title note.title
+        xml.title note.html_title
         xml.description note.html_body
         xml.pubDate note.published_at.rfc822
       end

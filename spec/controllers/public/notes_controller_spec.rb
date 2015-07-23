@@ -73,7 +73,18 @@ RSpec.describe Public::NotesController, :type => :controller do
       expect(response.body).to include("<title>#{project.title}</title>")
     end
 
-    it 'includes the notes text' do
+    it 'includes the notes title' do
+      [note1, note2, note3].each do |note|
+        expect(response.body).to include("<title>#{CGI::escapeHTML(note.html_title)}</title>")
+      end
+    end
+
+    it 'renders note markdown as html' do
+      note1.update!(title: '*Title*')
+      expect(response.body).to_not include("*Title*")
+    end
+
+    it 'includes the notes body' do
       [note1, note2, note3].each do |note|
         expect(response.body).to include("<description>#{CGI::escapeHTML(note.html_body)}</description>")
       end
