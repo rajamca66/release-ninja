@@ -87,6 +87,11 @@ RSpec.describe Public::NotesController, :type => :controller do
       expect(response.body).to include("public/#{project.friendly_id}/rss</link>")
     end
 
+    it 'item includes pubDate' do
+      note1.update!(published_at: Time.new(2015, 07, 16, 11, 27, 0, -4 * 3600))
+      expect(response.body).to include("<pubDate>Thu, 16 Jul 2015 15:27:00 +0000</pubDate>")
+    end
+
     context 'without notes' do
       before(:each) { Note.delete_all }
 
