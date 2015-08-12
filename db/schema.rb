@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618193455) do
+ActiveRecord::Schema.define(version: 20150716201757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,19 @@ ActiveRecord::Schema.define(version: 20150618193455) do
 
   add_index "projects_reviewers", ["project_id"], name: "index_projects_reviewers_on_project_id", using: :btree
   add_index "projects_reviewers", ["reviewer_id"], name: "index_projects_reviewers_on_reviewer_id", using: :btree
+
+  create_table "pull_requests", force: :cascade do |t|
+    t.integer  "github_id",         null: false
+    t.string   "github_state",      null: false
+    t.string   "title",             null: false
+    t.string   "html_url",          null: false
+    t.string   "body",              null: false
+    t.string   "github_user_name",  null: false
+    t.datetime "github_created_at", null: false
+    t.datetime "github_updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "reports", force: :cascade do |t|
     t.string   "name",       limit: 255,                 null: false
