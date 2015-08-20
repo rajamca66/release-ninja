@@ -42,7 +42,7 @@ This project is provided under the MIT License, see LICENSE for a copy.
 * [ ] UI for project settings is more intuitive
 
 ## Github Settings - Local
-![image](https://cloud.githubusercontent.com/assets/1231659/7026641/f94a29e8-dd18-11e4-846f-5a6339e4dcc5.png)
+![image](https://cloud.githubusercontent.com/assets/1231659/9391177/586366d0-4743-11e5-9ada-e9b9c07eee8d.png)
 
 ## Github Settings - Production
 ![image](https://cloud.githubusercontent.com/assets/1231659/7026660/1091f6b2-dd19-11e4-8b5b-3dee9dae3d70.png)
