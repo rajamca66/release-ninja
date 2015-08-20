@@ -42,6 +42,8 @@ This project is provided under the MIT License, see LICENSE for a copy.
 * [ ] UI for project settings is more intuitive
 
 ## Github Settings - Local
+**Note** Use ngrok.com to allow external ips to connect to your local machine. This will allow Github to send you webhooks locally. **Do not** use stevegrok as your subdomain, as it is locked down such that only I can use it.
+
 ![image](https://cloud.githubusercontent.com/assets/1231659/9391177/586366d0-4743-11e5-9ada-e9b9c07eee8d.png)
 
 ## Github Settings - Production
