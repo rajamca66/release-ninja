@@ -25,4 +25,35 @@ RSpec.describe Api::NotesController, :type => :controller do
       }.to change{ note.reload.published_at.try!(:to_s, :db) }.to("2015-02-24 14:23:35")
     end
   end
+
+  describe "POST team_emails" do
+    let!(:note) { FactoryGirl.create(:note, project: project) }
+    let!(:r1)   { FactoryGirl.create(:reviewer) }
+    let!(:r2)   { FactoryGirl.create(:reviewer) }
+
+    before(:each) {
+      project.reviewers << r1
+      project.reviewers << r2
+      ActionMailer::Base.deliveries.clear
+    }
+
+    it "returns emails addressess" do
+      post :team_emails, project_id: project.id, id: note.id
+      expect(response_json).to eq([r1.email, r2.email])
+    end
+
+    it "succeeds" do
+      post :team_emails, project_id: project.id, id: note.id
+      expect(response.code).to eq("200")
+    end
+
+    it "sends emails to team members" do
+      expect {
+        post :team_emails, project_id: project.id, id: note.id
+      }.to change{ ActionMailer::Base.deliveries.count }.by(2)
+
+      expect(ActionMailer::Base.deliveries.first.to).to eq([r1.email])
+      expect(ActionMailer::Base.deliveries.last.to).to eq([r2.email])
+    end
+  end
 end

@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   namespace :api do
     resources :projects do
       resources :hooks
-      resources :notes
+      resources :notes do
+        member do
+          post :team_emails
+        end
+      end
 
       resources :reports do
         member do

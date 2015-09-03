@@ -33,6 +33,15 @@
       });
     };
 
+    this.emailTeam = function(note) {
+      self.project.one("notes", note.id).customPOST({}, 'team_emails').then(function(emailAddresses) {
+        var emailList = emailAddresses.join(', ');
+        alert('Emails sent to team members: ' + emailList);
+      }).catch(function() {
+        alert('Error sending emails to team members.' );
+      });
+    }
+
     this.remove = function(note) {
       self.project.one("notes", note.id).remove().then(function() {
         _.remove(self.notes, {id: note.id});

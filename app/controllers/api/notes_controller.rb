@@ -20,6 +20,14 @@ class Api::NotesController < Api::BaseController
     respond_with :api, project, note.destroy
   end
 
+  def team_emails
+    project.reviewers.each do |reviewer|
+      NotesMailer.reviewer(project, note, current_user, to: reviewer.email).deliver_now
+    end
+
+    render json: project.reviewers.pluck(:email)
+  end
+
   private
 
   def project
