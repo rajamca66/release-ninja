@@ -4,6 +4,7 @@
     this.project = project;
     this.notes = notes.plain();
     this.groupedNotes = NoteGrouper(this.notes);
+    this.currentLimit = 5;
 
     if ($location.hash()) {
       $timeout(function() {
@@ -14,6 +15,10 @@
     this.severityLevels = {
       feature: "Feature",
       fix: "Fix"
+    };
+
+    this.increaseLimit = function() {
+      this.currentLimit += 5;
     };
 
     this.save = function(note) {

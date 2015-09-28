@@ -26,7 +26,7 @@
               input type="checkbox" id="note_internal" ng-model="note.internal"
               span &nbsp;Internal Only? Note will not appear in the public change log, but still must be published!
 
-      div ng-repeat="dateAndGrouping in ctrl.groupedNotes"
+      div ng-repeat="dateAndGrouping in ctrl.groupedNotes | limitTo: ctrl.currentLimit"
         h2.date id="{{ dateAndGrouping[0] | date:'M-d-yy' }}" {{ dateAndGrouping[0] | date:'mediumDate' }}
         div ng-repeat="(level, notes) in dateAndGrouping[1]"
           .note.fix ng-if="level === 'fix'"
@@ -85,6 +85,10 @@
               label
                 input type="checkbox" id="note_internal" ng-model="note.internal"
                 span &nbsp;Internal Only? Note will not appear in the public change log, but still must be published!
+      div ng-show="ctrl.groupedNotes.length > ctrl.currentLimit"
+        .text-center
+          button.btn.btn-lg.btn-primary ng-click="ctrl.increaseLimit()" Show More
+
     .col-sm-3
       input.form-control.btn-block placeholder="Search in Title or Body" ng-model="filterTitle"
       button.btn.btn-primary.btn-block ng-click="newNote = true" ng-hide="!!newNote" Create a New Note
