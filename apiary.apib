@@ -1,53 +1,51 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://therelease.ninja/api
 
 # Release Ninja
 
 Polls is a simple API allowing consumers to view polls and vote in them.
 
-## Questions Collection [/questions]
+## Projects Collection [/projects]
 
-### List All Questions [GET]
+### List All Projects [GET]
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "id": 1,
+                "created_at": "2015-01-31T05:54:40.585Z",
+                "title": "Release Ninja",
+                "public_header_background": null,
+                "public_logo_url": null,
+                "public_css": null,
+                "slug": "meta",
+                "url": "https://meta.therelease.ninja/",
+                "robot_token": null,
+                "report_url": "https://www.therelease.ninja/plain/3",
+                "auto_notify": true,
+                "repositories": [
                     {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
+                    "id": 1,
+                    "full_name": "SalesLoft/release-ninja",
+                    "url": "https://github.com/SalesLoft/release-ninja"
                     }
                 ]
             }
         ]
 
-### Create a New Question [POST]
+### Create a New Project [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+You may create a new project using this action. It takes a JSON
+object containing a title and a collection a repo names which
+will be associated and monitored for this project.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
+            "title": "Super Cool Project",
+            "repos": [
+                "sb8244/release-ninja"
             ]
         }
 
@@ -55,26 +53,27 @@ form of choices.
 
     + Headers
 
-            Location: /questions/2
+            Location: /projects/super-cool-project
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "id": 1,
+                "created_at": "2015-01-31T05:54:40.585Z",
+                "title": "Super Cool Project",
+                "public_header_background": null,
+                "public_logo_url": null,
+                "public_css": null,
+                "slug": "meta",
+                "url": "https://super-cool-project.therelease.ninja/",
+                "robot_token": null,
+                "report_url": "https://www.therelease.ninja/plain/1",
+                "auto_notify": true,
+                "repositories": [
                     {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
+                    "id": 1,
+                    "full_name": "sb8244/release-ninja",
+                    "url": "https://github.com/sb8244/release-ninja"
                     }
                 ]
             }
