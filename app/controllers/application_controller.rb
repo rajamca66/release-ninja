@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
     @current_team ||= current_user.try!(:team)
   end
 
+  def current_user
+    @current_user ||=  super || if params[:access_token]
+                                  User.find_by(access_token: params[:access_token])
+                                 end
+  end
+
   private
 
   def ssl_not_required?

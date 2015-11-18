@@ -17,6 +17,13 @@ RSpec.describe Api::ProjectsController, :type => :controller do
       expect(response_json.count).to eq(2)
       expect(response_json.map{ |h| h["id"] }).to include(project.id, project2.id)
     end
+
+    it "works with access_token" do
+      sign_out(user)
+      user.update!(access_token: "test")
+      get :index, access_token: "test"
+      expect(response_json.count).to eq(2)
+    end
   end
 
   describe "GET show" do
