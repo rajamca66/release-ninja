@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||=  super || if params[:access_token]
-                                  User.find_by(access_token: params[:access_token])
+    @current_user ||=  super || if request.env['HTTP_X_ACCESS_TOKEN']
+                                  User.find_by(access_token: request.env['HTTP_X_ACCESS_TOKEN'])
                                  end
   end
 

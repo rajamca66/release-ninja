@@ -21,7 +21,8 @@ RSpec.describe Api::ProjectsController, :type => :controller do
     it "works with access_token" do
       sign_out(user)
       user.update!(access_token: "test")
-      get :index, access_token: "test"
+      request.env["HTTP_X_ACCESS_TOKEN"] = 'test'
+      get :index
       expect(response_json.count).to eq(2)
     end
   end
