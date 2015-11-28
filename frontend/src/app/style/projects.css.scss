@@ -1,0 +1,36 @@
+#projects {
+  .project-box {
+    .panel-default {
+      &:hover {
+        cursor: pointer;
+        @extend .panel-primary;
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      height: 120px;
+      overflow: auto;
+    }
+
+    .list-group-item {
+      @include border-bottom-radius(0);
+      @include border-top-radius(0);
+      @include border-left-radius(0);
+      @include border-right-radius(0);
+
+      margin-bottom: 1px;
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+}
+
+#project-edit {
+  .title {
+    .btn {
+      margin-left: 7px;
+    }
+  }
+}

@@ -1,0 +1,3 @@
+Convert slim to html for speed
+
+slimrb -e frontend/src/app/templates/projects/list.html -o code_attr_delims="{'(' => ')', '[' => ']'}" -o attr_list_delims="{'(' => ')', '[' => ']'}"

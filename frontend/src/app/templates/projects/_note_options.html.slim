@@ -1,0 +1,6 @@
+.btn-group
+  button.btn.btn-default.btn-sm ng-click="note.published = true; ctrl.save(note);" ng-if="!note.published" Publish Note
+  button.btn.btn-default.btn-sm ng-click="ctrl.emailTeam(note)" Email Team
+  button.btn.btn-default.btn-sm ng-click="note.editing = true" Edit
+  button.btn.btn-danger.btn-sm ng-confirm-click="ctrl.remove(note)" ng-confirm-message="Are you sure you want to delete? This is not reversible"
+    i.fa.fa-close

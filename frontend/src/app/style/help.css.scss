@@ -1,0 +1,22 @@
+#help-index {
+  padding: 15px;
+
+  h1 {
+    margin-top: 10px;
+  }
+
+  .question {
+    .title {
+      font-size: 1.3em;
+    }
+
+    blockquote {
+      margin-top: 7px;
+      border-color: $brand-primary;
+
+      .list-unstyled {
+        margin-left: 24px;
+      }
+    }
+  }
+}
