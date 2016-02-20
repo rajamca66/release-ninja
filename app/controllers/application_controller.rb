@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   force_ssl unless: :ssl_not_required?
   protect_from_forgery with: :exception
+  before_filter :check_for_invite
 
   def index
     render text: "", layout: "ng"
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
 
   def ssl_not_required?
     !Rails.env.production? || request.path == "/healths"
+  end
+
+  def check_for_invite
+    session[:invite_code] = params.fetch(:invite_code, session[:invite_code])
   end
 end

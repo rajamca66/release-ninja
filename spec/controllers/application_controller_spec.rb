@@ -31,4 +31,17 @@ RSpec.describe ApplicationController, type: :controller do
       expect(response.body).to include("window.current_user = null")
     end
   end
+
+  context "with an invite code" do
+    it "sets the invite code" do
+      get :index, invite_code: "123"
+      expect(session[:invite_code]).to eq("123")
+    end
+
+    it "renders the app" do
+      get :index, invite_code: "123"
+      expect(response).to be_success
+      expect(response.body).to include("ng-app")
+    end
+  end
 end
