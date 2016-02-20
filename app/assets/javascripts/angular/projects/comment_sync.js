@@ -1,5 +1,6 @@
 (function() {
-  Ctrl = function($scope, project, Repository) {
+  CommentSyncCtrl.$inject = ["$scope", "project", "Repository", "SideMenu", "$state"];
+  function CommentSyncCtrl($scope, project, Repository, SideMenu, $state) {
     var self = this;
 
     self.project = project;
@@ -12,9 +13,14 @@
       feature: "Feature",
       fix: "Fix"
     };
+
+    SideMenu.addItem("Back to Project", function() {
+      $state.go("projects.show", { id: self.project.id });
+    });
   };
 
-  RepositoryFactory = function(Restangular, PullRequest) {
+  RepositoryFactory.$inject = ["Restangular", "PullRequest"];
+  function RepositoryFactory(Restangular, PullRequest) {
     return function Repository(repository, projectID) {
       var self = this;
       var currentPage = 1;
@@ -41,7 +47,8 @@
     };
   };
 
-  PullRequestFactory = function(Comment) {
+  PullRequestFactory.$inject = ["Comment"];
+  function PullRequestFactory(Comment) {
     return function PullRequest(pullRequest, projectID) {
       var self = this;
 
@@ -60,7 +67,8 @@
     };
   };
 
-  CommentFactory = function(Restangular, toaster) {
+  CommentFactory.$inject = ["Restangular", "toaster"];
+  function CommentFactory(Restangular, toaster) {
     return function Comment(comment, pullRequestID, projectID, onNoteCreate) {
       var self = this;
 
@@ -83,12 +91,7 @@
     };
   };
 
-  Ctrl.$inject = ["$scope", "project", "Repository"];
-  RepositoryFactory.$inject = ["Restangular", "PullRequest"];
-  PullRequestFactory.$inject = ["Comment"];
-  CommentFactory.$inject = ["Restangular", "toaster"];
-
-  angular.module("projects").controller("CommentSyncController", Ctrl)
+  angular.module("projects").controller("CommentSyncController", CommentSyncCtrl)
                             .factory('Repository', RepositoryFactory)
                             .factory('PullRequest', PullRequestFactory)
                             .factory('Comment', CommentFactory);

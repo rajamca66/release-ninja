@@ -1,16 +1,14 @@
-#new-project
-  h2.title.text-center Create New Project
+.content--header Create New Project
+.projects--new
+  .step
+    .projects--new-label.row
+      .col-xs-3 Name it
+      .col-xs-9: input.form-control type="text" placeholder="Your Super Cool Weekly Update" ng-model="data.title"
 
   .step
-    .title.row
-      .col-xs-5 Name it
-      .col-xs-6
-        input.form-control type="text" placeholder="Your Super Cool Weekly Update" ng-model="data.title"
-
-  .step
-    .title.row
-      .col-xs-5 Select your repositories
-      .col-xs-6: input.form-control placeholder="Filter" ng-model="filter"
+    .projects--new-label.row
+      .col-xs-3 Select your repositories
+      .col-xs-9: input.form-control placeholder="Filter" ng-model="filter"
 
     div ng-hide="!!ctrl.repos"
       | Loading...
@@ -22,9 +20,7 @@
         '
         span {{repo.full_name}}
 
-  .step
-    .title.row Confirm
-
+  .step ng-hide="!ctrl.repos"
     div
       strong Title:
       span  {{ data.title }}

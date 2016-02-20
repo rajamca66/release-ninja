@@ -1,15 +1,5 @@
-#projects
-  h2.title.text-center
-    span
-      i.fa.fa-book
-      |  Projects
-    .pull-right
-      a.btn.btn-success ui-sref="projects.new" New Project
-
-  .project-box.col-xs-4 ng-repeat="project in ctrl.projects"
-    .panel.panel-default ui-sref="projects.show({id: project.id})"
-      .panel-heading
-        .panel-title {{ project.title }}
-      .panel-body
-        ul.list-group.no-padding
-          li.list-group-item ng-repeat="repo in project.repositories" {{ repo.full_name }}
+.content--header Your Team's Projects
+.projects--list
+  .projects--list-item ng-repeat="project in ctrl.projects"
+    a.projects--list-item-header ui-sref="projects.show({ id: project.id })" {{ project.title }}
+    .projects--list-sub-item ng-repeat="repo in project.repositories" > {{ repo.full_name }}

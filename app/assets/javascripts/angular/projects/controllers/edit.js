@@ -1,5 +1,6 @@
 (function() {
-  var EditCtrl = function($scope, project, hooks, toaster) {
+  EditCtrl.$inject = ["$scope", "project", "hooks", "toaster", "SideMenu", "$state"];
+  function EditCtrl($scope, project, hooks, toaster, SideMenu, $state) {
     var self = this;
     self.project = project;
     self.hooks = hooks;
@@ -30,9 +31,15 @@
         self.hooks[index] = newHook;
       });
     };
-  };
 
-  EditCtrl.$inject = ["$scope", "project", "hooks", "toaster"];
+    SideMenu.addItem("Edit Workflow", function() {
+      $state.go("projects.workflow", { id: self.project.id });
+    });
+
+    SideMenu.addItem("Back to Project", function() {
+      $state.go("projects.show", { id: self.project.id });
+    });
+  };
 
   angular.module("projects").controller('ProjectsEditController', EditCtrl);
 })();

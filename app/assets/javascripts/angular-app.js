@@ -17,6 +17,7 @@
  = require angular-autodisable
 
  = require ./angular/templates
+ = require ./angular/app/module
  = require ./angular/shared/module
  = require ./angular/projects/module
  = require ./angular/teams/module
@@ -26,7 +27,8 @@
 
 _.mixin(_.str.exports());
 
-var APP = angular.module('CustomerKnow', [
+angular.module('CustomerKnow', [
+  'app',
   'ui.router',
   'templates',
   'restangular',

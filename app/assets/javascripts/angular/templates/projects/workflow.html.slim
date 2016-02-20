@@ -1,44 +1,37 @@
-#project-edit
-  .row: .col-xs-10.col-xs-offset-1
-    h2.text-center.title
-      span Edit Project - {{ctrl.project.title}}
-      .pull-right
-        a.btn.btn-info ui-sref="projects.show({id: ctrl.project.id})" &laquo; Back to Project
+.content--header Edit Project - {{ctrl.project.title}} 
+.projects--workflow-edit
+  p Reviewers will be notified during your Git workflow. Reviewers will receive emails
+    that tell them about pending pull-requests and can give a final thumbs-up
+    or ask questions! They will receive these emails from the comment posted in your Github PRs.
 
-  .row
-    .col-xs-10.col-xs-offset-1
-      p Reviewers will be notified during your Git workflow. Reviewers will receive emails
-        that tell them about pending pull-requests and can give a final thumbs-up
-        or ask questions! They will receive these emails from the comment posted in your Github PRs.
+  .settings.checkbox
+    label
+      input.checkbox type="checkbox" ng-model="ctrl.project.auto_notify" ng-change="ctrl.autoNotifyChanged()"
+      ' Automatically Notify on Merge
 
-      .settings.checkbox
-        label
-          input.checkbox type="checkbox" ng-model="ctrl.project.auto_notify" ng-change="ctrl.autoNotifyChanged()"
-          ' Automatically Notify on Merge
+  .panel.panel-default
+    .panel-heading
+      .panel-title.clearfix
+        ' Reviewers
+        .pull-right
+          button.btn.btn-success.btn-xs ng-click="showNew = !showNew"
+            i.fa.fa-plus
+            |  Add Reviewer
+    .panel-body
+      ul.list-group
+        li.list-group-item ng-show="showNew"
+          form ng-submit="ctrl.addReviewer(ctrl.newReviewer)"
+            .form-group
+              label for="email" Email Address
+              input.form-control type="email" required=true id="email" ng-model="ctrl.newReviewer.email"
+            .form-group
+              button.btn.btn-success Add Reviewer to Project
 
-      .panel.panel-default
-        .panel-heading
-          .panel-title.clearfix
-            ' Reviewers
-            .pull-right
-              button.btn.btn-success.btn-xs ng-click="showNew = !showNew"
-                i.fa.fa-plus
-                |  Add Reviewer
-        .panel-body
-          ul.list-group
-            li.list-group-item ng-show="showNew"
-              form ng-submit="ctrl.addReviewer(ctrl.newReviewer)"
-                .form-group
-                  label for="email" Email Address
-                  input.form-control type="email" required=true id="email" ng-model="ctrl.newReviewer.email"
-                .form-group
-                  button.btn.btn-success Add Reviewer to Project
-
-            li.list-group-item.clearfix ng-repeat="reviewer in ctrl.reviewers"
-              .pull-left {{ reviewer.email }}
-              .pull-right
-                button.btn.btn-danger.btn-xs ng-click="ctrl.remove(reviewer)"
-                  i.fa.fa-minus
-                  |  Remove from Project
-            li.list-group-item ng-show="ctrl.reviewers.length == 0"
-              | No reviewers setup for project
+        li.list-group-item.clearfix ng-repeat="reviewer in ctrl.reviewers"
+          .pull-left {{ reviewer.email }}
+          .pull-right
+            button.btn.btn-danger.btn-xs ng-click="ctrl.remove(reviewer)"
+              i.fa.fa-minus
+              |  Remove from Project
+        li.list-group-item ng-show="ctrl.reviewers.length == 0"
+          | No reviewers setup for project
