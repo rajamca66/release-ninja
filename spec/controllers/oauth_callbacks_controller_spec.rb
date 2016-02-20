@@ -77,6 +77,35 @@ RSpec.describe OauthCallbacksController, :type => :controller do
         }.to change{ controller.current_user }.from(nil)
       end
 
+      context "with an invited email" do
+        let(:user) { FactoryGirl.create(:user) }
+        let(:team) { user.team }
+        let!(:invite) { team.invites.create!(user: user, to: "GITHUB@test.com") }
+
+        it "creates a user" do
+          expect {
+            get :create, provider: :github
+          }.to change{ User.count }.by(1)
+        end
+
+        it "doesn't create a team" do
+          expect {
+            get :create, provider: :github
+          }.not_to change{ Team.count }
+        end
+
+        it "assigns the team" do
+          get :create, provider: :github
+          expect(User.last.team).to eq(team)
+        end
+
+        it "redeems the invite" do
+          expect {
+            get :create, provider: :github
+          }.to change{ invite.reload.redeemed }.from(false).to(true)
+        end
+      end
+
       context "with an invite code" do
         let(:user) { FactoryGirl.create(:user) }
         let(:team) { user.team }
@@ -132,6 +161,16 @@ RSpec.describe OauthCallbacksController, :type => :controller do
             expect {
               get :create, provider: :github
             }.to change{ session[:invite_code] }.to(nil)
+          end
+        end
+
+        context "with a duplicate invite" do
+          let!(:invite2) { team.invites.create!(user: user, to: "github@test.com") }
+
+          it "redeems both invites" do
+            expect {
+              get :create, provider: :github
+            }.to change{ Invite.where(redeemed: true).count }.from(0).to(2)
           end
         end
       end
