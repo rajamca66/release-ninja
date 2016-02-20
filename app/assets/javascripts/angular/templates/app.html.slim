@@ -1,24 +1,17 @@
-#logo.flipped
-nav.navbar.navbar-inverse.navbar-static-top role="navigation" style=("margin-bottom: 0")
-  .navbar-header
-    a.navbar-brand href="/"  Release Ninja
-  .navbar-collapse.collapse.pull-right
-    ul.nav.navbar-nav
-      li: a ui-sref="projects.list"  Projects
-      li: a ui-sref="teams.invite"  Manage Team
-      li ng-show="ctrl.user"
+.flex-wrapper
+  .sidebar--container
+    .sidebar--logo Release Ninja
+    ul.sidebar--menu-main
+      li ng-class="{active: $state.includes('projects') }"
+        a ui-sref="projects.list" Projects
+      li ng-class="{active: $state.includes('teams') }" 
+        a ui-sref="teams.invite" Manage Team
+  .body--container
+    .topbar--container
+      .topbar--container--logout
         a href="/users/sign_out" ng-click="$event.stopPropagation()" Logout
-      li ng-hide="ctrl.user"
-        a href="/auth/github" ng-click="$event.stopPropagation()" Login (Github)
-
-.container
-  #sidebar
-    a.option ui-sref="projects.list" ng-class="{active: $state.includes('projects') }"
-      i.fa.fa-book
-      span Projects
-    a.option ui-sref="teams.invite" ng-class="{active: $state.includes('teams') }"
-      i.fa.fa-users
-      span Team
-
-  .container-inner ui-view=true
+        .topbar--container--pendant
+        
+    .body--container-content ui-view=true
+    
 toaster-container
