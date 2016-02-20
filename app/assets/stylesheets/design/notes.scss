@@ -1,14 +1,4 @@
-h2 {
-  margin-top: 0px;
-}
-
-.note-body {
-  img {
-    @extend .img-responsive;
-  }
-}
-
-%dashed-border {
+@mixin dashed-border {
   border-style: dashed;
   border-width: 3px;
   opacity: .4;
@@ -18,13 +8,31 @@ h2 {
   }
 }
 
+.note-body {
+  h1,h2,h3,h4,h5,h6 {
+    margin-top: 0;
+  }
+
+  img {
+    @extend .img-responsive;
+  }
+
+  label {
+    display: block;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+}
+
 .note {
   @extend .panel;
   @extend .panel-default;
 
   &:not(.fix) {
     &:not(.published) {
-      @extend %dashed-border;
+      @include dashed-border();
     }
   }
 
@@ -44,14 +52,7 @@ h2 {
 
   > .note-body > ul.list-group > li {
     &:not(.published) {
-      @extend %dashed-border;
+      @include dashed-border();
     }
-  }
-}
-
-.editing {
-  select {
-    margin-top: 7px;
-    margin-bottom: 7px;
   }
 }

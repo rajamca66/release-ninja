@@ -14,14 +14,14 @@ $container-lg: 960px;
 @import "fonts";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
 @import "angularjs-toaster/toaster";
-@import "notes";
-@import "logo";
-@import "workflow";
-@import "help";
+
+@import "help/main";
 
 @import "design/structure";
+@import "design/logo";
 @import "design/generic";
 @import "design/projects";
+@import "design/notes";
 
 html, body {
   font-family: 'Open Sans', sans-serif;
@@ -29,17 +29,4 @@ html, body {
   padding: 0;
   margin: 0;
   height: 100%;
-}
-
-a {
-  color: inherit;
-
-  &:hover { color: inherit; }
-  &:visited { color: inherit; }
-  &:focus { color: inherit; }
-  &:active { color: inherit; }
-}
-
-[ng-click] {
-  cursor: pointer;
 }
