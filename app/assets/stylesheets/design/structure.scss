@@ -23,15 +23,18 @@ $sidebar-width: 230px;
   margin-bottom: 50px;
 }
 
-ul.sidebar--menu-main {
+ul.sidebar--menu-main, .sidebar--secondary-menu {
   list-style: none;
   line-height: 2.5em;
+}
 
-  li {
-    a {
-      color: inherit;
-    }
-  }
+.sidebar--menu-main {
+  margin-bottom: 14px;
+}
+
+.sidebar--secondary-menu {
+  padding-top: 14px;
+  border-top: 1px solid;
 }
 
 .body--container {

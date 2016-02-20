@@ -34,7 +34,12 @@ html, body {
 a {
   color: inherit;
 
-  &:hover {
-    color: inherit;
-  }
+  &:hover { color: inherit; }
+  &:visited { color: inherit; }
+  &:focus { color: inherit; }
+  &:active { color: inherit; }
+}
+
+[ng-click] {
+  cursor: pointer;
 }

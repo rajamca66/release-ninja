@@ -4,9 +4,10 @@
       restrict: "C",
       templateUrl: "app.html",
       controllerAs: "ctrl",
-      controller: function($window) {
+      controller: ["$window", "SideMenu", function($window, SideMenu) {
         this.user = $window.current_user;
-      }
+        this.sideMenuItems = SideMenu.getItems;
+      }]
     };
   })
 })(angular.module("app"));
