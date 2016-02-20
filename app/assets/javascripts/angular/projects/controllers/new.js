@@ -29,7 +29,7 @@
     };
 
     $scope.isValid = function(data) {
-      var data = cleanCloneData(data);
+      data = cleanCloneData(data);
       return data.title && data.repos && data.repos.length > 0;
     };
 

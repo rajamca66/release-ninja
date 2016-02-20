@@ -9,5 +9,5 @@
         this.sideMenuItems = SideMenu.getItems;
       }]
     };
-  })
+  });
 })(angular.module("app"));

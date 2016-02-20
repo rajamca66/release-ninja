@@ -39,7 +39,7 @@
     SideMenu.addItem("Back to Project", function() {
       $state.go("projects.show", { id: self.project.id });
     });
-  };
+  }
 
   angular.module("projects").controller('ProjectsWorkflowController', WorkflowCtrl);
 })();

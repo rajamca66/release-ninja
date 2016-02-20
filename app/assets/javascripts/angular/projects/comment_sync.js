@@ -17,7 +17,7 @@
     SideMenu.addItem("Back to Project", function() {
       $state.go("projects.show", { id: self.project.id });
     });
-  };
+  }
 
   RepositoryFactory.$inject = ["Restangular", "PullRequest"];
   function RepositoryFactory(Restangular, PullRequest) {
@@ -45,7 +45,7 @@
           });
       }
     };
-  };
+  }
 
   PullRequestFactory.$inject = ["Comment"];
   function PullRequestFactory(Comment) {
@@ -65,7 +65,7 @@
         self.has_note = true;
       }
     };
-  };
+  }
 
   CommentFactory.$inject = ["Restangular", "toaster"];
   function CommentFactory(Restangular, toaster) {
@@ -89,7 +89,7 @@
         });
       };
     };
-  };
+  }
 
   angular.module("projects").controller("CommentSyncController", CommentSyncCtrl)
                             .factory('Repository', RepositoryFactory)

@@ -24,7 +24,7 @@
     SideMenu.addItem("View Project", function() {
       $state.go("projects.show", { id: self.project.id });
     });
-  };
+  }
 
   angular.module("workflows").controller("WorkflowReviewController", ReviewCtrl);
 })();

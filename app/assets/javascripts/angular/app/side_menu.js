@@ -18,7 +18,7 @@
     }
 
     function addItem(title, onClick) {
-      items.push({ title, onClick: onClick });
+      items.push({ title: title, onClick: onClick });
       return service;
     }
   });

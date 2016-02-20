@@ -13,5 +13,5 @@
     function isLoggedIn() {
       return !!$window.current_user;
     }
-  }])
+  }]);
 })(angular.module("shared"));

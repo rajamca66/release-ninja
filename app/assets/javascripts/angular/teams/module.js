@@ -20,5 +20,5 @@ angular.module("teams", [
       url: "/invite",
       templateUrl: "teams/invite.html",
       controller: "TeamsInviteController as ctrl"
-    })
+    });
 }]);

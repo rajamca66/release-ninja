@@ -24,7 +24,7 @@ angular.module("projects").directive("reportsList", function() {
       $scope.selection = function(note, remove, $event) {
         $event.stopPropagation();
 
-        if (remove == false) {
+        if (!remove) {
           addNote($scope.selectedReport, note);
         } else {
           removeNote($scope.selectedReport, note);
@@ -55,5 +55,5 @@ angular.module("projects").directive("reportsList", function() {
         });
       }
     }]
-  }
+  };
 });

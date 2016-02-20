@@ -47,7 +47,7 @@
       }).catch(function() {
         alert('Error sending emails to team members.' );
       });
-    }
+    };
 
     this.remove = function(note) {
       self.project.one("notes", note.id).remove().then(function() {
@@ -98,7 +98,7 @@
     SideMenu.addItem("Github Sync", function() {
       $state.go("projects.github_sync", { id: self.project.id });
     });
-  };
+  }
 
   angular.module("projects").controller('ProjectsShowController', ShowCtrl);
 })();

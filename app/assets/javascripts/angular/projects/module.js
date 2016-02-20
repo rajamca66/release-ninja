@@ -79,5 +79,5 @@ angular.module("projects", [
           return Restangular.one("projects", $stateParams.id).get();
         }]
       }
-    })
+    });
 }]);
