@@ -1,5 +1,6 @@
 (function() {
-  ReviewCtrl = function($scope, Restangular, toaster, $stateParams, project, repository) {
+  ReviewCtrl.$inject = ["$scope", "Restangular", "toaster", "$stateParams", "project", "repository", "$state", "SideMenu"];
+  function ReviewCtrl($scope, Restangular, toaster, $stateParams, project, repository, $state, SideMenu) {
     var self = this;
     self.pull_request_id = "#" + $stateParams.pull_request_id;
     self.pull_request_url = repository.url + "/pull/" + $stateParams.pull_request_id;
@@ -19,9 +20,11 @@
         toaster.pop("error", "Oh no!", data.message);
       });
     };
-  };
 
-  ReviewCtrl.$inject = ["$scope", "Restangular", "toaster", "$stateParams", "project", "repository"];
+    SideMenu.addItem("View Project", function() {
+      $state.go("projects.show", { id: self.project.id });
+    });
+  };
 
   angular.module("workflows").controller("WorkflowReviewController", ReviewCtrl);
 })();
