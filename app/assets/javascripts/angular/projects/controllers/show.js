@@ -1,5 +1,7 @@
 (function() {
-  var ShowCtrl = function($scope, project, notes, NoteGrouper, $filter, $location, $anchorScroll, $timeout) {
+  ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter", "$location", "$anchorScroll", "$timeout", "SideMenu", "$state", "$window"];
+
+  function ShowCtrl($scope, project, notes, NoteGrouper, $filter, $location, $anchorScroll, $timeout, SideMenu, $state, $window) {
     var self = this;
     this.project = project;
     this.notes = notes.plain();
@@ -80,9 +82,23 @@
         self.groupedNotes = NoteGrouper(self.notes);
       }
     }
-  };
 
-  ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter", "$location", "$anchorScroll", "$timeout"];
+    SideMenu.addItem("Create a New Note", function() {
+      $scope.newNote = true;
+    });
+
+    SideMenu.addItem("Project Settings", function() {
+      $state.go("projects.edit", { id: self.project.id });
+    });
+
+    SideMenu.addItem("Public Change Log", function() {
+      $window.location.href = self.project.url;
+    });
+
+    SideMenu.addItem("Github Sync", function() {
+      $state.go("projects.github_sync", { id: self.project.id });
+    });
+  };
 
   angular.module("projects").controller('ProjectsShowController', ShowCtrl);
 })();
