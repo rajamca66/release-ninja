@@ -5,7 +5,7 @@
 
 angular.module("app", ["ui.router"])
   .run(["$rootScope", "SideMenu", function($rootScope, SideMenu) {
-    $rootScope.$on("$stateChangeStart", function() {
+    $rootScope.$on("$stateChangeSuccess", function() {
       SideMenu.clear();
     });
   }]);
