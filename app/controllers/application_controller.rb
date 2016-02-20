@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    if current_user
+    if true || current_user
       render text: "", layout: "ng"
     else
       check_for_invite

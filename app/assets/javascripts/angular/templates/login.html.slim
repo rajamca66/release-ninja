@@ -1,0 +1,22 @@
+.login--container
+  .col-xs-12.col-sm-6
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Product Engineer Sign In
+      .panel-body
+        .row
+          .col-xs-8.col-xs-offset-2
+            a.btn.btn-primary.btn-block.btn-lg href="/auth/github" ng-click="$event.stopPropagation()"
+              i.fa.fa-github
+              '  Github Login
+
+  .col-xs-12.col-sm-6
+    .panel.panel-danger
+      .panel-heading
+        h3.panel-title Review Team Sign In
+      .panel-body
+        .row
+          .col-xs-8.col-xs-offset-2
+            a.btn.btn-primary.btn-block.btn-lg href="/auth/google_oauth2" ng-click="$event.stopPropagation()"
+              i.fa.fa-google
+              '  Google Login

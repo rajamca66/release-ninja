@@ -1,7 +1,7 @@
 .flex-wrapper
   .sidebar--container
     .sidebar--logo Release Ninja
-    ul.sidebar--menu-main
+    ul.sidebar--menu-main ng-show="ctrl.user"
       li ng-class="{active: $state.includes('projects') }"
         a ui-sref="projects.list" Projects
       li ng-class="{active: $state.includes('teams') }" 
@@ -11,7 +11,7 @@
         a ng-click="item.onClick()" {{ item.title }}
         
   .body--container
-    .topbar--container
+    .topbar--container ng-show="ctrl.user"
       .topbar--container--logout
         a href="/users/sign_out" ng-click="$event.stopPropagation()" Logout
         .topbar--container--pendant

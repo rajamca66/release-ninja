@@ -4,8 +4,8 @@
       restrict: "C",
       templateUrl: "app.html",
       controllerAs: "ctrl",
-      controller: ["$window", "SideMenu", function($window, SideMenu) {
-        this.user = $window.current_user;
+      controller: ["User", "SideMenu", function(User, SideMenu) {
+        this.user = User.getUser();
         this.sideMenuItems = SideMenu.getItems;
       }]
     };
