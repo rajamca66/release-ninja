@@ -1,12 +1,13 @@
 (function() {
-  ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter", "$location", "$anchorScroll", "$timeout", "SideMenu", "$state", "$window"];
+  ShowCtrl.$inject = ["$scope", "project", "notes", "NoteGrouper", "$filter", "$location", "$anchorScroll", "$timeout", "SideMenu", "$state", "$window", "$stateParams"];
 
-  function ShowCtrl($scope, project, notes, NoteGrouper, $filter, $location, $anchorScroll, $timeout, SideMenu, $state, $window) {
+  function ShowCtrl($scope, project, notes, NoteGrouper, $filter, $location, $anchorScroll, $timeout, SideMenu, $state, $window, $stateParams) {
     var self = this;
     this.project = project;
     this.notes = notes.plain();
     this.groupedNotes = NoteGrouper(this.notes);
     this.currentLimit = 5;
+    this.currentLane = $stateParams.filter;
 
     if ($location.hash()) {
       $timeout(function() {

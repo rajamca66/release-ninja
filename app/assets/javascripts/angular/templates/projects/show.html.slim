@@ -1,7 +1,10 @@
 .content--header 
   span Viewing Project - {{ctrl.project.title}}
   input.content--header-input.form-control.btn-block placeholder="Search in Title or Body" ng-model="filterTitle"
-
+  .btn-group
+    a.btn.btn-default ui-sref=".({ filter: 'github' })" ng-class="{ 'btn-primary': ctrl.currentLane === 'github' }" Engineering Lane
+    a.btn.btn-default ui-sref=".({ filter: 'product' })" ng-class="{ 'btn-primary': ctrl.currentLane === 'product' }" Product Lane
+    a.btn.btn-default ui-sref=".({ filter: 'published' })" ng-class="{ 'btn-primary': ctrl.currentLane === 'published' }" Published Lane
 .projects--show
   .new ng-show="!!newNote"
     h2 New Note
