@@ -17,6 +17,18 @@ class Note < ActiveRecord::Base
     markdowner.render(title)
   end
 
+  def self.github_filtered
+    where(filter: "github").where(published: [nil, false])
+  end
+
+  def self.product_filtered
+    where(filter: "product").where(published: [nil, false])
+  end
+
+  def self.published_filtered
+    where(published: true)
+  end
+
   private
 
   def html_renderer

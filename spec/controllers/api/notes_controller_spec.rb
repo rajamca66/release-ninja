@@ -10,6 +10,37 @@ RSpec.describe Api::NotesController, :type => :controller do
     request.env["HTTP_ACCEPT"] = 'application/json'
   }
 
+  describe "GET index" do
+    let!(:github_note)  { FactoryGirl.create(:note, project: project, filter: "github") }
+    let!(:github_note2) { FactoryGirl.create(:note, project: project, filter: "github") }
+    let!(:product_note) { FactoryGirl.create(:note, project: project, filter: "product") }
+    let!(:published_note) { FactoryGirl.create(:note, project: project, published: true) }
+    let!(:other) { FactoryGirl.create(:note, project: FactoryGirl.create(:project)) }
+
+    it "lists all notes" do
+      get :index, project_id: project.id
+      expect(response_json.length).to eq(4)
+    end
+
+    it "lists github notes" do
+      get :index, project_id: project.id, filter: "github"
+      expect(response_json.length).to eq(2)
+      expect(response_json[0]["id"]).to eq(github_note2.id)
+    end
+
+    it "lists product notes" do
+      get :index, project_id: project.id, filter: "product"
+      expect(response_json.length).to eq(1)
+      expect(response_json[0]["id"]).to eq(product_note.id)
+    end
+
+    it "lists published notes" do
+      get :index, project_id: project.id, filter: "published"
+      expect(response_json.length).to eq(1)
+      expect(response_json[0]["id"]).to eq(published_note.id)
+    end
+  end
+
   describe "PUT update" do
     let!(:note) { FactoryGirl.create(:note, project: project) }
 

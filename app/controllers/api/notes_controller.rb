@@ -1,6 +1,6 @@
 class Api::NotesController < Api::BaseController
   def index
-    respond_with :api, project, notes
+    respond_with :api, project, filtered_notes.order(id: :desc)
   end
 
   def show
@@ -40,6 +40,13 @@ class Api::NotesController < Api::BaseController
         note.create_converted_pull_request(project: project, pull_request_id: params[:converted_pull_request_id])
       end
     end
+  end
+
+  VALID_FILTERS = ["github", "product", "published"]
+  def filtered_notes
+    return notes unless params[:filter]
+    return notes unless VALID_FILTERS.include?(params[:filter])
+    notes.send(params[:filter] + "_filtered")
   end
 
   def notes
