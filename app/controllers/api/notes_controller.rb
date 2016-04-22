@@ -58,6 +58,8 @@ class Api::NotesController < Api::BaseController
   end
 
   def note_params
-    params.permit(:title, :level, :markdown_body, :order, :published, :published_at, :internal)
+    params.permit(:title, :level, :markdown_body, :order, :published, :published_at, :internal, :filter).tap do |p|
+      raise if p[:filter] && !VALID_FILTERS.include?(p[:filter])
+    end
   end
 end

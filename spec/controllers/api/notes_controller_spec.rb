@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::NotesController, :type => :controller do
+RSpec.describe Api::NotesController, type: :controller do
   let(:user) { FactoryGirl.create(:github_user) }
   let(:team) { user.team }
   let!(:project) { FactoryGirl.create(:project, user: user, team: team) }
@@ -54,6 +54,15 @@ RSpec.describe Api::NotesController, :type => :controller do
       expect {
         put :update, project_id: project.id, id: note.id, published_at: "2015-02-24 14:23:35"
       }.to change{ note.reload.published_at.try!(:to_s, :db) }.to("2015-02-24 14:23:35")
+    end
+
+    ["github", "product"].each do |filter|
+      it "updates the filter #{filter}" do
+        note.update!(filter: "test")
+        expect {
+          put :update, project_id: project.id, id: note.id, filter: filter
+        }.to change{ note.reload.filter }.to eq(filter)
+      end
     end
   end
 
