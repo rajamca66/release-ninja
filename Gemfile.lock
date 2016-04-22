@@ -94,6 +94,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (1.2.0)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     libv8 (3.16.14.7)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
@@ -270,6 +273,7 @@ DEPENDENCIES
   friendly_id
   github-markup
   jquery-rails
+  kaminari
   newrelic_rpm
   nokogiri
   octokit (~> 3.0)
@@ -295,4 +299,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.4
+   1.11.2
