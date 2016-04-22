@@ -41,15 +41,6 @@
       });
     };
 
-    this.emailTeam = function(note) {
-      self.project.one("notes", note.id).customPOST({}, 'team_emails').then(function(emailAddresses) {
-        var emailList = emailAddresses.join(', ');
-        alert('Emails sent to team members: ' + emailList);
-      }).catch(function() {
-        alert('Error sending emails to team members.' );
-      });
-    };
-
     this.remove = function(note) {
       self.project.one("notes", note.id).remove().then(function() {
         _.remove(self.notes, {id: note.id});
@@ -65,12 +56,18 @@
       resetGroupedNotes();
     });
 
+    this.removeNote = function(note) {
+      _.remove(self.notes, {id: note.id});
+      resetGroupedNotes();
+    };
+
     function replaceNote(note) {
       var index = _(self.notes).findIndex({id: note.id});
       self.notes[index] = note;
       self.groupedNotes = NoteGrouper(self.notes);
       resetGroupedNotes();
     }
+    this.replace = replaceNote;
 
     function resetGroupedNotes() {
       if($scope.filterTitle) {

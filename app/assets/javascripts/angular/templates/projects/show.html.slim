@@ -39,7 +39,7 @@
             li.clearfix.list-group-item ng-repeat="note in notes" ng-class="{ published: note.published }"
               .options ng-hide="!!note.editing"
                 .pull-left ng-bind-html="note.html_body"
-                .pull-right ng-include="'projects/_note_options.html'"
+                .pull-right: note-options note="note" project="ctrl.project" replace-note="ctrl.replace" remove-note="ctrl.removeNote" current-lane="ctrl.currentLane"
               .editing ng-show="!!note.editing"
                 .col-xs-10
                   textarea.form-control ng-model="note.markdown_body" required=true
@@ -62,7 +62,7 @@
         .note-title ng-hide="!!note.editing"
           span ng-bind-html="note.html_title"
           .label.label-primary {{ level }}
-          .pull-right ng-include="'projects/_note_options.html'"
+          .pull-right: note-options note="note" project="ctrl.project" replace-note="ctrl.replace" remove-note="ctrl.removeNote" current-lane="ctrl.currentLane"
 
         .note-title ng-show="!!note.editing"
           .row
