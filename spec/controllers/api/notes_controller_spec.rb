@@ -64,6 +64,12 @@ RSpec.describe Api::NotesController, type: :controller do
         }.to change{ note.reload.filter }.to eq(filter)
       end
     end
+
+    it "errors when updating to a different filter" do
+      expect {
+        put :update, project_id: project.id, id: note.id, filter: "junk"
+      }.to raise_error
+    end
   end
 
   describe "POST team_emails" do
