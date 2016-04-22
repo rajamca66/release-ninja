@@ -89,7 +89,7 @@ Rails.application.configure do
       :enable_starttls_auto => true,
       :user_name => ENV.fetch(ENV.fetch("SMTP_USERNAME_KEY")),
       :password  => ENV.fetch(ENV.fetch("SMTP_PASSWORD_KEY")),
-      :authentication => 'login'
+      :authentication => 'login',
       :domain => ENV["EMAIL_DOMAIN"]
   }
 end
