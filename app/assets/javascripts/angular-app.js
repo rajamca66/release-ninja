@@ -15,6 +15,7 @@
  = require angularjs-toaster
  = require angular-animate
  = require angular-autodisable
+ = require angular-bootstrap
 
  = require ./angular/templates
  = require ./angular/app/module
@@ -29,6 +30,7 @@ _.mixin(_.str.exports());
 
 angular.module('CustomerKnow', [
   'app',
+  'ui.bootstrap',
   'ui.router',
   'templates',
   'restangular',
