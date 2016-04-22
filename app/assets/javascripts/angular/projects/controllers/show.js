@@ -73,7 +73,7 @@
       if($scope.filterTitle) {
         var title = $scope.filterTitle.toLowerCase();
         var notes = $filter('filter')(self.notes, function(note) {
-          return note.title.toLowerCase().indexOf(title) > -1 || note.markdown_body.toLowerCase().indexOf(title) > -1;
+          return (note.title || "").toLowerCase().indexOf(title) > -1 || (note.markdown_body || "").toLowerCase().indexOf(title) > -1;
         });
         self.groupedNotes = NoteGrouper(notes);
       } else {
