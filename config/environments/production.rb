@@ -84,12 +84,12 @@ Rails.application.configure do
   }
 
   ActionMailer::Base.smtp_settings = {
-      :address   => "smtp.mandrillapp.com",
-      :port      => 587,
-      :enable_starttls_auto => true, # detects and uses STARTTLS
-      :user_name => ENV["MANDRILL_USERNAME"],
-      :password  => ENV["MANDRILL_APIKEY"] || ENV["MANDRILL_PASSWORD"], # SMTP password is any valid API key
-      :authentication => 'login', # Mandrill supports 'plain' or 'login'
+      :address   => ENV.fetch("SMTP_ADDRESS"),
+      :port      => ENV.fetch("SMTP_PORT", 587),
+      :enable_starttls_auto => true,
+      :user_name => ENV.fetch(ENV.fetch("SMTP_USERNAME_KEY")),
+      :password  => ENV.fetch(ENV.fetch("SMTP_PASSWORD_KEY")),
+      :authentication => 'login'
       :domain => ENV["EMAIL_DOMAIN"]
   }
 end
