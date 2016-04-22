@@ -41,6 +41,30 @@ RSpec.describe Api::NotesController, type: :controller do
     end
   end
 
+  describe "GET show" do
+    let!(:note) { FactoryGirl.create(:note, project: project) }
+
+    it "shows the note" do
+      get :show, project_id: project.id, id: note.id
+      expect(response).to be_success
+      expect(response_json["id"]).to eq(note.id)
+    end
+
+    context "with a filter" do
+      it "shows the note in the filter" do
+        get :show, project_id: project.id, id: note.id, filter: "github"
+        expect(response).to be_success
+        expect(response_json["id"]).to eq(note.id)
+      end
+
+      it "doesn't show the note not in the filter" do
+        expect {
+          get :show, project_id: project.id, id: note.id, filter: "product"
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
+
   describe "PUT update" do
     let!(:note) { FactoryGirl.create(:note, project: project) }
 

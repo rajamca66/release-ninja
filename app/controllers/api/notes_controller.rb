@@ -4,7 +4,7 @@ class Api::NotesController < Api::BaseController
   end
 
   def show
-    respond_with :api, project, note
+    respond_with :api, project, note(base: filtered_notes)
   end
 
   def create
@@ -53,8 +53,8 @@ class Api::NotesController < Api::BaseController
     @notes ||= project.notes
   end
 
-  def note
-    @note ||= notes.find(params[:id])
+  def note(base: notes)
+    @note ||= base.find(params[:id])
   end
 
   def note_params
