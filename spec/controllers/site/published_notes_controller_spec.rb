@@ -45,6 +45,8 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
 
     context "with a user_key" do
       subject(:make_request!) { get :index, site_id: project.id, user_key: "steve" }
+      let!(:project2) { FactoryGirl.create(:project) }
+      let!(:reading_location) { project2.user_reading_locations.create!(user_key: "steve", reading_location: 5.minutes.from_now) }
 
       it "creates a new UserReadingLocation" do
         expect {
