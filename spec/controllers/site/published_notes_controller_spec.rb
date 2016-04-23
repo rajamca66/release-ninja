@@ -67,7 +67,7 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
         expect(UserReadingLocation.last.reading_location).to be_within(2).of(Time.current)
       end
 
-      context "with a reading_location later than the published_at" do
+      context "with a reading_location > published_at" do
         let!(:time) { 5.days.from_now }
         let!(:reading_location) { project.user_reading_locations.create!(user_key: "steve", reading_location: time) }
 
@@ -75,6 +75,18 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
           expect {
             make_request!
           }.not_to change { reading_location.reload.attributes }
+        end
+      end
+
+      context "with a reading_location < published_at" do
+        let!(:time) { 5.minutes.ago }
+        before { Note.update_all(published_at: 4.minutes.ago) }
+        let!(:reading_location) { project.user_reading_locations.create!(user_key: "steve", reading_location: time) }
+
+        it "updates the reading_location" do
+          expect {
+            make_request!
+          }.to change { reading_location.reload.reading_location }.to be_within(2).of(4.minutes.ago)
         end
       end
     end
