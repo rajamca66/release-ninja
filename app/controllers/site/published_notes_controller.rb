@@ -3,7 +3,7 @@ class Site::PublishedNotesController < Site::BaseController
 
   def index
     update_user_reading_location(paged_notes.first) if user_key
-    respond_with :site, paged_notes, each_serializer: SiteApi::NoteSerializer
+    respond_with :site, paged_notes, each_serializer: SiteApi::NoteSerializer, root: "notes"
   end
 
   private
