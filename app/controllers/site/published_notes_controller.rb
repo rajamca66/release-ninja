@@ -3,7 +3,7 @@ class Site::PublishedNotesController < Site::BaseController
 
   def index
     update_user_reading_location(paged_notes.first) if user_key
-    respond_with :site, paged_notes, each_serializer: SiteApi::NoteSerializer, root: "notes"
+    respond_with :site, paged_notes, each_serializer: SiteApi::NoteSerializer, root: "notes", meta: paged_meta
   end
 
   private
@@ -17,7 +17,15 @@ class Site::PublishedNotesController < Site::BaseController
   end
 
   def paged_notes
-    @paged_notes ||= published_notes.page(page).per(PER_PAGE).to_a
+    @paged_notes ||= published_notes.page(page).per(PER_PAGE)
+  end
+
+  def paged_meta
+    {
+      total_count: paged_notes.total_count,
+      total_pages: paged_notes.total_pages,
+      page: page
+    }
   end
 
   def user_key

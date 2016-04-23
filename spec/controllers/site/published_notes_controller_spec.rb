@@ -29,6 +29,9 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
 
       it "pages the request" do
         make_request!
+        expect(response_json["meta"]["total_count"]).to eq(30)
+        expect(response_json["meta"]["page"]).to eq(1)
+        expect(response_json["meta"]["total_pages"]).to eq(3)
         expect(response_json["notes"].length).to eq(10)
         expect(response_json["notes"][0]["id"]).to eq(published_notes.last.id)
       end
