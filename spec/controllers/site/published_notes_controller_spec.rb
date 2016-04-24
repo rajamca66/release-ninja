@@ -96,4 +96,32 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
       end
     end
   end
+
+  describe "GET unread" do
+    let!(:published_notes) { FactoryGirl.create_list(:note, 3, project: project, published: true) }
+    let!(:unpublished_notes) { FactoryGirl.create_list(:note, 4, project: project) }
+
+    context "without a UserReadingLocation" do
+      it "returns all published notes" do
+        get :unread, site_id: project.id
+        expect(response_json["unread"]).to eq(published_notes.count)
+      end
+    end
+
+    context "with a UserReadingLocation" do
+      let!(:reading_location) { project.user_reading_locations.create!(user_key: "steve", reading_location: 5.seconds.ago) }
+
+      it "renders the count of notes later than reading_location" do
+        published_notes[0].update!(published_at: 5.minutes.ago)
+        get :unread, site_id: project.id, user_key: "steve"
+        expect(response_json["unread"]).to eq(2)
+      end
+
+      it "renders the count of notes later than reading_location" do
+        Note.update_all(published_at: 5.minutes.ago)
+        get :unread, site_id: project.id, user_key: "steve"
+        expect(response_json["unread"]).to eq(0)
+      end
+    end
+  end
 end

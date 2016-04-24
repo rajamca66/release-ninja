@@ -6,6 +6,10 @@ class Site::PublishedNotesController < Site::BaseController
     respond_with :site, paged_notes, each_serializer: SiteApi::NoteSerializer, root: "notes", meta: paged_meta
   end
 
+  def unread
+    render json: { unread: unread_count }
+  end
+
   private
 
   def page
@@ -43,5 +47,13 @@ class Site::PublishedNotesController < Site::BaseController
 
   def user_reading_location
     @user_reading_location ||= project.user_reading_locations.where(user_key: user_key).first_or_initialize
+  end
+
+  def unread_count
+    if user_reading_location.reading_location.blank?
+      count = published_notes.count
+    else
+      count = published_notes.where("published_at > ?", user_reading_location.reading_location).count
+    end
   end
 end
