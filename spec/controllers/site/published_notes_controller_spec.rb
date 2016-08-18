@@ -21,7 +21,7 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
 
     it "returns desired fields" do
       make_request!
-      expect(response_json["notes"][0].keys).to match_array(["id", "published_at", "html_title", "html_body"])
+      expect(response_json["notes"][0].keys).to match_array(["id", "published_at", "html_title", "html_body", "level"])
     end
 
     context "with large pages" do
