@@ -3,6 +3,32 @@ require "rails_helper"
 RSpec.describe Site::PublishedNotesController, type: :controller do
   let!(:project) { FactoryGirl.create(:project) }
 
+  describe "CORS" do
+    subject(:make_request!) { get :index, site_id: project.id }
+
+    it "doesn't set CORS without an origin" do
+      make_request!
+      expect(response.headers).not_to include("Access-Control-Allow-Origin", "Access-Control-Allow-Methods")
+    end
+
+    it "doesn't set CORS with an origin not in the origin list" do
+      project.update!(origin_list: ["https://test.com", "https://other.com"])
+      request.headers["Origin"] = "https://test2.com"
+      make_request!
+      expect(response.headers).not_to include("Access-Control-Allow-Origin", "Access-Control-Allow-Methods")
+    end
+
+    it "sets CORS with an origin in the origin list" do
+      project.update!(origin_list: ["https://test.com", "https://other.com"])
+      request.headers["Origin"] = "https://test.com"
+      make_request!
+      expect(response.headers).to include(
+        "Access-Control-Allow-Origin" => "https://test.com",
+        "Access-Control-Allow-Methods" => "GET"
+      )
+    end
+  end
+
   describe "GET index" do
     let!(:published_notes) { FactoryGirl.create_list(:note, 3, project: project, published: true) }
     let!(:unpublished_notes) { FactoryGirl.create_list(:note, 4, project: project) }

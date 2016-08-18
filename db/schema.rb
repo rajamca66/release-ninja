@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423174010) do
+ActiveRecord::Schema.define(version: 20160818234418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,18 +71,19 @@ ActiveRecord::Schema.define(version: 20160423174010) do
   add_index "notes_reports", ["report_id"], name: "index_notes_reports_on_report_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "title",                    limit: 255, null: false
-    t.integer  "user_id",                              null: false
+    t.string   "title",                    limit: 255,              null: false
+    t.integer  "user_id",                                           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "team_id",                              null: false
+    t.integer  "team_id",                                           null: false
     t.string   "public_header_background", limit: 255
     t.text     "public_logo_url"
     t.text     "public_css"
-    t.string   "slug",                     limit: 255, null: false
+    t.string   "slug",                     limit: 255,              null: false
     t.string   "secret_token"
     t.string   "robot_token"
     t.boolean  "auto_notify"
+    t.string   "origin_list",                          default: [], null: false, array: true
   end
 
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
