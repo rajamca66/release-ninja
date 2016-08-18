@@ -66,10 +66,11 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
         expect(UserReadingLocation.last.reading_location).to eq(published_notes.last.published_at)
       end
 
-      it "uses the current  time if published_at is nil" do
+      it "doesn't render notes if published_at is nil" do
         Note.update_all(published_at: nil)
         make_request!
-        expect(UserReadingLocation.last.reading_location).to be_within(2).of(Time.current)
+        expect(response).to be_success
+        expect(response_json["notes"]).to eq([])
       end
 
       context "with a reading_location > published_at" do

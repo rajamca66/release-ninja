@@ -26,7 +26,7 @@ class Note < ActiveRecord::Base
   end
 
   def self.published_filtered
-    where(published: true)
+    where(published: true).where("published_at IS NOT NULL")
   end
 
   private

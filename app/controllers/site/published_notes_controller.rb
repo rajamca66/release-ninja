@@ -37,6 +37,7 @@ class Site::PublishedNotesController < Site::BaseController
   end
 
   def update_user_reading_location(note)
+    return unless note
     new_location = note.published_at || Time.current
 
     if user_reading_location.reading_location.blank? || new_location > user_reading_location.reading_location
