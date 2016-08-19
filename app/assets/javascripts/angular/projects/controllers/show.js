@@ -17,6 +17,7 @@
 
     this.severityLevels = {
       feature: "Feature",
+      enhancement: "Enhancement",
       fix: "Fix"
     };
 
