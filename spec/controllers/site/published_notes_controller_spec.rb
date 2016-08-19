@@ -45,6 +45,12 @@ RSpec.describe Site::PublishedNotesController, type: :controller do
       expect(response_json["notes"].length).to eq(3)
     end
 
+    it "doesn't return internal notes" do
+      published_notes.first.update!(internal: true)
+      make_request!
+      expect(response_json["notes"].length).to eq(2)
+    end
+
     it "returns desired fields" do
       make_request!
       expect(response_json["notes"][0].keys).to match_array(["id", "published_at", "html_title", "html_body", "level"])

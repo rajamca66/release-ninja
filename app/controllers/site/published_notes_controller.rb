@@ -17,7 +17,7 @@ class Site::PublishedNotesController < Site::BaseController
   end
 
   def published_notes
-    project.notes.published_filtered.order(published_at: :desc, id: :desc)
+    project.notes.published_filtered.where(internal: false).order(published_at: :desc, id: :desc)
   end
 
   def paged_notes
