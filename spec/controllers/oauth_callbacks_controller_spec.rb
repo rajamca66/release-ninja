@@ -71,6 +71,18 @@ RSpec.describe OauthCallbacksController, :type => :controller do
         }.to change{ Team.count }.by(1)
       end
 
+      it "doesn't create a team DISALLOW_NEW_TEAMS=1" do
+        ENV["DISALLOW_NEW_TEAMS"] = "1"
+        expect {
+          expect {
+            expect {
+              get :create, provider: :github
+            }.to raise_error("No new teams")
+          }.not_to change { User.count }
+        }.not_to change { Team.count }
+        ENV["DISALLOW_NEW_TEAMS"] = nil
+      end
+
       it "signs in the user" do
         expect {
           get :create, provider: :github
