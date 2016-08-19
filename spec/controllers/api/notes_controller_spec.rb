@@ -80,6 +80,11 @@ RSpec.describe Api::NotesController, type: :controller do
       }.to change{ note.reload.published_at.try!(:to_s, :db) }.to("2015-02-24 14:23:35")
     end
 
+    it "updates the for_who field" do
+      put :update, project_id: project.id, id: note.id, for_who: "Test"
+      expect(note.reload.for_who).to eq("Test")
+    end
+
     ["github", "product"].each do |filter|
       it "updates the filter #{filter}" do
         note.update!(filter: "test")

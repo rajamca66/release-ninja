@@ -1,4 +1,4 @@
-.content--header 
+.content--header
   span Viewing Project - {{ctrl.project.title}}
   input.content--header-input.form-control.btn-block placeholder="Search in Title or Body" ng-model="filterTitle"
   .btn-group
@@ -48,6 +48,9 @@
                   .form-group
                     label for="published_at" Published At
                     input.form-control#published_at ng-model="note.published_at"
+                  .form-group
+                    label for="for_who" Who is this note for?
+                    input.form-control#for_who ng-model="note.for_who"
                   label
                     input type="checkbox" id="note_published" ng-model="note.published"
                     span &nbsp;Published? Note will appear in the Public Change Log
@@ -81,6 +84,10 @@
           .form-group
             label for="published_at" Published At
             input.form-control#published_at ng-model="note.published_at"
+
+          .form-group
+            label for="for_who" Who is this note for?
+            input.form-control#for_who ng-model="note.for_who"
 
           label
             input type="checkbox" id="note_published" ng-model="note.published"
