@@ -1,0 +1,2 @@
+web: bundle exec puma -b "ssl://0.0.0.0:$PORT?key=../localhost.salesloft.com.key&cert=../localhost.salesloft.com.crt"
+insecure: bundle exec puma -C config/puma.rb -p $PORT

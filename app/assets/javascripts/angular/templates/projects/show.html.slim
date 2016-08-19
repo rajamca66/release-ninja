@@ -22,6 +22,9 @@
       .note-body
         textarea.form-control ng-model="note.markdown_body" required=true
 
+        .form-group
+          label for="for_who" Who is this note for?
+          input.form-control#for_who ng-model="note.for_who"
         label
           input type="checkbox" id="note_published" ng-model="note.published"
           span &nbsp;Published? Note will appear in the Public Change Log
