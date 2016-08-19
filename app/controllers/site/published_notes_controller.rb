@@ -21,7 +21,11 @@ class Site::PublishedNotesController < Site::BaseController
   end
 
   def paged_notes
-    @paged_notes ||= published_notes.page(page).per(PER_PAGE)
+    @paged_notes ||= published_notes.page(page).per(per_page)
+  end
+
+  def per_page
+    params.fetch(:per_page, PER_PAGE)
   end
 
   def paged_meta
