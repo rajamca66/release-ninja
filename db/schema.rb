@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818234418) do
+ActiveRecord::Schema.define(version: 20160819191514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160818234418) do
     t.datetime "published_at"
     t.boolean  "internal",                  default: false
     t.string   "filter",                    default: "github", null: false
+    t.string   "for_who"
   end
 
   add_index "notes", ["filter"], name: "index_notes_on_filter", using: :btree
