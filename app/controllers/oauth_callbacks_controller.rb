@@ -41,7 +41,7 @@ class OauthCallbacksController < ApplicationController
         redeem_invite!(user.email)
       elsif user.team.blank? && ENV["DISALLOW_NEW_TEAMS"].blank?
         user.create_team!(name: "#{user.name}'s Team")
-      elsif ENV["DISALLOW_NEW_TEAMS"].present?
+      elsif user.team.blank? && ENV["DISALLOW_NEW_TEAMS"].present?
         raise "No new teams"
       end
 
