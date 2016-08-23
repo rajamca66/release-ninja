@@ -65,6 +65,7 @@ group :production do
   # Monitoring
   gem 'rollbar', '~> 1.3.1'
   gem 'rails_12factor'
+  gem 'tunemygc'
 end
 
 gem "therubyracer"
