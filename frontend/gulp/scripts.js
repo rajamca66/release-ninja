@@ -13,11 +13,11 @@ gulp.task('scripts', ['markups'], function() {
       getApplicationJSStream(),
       getVendorJSStream()
     )
+    .pipe($.sourcemaps.init())
     .pipe($.order([
       'vendor.js',
-      '*.js'
+      'application.js'
     ]))
-    .pipe($.sourcemaps.init())
     .pipe($.concat('application.js'))
     .pipe($.uglify())
     .pipe($.sourcemaps.write())
@@ -30,6 +30,7 @@ function getApplicationJSStream() {
       path.join(conf.paths.tmp, '/templateCacheHtml.js'),
       path.join(conf.paths.src, '/javascripts/angular-app.js')
     ])
+    .pipe($.sourcemaps.init())
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.size())
@@ -38,7 +39,8 @@ function getApplicationJSStream() {
       'templateCacheHtml.js',
       "!angular-app.js",
       "angular-app.js"
-    ]));
+    ]))
+    .pipe($.concat('application.js'));
 }
 
 function getVendorJSStream() {
