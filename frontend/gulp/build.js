@@ -27,3 +27,17 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', ['scripts', 'styles', 'fonts']);
+
+gulp.task('build:production', ['build'], function() {
+  return gulp.start("files:move");
+});
+
+gulp.task('files:move', function() {
+  return $.shell.task([
+    'mkdir -p ../public/scripts ../public/styles ../public/fonts',
+    'rm -f ../public/scripts/* ./backend/public/styles/* ./backend/public/fonts/*',
+    'cp dist/scripts/* ../public/scripts/',
+    'cp dist/styles/* ../public/styles/',
+    'cp dist/fonts/* ../public/fonts'
+  ]);
+});
