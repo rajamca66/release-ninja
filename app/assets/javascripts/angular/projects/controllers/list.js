@@ -1,13 +1,17 @@
 (function() {
-  var ListCtrl = function(projects, $scope, $state) {
+
+  ListCtrl.$inject = ["projects", "$scope", "$state", "SideMenu"];
+  function ListCtrl(projects, $scope, $state, SideMenu) {
     this.projects = projects;
 
-    if(projects.length == 0) {
-      $state.go("projects.new")
+    if(projects.length === 0) {
+      $state.go("projects.new");
     }
-  };
 
-  ListCtrl.$inject = ["projects", "$scope", "$state"];
+    SideMenu.addItem("Create Project", function() {
+      return $state.go("projects.new");
+    });
+  }
 
   angular.module("projects").controller('ProjectsListController', ListCtrl);
 })();

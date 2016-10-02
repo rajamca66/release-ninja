@@ -71,10 +71,51 @@ RSpec.describe OauthCallbacksController, :type => :controller do
         }.to change{ Team.count }.by(1)
       end
 
+      it "doesn't create a team DISALLOW_NEW_TEAMS=1" do
+        ENV["DISALLOW_NEW_TEAMS"] = "1"
+        expect {
+          expect {
+            expect {
+              get :create, provider: :github
+            }.to raise_error("No new teams")
+          }.not_to change { User.count }
+        }.not_to change { Team.count }
+        ENV["DISALLOW_NEW_TEAMS"] = nil
+      end
+
       it "signs in the user" do
         expect {
           get :create, provider: :github
         }.to change{ controller.current_user }.from(nil)
+      end
+
+      context "with an invited email" do
+        let(:user) { FactoryGirl.create(:user) }
+        let(:team) { user.team }
+        let!(:invite) { team.invites.create!(user: user, to: "GITHUB@test.com") }
+
+        it "creates a user" do
+          expect {
+            get :create, provider: :github
+          }.to change{ User.count }.by(1)
+        end
+
+        it "doesn't create a team" do
+          expect {
+            get :create, provider: :github
+          }.not_to change{ Team.count }
+        end
+
+        it "assigns the team" do
+          get :create, provider: :github
+          expect(User.last.team).to eq(team)
+        end
+
+        it "redeems the invite" do
+          expect {
+            get :create, provider: :github
+          }.to change{ invite.reload.redeemed }.from(false).to(true)
+        end
       end
 
       context "with an invite code" do
@@ -132,6 +173,16 @@ RSpec.describe OauthCallbacksController, :type => :controller do
             expect {
               get :create, provider: :github
             }.to change{ session[:invite_code] }.to(nil)
+          end
+        end
+
+        context "with a duplicate invite" do
+          let!(:invite2) { team.invites.create!(user: user, to: "github@test.com") }
+
+          it "redeems both invites" do
+            expect {
+              get :create, provider: :github
+            }.to change{ Invite.where(redeemed: true).count }.from(0).to(2)
           end
         end
       end

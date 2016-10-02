@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::NotesController, :type => :controller do
+RSpec.describe Api::NotesController, type: :controller do
   let(:user) { FactoryGirl.create(:github_user) }
   let(:team) { user.team }
   let!(:project) { FactoryGirl.create(:project, user: user, team: team) }
@@ -9,6 +9,61 @@ RSpec.describe Api::NotesController, :type => :controller do
     sign_in(user)
     request.env["HTTP_ACCEPT"] = 'application/json'
   }
+
+  describe "GET index" do
+    let!(:github_note)  { FactoryGirl.create(:note, project: project, filter: "github") }
+    let!(:github_note2) { FactoryGirl.create(:note, project: project, filter: "github") }
+    let!(:product_note) { FactoryGirl.create(:note, project: project, filter: "product") }
+    let!(:published_note) { FactoryGirl.create(:note, project: project, published: true) }
+    let!(:other) { FactoryGirl.create(:note, project: FactoryGirl.create(:project)) }
+
+    it "lists all notes" do
+      get :index, project_id: project.id
+      expect(response_json.length).to eq(4)
+    end
+
+    it "lists github notes" do
+      get :index, project_id: project.id, filter: "github"
+      expect(response_json.length).to eq(2)
+      expect(response_json[0]["id"]).to eq(github_note2.id)
+    end
+
+    it "lists product notes" do
+      get :index, project_id: project.id, filter: "product"
+      expect(response_json.length).to eq(1)
+      expect(response_json[0]["id"]).to eq(product_note.id)
+    end
+
+    it "lists published notes" do
+      get :index, project_id: project.id, filter: "published"
+      expect(response_json.length).to eq(1)
+      expect(response_json[0]["id"]).to eq(published_note.id)
+    end
+  end
+
+  describe "GET show" do
+    let!(:note) { FactoryGirl.create(:note, project: project) }
+
+    it "shows the note" do
+      get :show, project_id: project.id, id: note.id
+      expect(response).to be_success
+      expect(response_json["id"]).to eq(note.id)
+    end
+
+    context "with a filter" do
+      it "shows the note in the filter" do
+        get :show, project_id: project.id, id: note.id, filter: "github"
+        expect(response).to be_success
+        expect(response_json["id"]).to eq(note.id)
+      end
+
+      it "doesn't show the note not in the filter" do
+        expect {
+          get :show, project_id: project.id, id: note.id, filter: "product"
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 
   describe "PUT update" do
     let!(:note) { FactoryGirl.create(:note, project: project) }
@@ -23,6 +78,26 @@ RSpec.describe Api::NotesController, :type => :controller do
       expect {
         put :update, project_id: project.id, id: note.id, published_at: "2015-02-24 14:23:35"
       }.to change{ note.reload.published_at.try!(:to_s, :db) }.to("2015-02-24 14:23:35")
+    end
+
+    it "updates the for_who field" do
+      put :update, project_id: project.id, id: note.id, for_who: "Test"
+      expect(note.reload.for_who).to eq("Test")
+    end
+
+    ["github", "product"].each do |filter|
+      it "updates the filter #{filter}" do
+        note.update!(filter: "test")
+        expect {
+          put :update, project_id: project.id, id: note.id, filter: filter
+        }.to change{ note.reload.filter }.to eq(filter)
+      end
+    end
+
+    it "errors when updating to a different filter" do
+      expect {
+        put :update, project_id: project.id, id: note.id, filter: "junk"
+      }.to raise_error
     end
   end
 

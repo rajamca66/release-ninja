@@ -1,28 +1,22 @@
-#login.row
-  .col-xs-4.col-xs-offset-2
-    - if @invite.present?
-      p.text-center You've been invited to #{@invite.team.name}
-    - flash.each do |type, msg|
-      div role="alert" class="alert alert-#{type}"
-        = msg
-
+.login--container
+  .col-xs-12.col-sm-6
     .panel.panel-primary
       .panel-heading
         h3.panel-title Product Engineer Sign In
       .panel-body
         .row
           .col-xs-8.col-xs-offset-2
-            = link_to auth_path(:github), class: "btn btn-primary btn-block btn-lg" do
+            a.btn.btn-primary.btn-block.btn-lg href="/auth/github" ng-click="$event.stopPropagation()"
               i.fa.fa-github
               '  Github Login
 
-  .col-xs-4
+  /.col-xs-12.col-sm-6
     .panel.panel-danger
       .panel-heading
         h3.panel-title Review Team Sign In
       .panel-body
         .row
           .col-xs-8.col-xs-offset-2
-            = link_to auth_path(:google_oauth2), class: "btn btn-danger btn-block btn-lg" do
+            a.btn.btn-primary.btn-block.btn-lg href="/auth/google_oauth2" ng-click="$event.stopPropagation()"
               i.fa.fa-google
               '  Google Login

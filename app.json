@@ -14,7 +14,7 @@
   "addons": [
     "newrelic:wayne",
     "rollbar",
-    "mandrill"
+    "sendgrid"
   ],
   "env": {
     "PUMA_WORKERS": 2,
@@ -45,6 +45,22 @@
     "EMAIL_DOMAIN": {
       "description": "The domain your emails will send from",
       "value": ""
+    },
+    "SMTP_ADDRESS": {
+      "description": "The smtp address to send mail through",
+      "value": "smtp.sendgrid.net"
+    },
+    "SMTP_PORT": {
+      "description": "The smtp port to send mail through",
+      "value": 587
+    },
+    "SMTP_USERNAME_KEY": {
+      "description": "The key in ENV containing the smtp username",
+      "value": "SENDGRID_USERNAME"
+    },
+    "EMAIL_DOMAIN": {
+      "description": "The key in ENV containing the smtp password",
+      "value": "SENDGRID_PASSSWORD"
     }
   }
 }

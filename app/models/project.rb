@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :reports
   has_many :converted_pull_requests
   has_and_belongs_to_many :reviewers
+  has_many :user_reading_locations
 
   before_create :create_secret_token
 

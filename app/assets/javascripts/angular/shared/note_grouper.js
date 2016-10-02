@@ -25,5 +25,5 @@ angular.module("shared").service("NoteGrouper", function() {
     }).reverse();
 
     return grouped.value();
-  }
+  };
 });

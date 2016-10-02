@@ -15,5 +15,5 @@ angular.module("shared").directive('ngConfirmClick', [function() {
         }
       });
     }
-  }
+  };
 }]);

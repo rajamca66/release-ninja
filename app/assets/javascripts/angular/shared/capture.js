@@ -15,7 +15,7 @@ angular.module("shared", [])
 
       return {
         resetAll: function() {
-          for (name in yielders) {
+          for (var name in yielders) {
             this.resetYielder(name);
           }
         },
@@ -60,16 +60,16 @@ angular.module("shared", [])
       return {
         compile: function(tElem, tAttrs) {
           var rawContent = tElem.html();
-          if(tAttrs.duplicate == null) {
+          if(tAttrs.duplicate === null || tAttrs.duplicate === undefined) {
             // no need to compile anything!
             tElem.html("");
           }
           return function postLink(scope, elem, attrs) {
             CaptureService.setContentFor(attrs.contentFor, rawContent, scope);
-            if (attrs.duplicate == null) {
+            if (attrs.duplicate === null || attrs.duplicate === undefined) {
               elem.remove();
             }
-          }
+          };
         }
       };
     }

@@ -3,15 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   force_ssl unless: :ssl_not_required?
   protect_from_forgery with: :exception
+  before_filter :check_for_invite
 
   def index
-    if current_user
-      render text: "", layout: "ng"
-    else
-      check_for_invite
-      @invite = invite
-      render layout: "application"
-    end
+    render text: "", layout: "ng"
   end
 
   def current_team
@@ -31,10 +26,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_for_invite
-    session[:invite_code] = params.fetch(:invite_code, nil)
-  end
-
-  def invite
-    @invite ||= Invite.find_by(code: session[:invite_code]) if session[:invite_code]
+    session[:invite_code] = params.fetch(:invite_code, session[:invite_code])
   end
 end

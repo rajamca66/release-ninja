@@ -28,5 +28,5 @@ angular.module("workflows", [
             return Restangular.one("projects", $stateParams.project_id).get();
           }]
         }
-      })
+      });
   }]);

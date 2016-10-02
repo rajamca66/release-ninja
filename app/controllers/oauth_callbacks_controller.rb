@@ -30,21 +30,19 @@ class OauthCallbacksController < ApplicationController
   end
 
   def from_github
-    # this should be resilient to user email changes
     User.where(email: auth.info.email.downcase).first_or_initialize.tap do |user|
       user.github_token = auth.credentials.token
       user.github_uid = auth.info.uid
       user.name = auth.info.name
       user.nickname = auth.info.nickname
 
-      # This should always use the invited team if it's present
-      if user.team.blank?
-        if invited_team
-          user.team = invited_team
-          invite.redeem!
-        else
-          user.create_team!(name: "#{user.name}'s Team")
-        end
+      if invited_team(user.email) && (user.team.blank? || user.team.single?)
+        user.team = invited_team(user.email)
+        redeem_invite!(user.email)
+      elsif user.team.blank? && ENV["DISALLOW_NEW_TEAMS"].blank?
+        user.create_team!(name: "#{user.name}'s Team")
+      elsif user.team.blank? && ENV["DISALLOW_NEW_TEAMS"].present?
+        raise "No new teams"
       end
 
       user.save
@@ -59,14 +57,22 @@ class OauthCallbacksController < ApplicationController
     end
   end
 
-  def invited_team
-    invite.team if invite
+  def invited_team(email)
+    @invited_team ||= session_invite.try!(:team) || email_invite(email).try!(:team)
   end
 
-  def invite
-    @invite ||= if session[:invite_code]
+  def redeem_invite!(email)
+    Invite.where("lower(invites.to) = lower(?) OR code = ?", email, session[:invite_code]).each(&:redeem!)
+  end
+
+  def session_invite
+    @session_invite ||= if session[:invite_code]
       Invite.find_by(code: session[:invite_code])
     end
+  end
+
+  def email_invite(email)
+    @email_invite ||= Invite.where("lower(invites.to) = lower(?)", email).first
   end
 
   def new_session_path(scope)

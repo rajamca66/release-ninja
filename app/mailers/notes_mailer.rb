@@ -19,7 +19,7 @@ class NotesMailer < ActionMailer::Base
     mail(
         to: to,
         reply_to: user_who_opened.try(:mailing_email) || "noreply@therelease.ninja",
-        subject: "[RELEASE NINJA] New Release Ready"
+        subject: "[RELEASE NINJA] New Release Ready - #{note.title}"
     )
   end
 end

@@ -32,7 +32,7 @@ angular.module("projects", [
       controller: "ProjectsNewController as ctrl"
     })
     .state('projects.show', {
-      url: "/:id",
+      url: "/:id?filter",
       templateUrl: "projects/show.html",
       controller: "ProjectsShowController as ctrl",
       resolve: {
@@ -40,7 +40,8 @@ angular.module("projects", [
           return Restangular.one("projects", $stateParams.id).get();
         }],
         notes: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
-          return Restangular.one("projects", $stateParams.id).all("notes").getList();
+          $stateParams.filter = $stateParams.filter || "github";
+          return Restangular.one("projects", $stateParams.id).all("notes").getList({ filter: $stateParams.filter });
         }]
       }
     })
@@ -79,5 +80,5 @@ angular.module("projects", [
           return Restangular.one("projects", $stateParams.id).get();
         }]
       }
-    })
+    });
 }]);

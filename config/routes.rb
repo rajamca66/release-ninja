@@ -9,6 +9,14 @@ Rails.application.routes.draw do
   get '/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'auth'
   get '/auth/:provider/callback', to: 'oauth_callbacks#create'
 
+  resources :sites, only: [], module: "site" do
+    resources :published_notes, only: [:index] do
+      collection do
+        get :unread
+      end
+    end
+  end
+
   namespace :api do
     resources :projects do
       resources :hooks

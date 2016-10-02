@@ -1,0 +1,31 @@
+.content--header {
+  font-size: 1.6em;
+  margin-bottom: 35px;
+}
+
+.content--header-input {
+  width: auto;
+  max-width: 300px;
+  display: inline-block;
+  margin-left: 35px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+a {
+  color: inherit;
+
+  &:hover { color: inherit; }
+  &:focus { color: inherit; }
+  &:active { color: inherit; }
+}
+
+[ng-click] {
+  cursor: pointer;
+}
+
+.no-radius {
+  border-radius: 0;
+}

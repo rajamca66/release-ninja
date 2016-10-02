@@ -1,0 +1,32 @@
+/*
+ *= require font-awesome
+ */
+$header-bg: #315876;
+$brand-primary: #E87422;
+$accent-color: #D33E0B;
+
+$navbar-inverse-link-color: #ddd;
+$navbar-inverse-bg: #444;
+$container-lg: 960px;
+
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300);
+
+@import "fonts";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+@import "angularjs-toaster/toaster";
+
+@import "help/main";
+
+@import "design/structure";
+@import "design/logo";
+@import "design/generic";
+@import "design/projects";
+@import "design/notes";
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}

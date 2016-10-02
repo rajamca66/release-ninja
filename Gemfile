@@ -19,6 +19,7 @@ gem 'pg'
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'friendly_id'
 gem 'responders', '~> 2.0'
+gem 'kaminari'
 
 # users
 gem 'devise'
@@ -50,6 +51,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -63,6 +65,7 @@ group :production do
   # Monitoring
   gem 'rollbar', '~> 1.3.1'
   gem 'rails_12factor'
+  gem 'tunemygc'
 end
 
 gem "therubyracer"

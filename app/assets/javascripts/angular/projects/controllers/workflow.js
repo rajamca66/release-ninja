@@ -1,5 +1,6 @@
 (function() {
-  var Ctrl = function($scope, project, reviewers, toaster) {
+  WorkflowCtrl.$inject = ["$scope", "project", "reviewers", "toaster", "SideMenu", "$state"];
+  function WorkflowCtrl($scope, project, reviewers, toaster, SideMenu, $state) {
     var self = this;
     self.project = project;
     self.reviewers = reviewers;
@@ -29,10 +30,16 @@
       }, function() {
         toaster.pop("error", "Error Saving Auto Notify");
       });
-    }
-  };
+    };
 
-  Ctrl.$inject = ["$scope", "project", "reviewers", "toaster"];
+    SideMenu.addItem("Edit Project", function() {
+      $state.go("projects.edit", { id: self.project.id });
+    });
 
-  angular.module("projects").controller('ProjectsWorkflowController', Ctrl);
+    SideMenu.addItem("Back to Project", function() {
+      $state.go("projects.show", { id: self.project.id });
+    });
+  }
+
+  angular.module("projects").controller('ProjectsWorkflowController', WorkflowCtrl);
 })();
