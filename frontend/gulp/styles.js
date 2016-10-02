@@ -27,7 +27,7 @@ var buildStyles = function() {
   return merge(
       sass(src, sassOptions),
       gulp.src([
-        '../vendor/assets/components/angularjs-toaster/toaster.css'
+        path.join(conf.paths.bower, 'angularjs-toaster/toaster.css')
       ])
     )
     .pipe($.sourcemaps.init())

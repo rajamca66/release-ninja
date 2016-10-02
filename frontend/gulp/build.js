@@ -12,7 +12,7 @@ var $ = require('gulp-load-plugins')({
 gulp.task('fonts', function () {
   return gulp.src(mainBowerFiles({
       paths: {
-        bowerDirectory: '../vendor/assets/components',
+        bowerDirectory: conf.paths.bower,
         bowerJson: '../bower.json',
         bowerrc: '../.bowerrc'
       }

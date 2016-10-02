@@ -42,7 +42,7 @@ function getApplicationJSStream() {
 function getVendorJSStream() {
   return gulp.src(mainBowerFiles({
       paths: {
-        bowerDirectory: '../vendor/assets/components',
+        bowerDirectory: conf.paths.bower,
         bowerJson: '../bower.json',
         bowerrc: '../.bowerrc'
       },
