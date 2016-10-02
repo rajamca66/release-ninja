@@ -48,6 +48,7 @@ gulp.task('build:production', ['build:revision'], function() {
 gulp.task('files:move', $.shell.task([
   'mkdir -p ../public/scripts ../public/styles ../public/fonts',
   'rm -f ../public/scripts/* ../public/styles/* ../public/fonts/*',
+  'cp dist/rev-manifest.json ../config/asset_manifest.json',
   'rsync -a dist/scripts/* ../public/scripts --exclude application.js',
   'rsync -a dist/styles/* ../public/styles --exclude application.css',
   'rsync -a dist/fonts/* ../public/fonts',

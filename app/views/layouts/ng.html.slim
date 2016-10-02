@@ -3,9 +3,9 @@ html ng-app="CustomerKnow"
   head
     base href="/"
     title Release Ninja
-    = stylesheet_link_tag '/styles/application.css', media: 'all'
+    = stylesheet_link_tag AssetLookupHelper.current.asset_for('styles/application.css'), media: 'all'
   body.app
     javascript:
       window.current_user = #{current_user.to_json.html_safe};
-    script src='/scripts/application.js'
+    script src=AssetLookupHelper.current.asset_for('scripts/application.js')
 = render partial: "layouts/rollbar"
