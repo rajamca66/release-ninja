@@ -21,6 +21,7 @@ gulp.task('scripts', ['markups'], function() {
     .pipe($.concat('application.js'))
     .pipe($.uglify())
     .pipe($.sourcemaps.write())
+    .pipe($.rev())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/scripts')));
 });
 

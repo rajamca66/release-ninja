@@ -34,5 +34,6 @@ var buildStyles = function() {
     .pipe($.concat('application.css'))
     .pipe($.cleanCss())
     .pipe($.sourcemaps.write())
+    .pipe($.rev())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/styles')));
 };
