@@ -1,5 +1,5 @@
 /*
- *= require font-awesome
+ *= require angularjs-toaster/toaster
  */
 $header-bg: #315876;
 $brand-primary: #E87422;
@@ -11,9 +11,9 @@ $container-lg: 960px;
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300);
 
+@import "font-awesome/scss/font-awesome";
 @import "fonts";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
-@import "angularjs-toaster/toaster";
 
 @import "help/main";
 
