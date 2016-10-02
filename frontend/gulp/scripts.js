@@ -18,6 +18,7 @@ gulp.task('scripts', ['markups'], function() {
       'application.js'
     ]))
     .pipe($.concat('application.js'))
+    .pipe($.uglify())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/scripts')));
 });
 
