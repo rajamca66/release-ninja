@@ -2,12 +2,6 @@
   "name": "frontend",
   "version": "0.0.0",
   "dependencies": {
-    "hamljs": "^0.6.2"
-  },
-  "scripts": {
-    "test": "gulp test"
-  },
-  "devDependencies": {
     "del": "~2.0.2",
     "gulp": "~3.9.0",
     "gulp-angular-templatecache": "^1.8.1",
@@ -35,6 +29,9 @@
     "node-neat": "^1.7.2",
     "uglify-save-license": "~0.4.1",
     "wrench": "~1.5.8"
+  },
+  "scripts": {
+    "test": "gulp test"
   },
   "engines": {
     "node": ">=0.10.0"
