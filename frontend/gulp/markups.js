@@ -15,7 +15,6 @@ gulp.task('slim', function() {
   }
 
   return gulp.src(path.join(conf.paths.src, '/javascripts/angular/templates/**/*.slim'))
-    .pipe($.cached('slim'))
     .pipe($.slim({
       options: [
         "code_attr_delims={'(' => ')', '[' => ']'}",
