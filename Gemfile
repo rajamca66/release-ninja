@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # ruby
-ruby '2.3.1'
+ruby '2.1.5'
 
 # rails
 gem 'rails', '4.2.0'
@@ -29,7 +29,7 @@ gem 'omniauth-google-oauth2'
 gem "octokit", "~> 3.0"
 
 # front end
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
