@@ -31,14 +31,13 @@ gulp.task('build', ['scripts', 'styles', 'fonts']);
 gulp.task('build:revision', ['build'], function () {
     // by default, gulp would pick `assets/css` as the base,
     // so we need to set it explicitly:
-    return gulp.src([
-        path.join(conf.paths.dist, "/scripts/application.js"),
-        path.join(conf.paths.dist, "/styles/application.css"),
-      ], { base: 'assets' })
-        .pipe($.rev())
-        .pipe(gulp.dest(conf.paths.dist))  // write rev'd assets to build dir
-        .pipe($.rev.manifest())
-        .pipe(gulp.dest(conf.paths.dist)); // write manifest to build dir
+    return revisionTask();
+});
+
+gulp.task('revision', function () {
+    // by default, gulp would pick `assets/css` as the base,
+    // so we need to set it explicitly:
+    return revisionTask();
 });
 
 gulp.task('build:production', ['build:revision'], function() {
@@ -53,3 +52,14 @@ gulp.task('files:move', $.shell.task([
   'rsync -a dist/styles/* ../public/styles --exclude application.css',
   'rsync -a dist/fonts/* ../public/fonts',
 ]));
+
+function revisionTask() {
+  return gulp.src([
+      path.join(conf.paths.dist, "/scripts/application.js"),
+      path.join(conf.paths.dist, "/styles/application.css"),
+    ], { base: 'assets' })
+      .pipe($.rev())
+      .pipe(gulp.dest(conf.paths.dist))  // write rev'd assets to build dir
+      .pipe($.rev.manifest())
+      .pipe(gulp.dest(conf.paths.dist)); // write manifest to build dir
+}
