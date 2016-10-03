@@ -19,8 +19,3 @@
 .keep
 /spec/fixtures/*.private.yaml
 .idea
-
-public/scripts
-public/fonts
-public/styles
-config/asset_manifest.json
