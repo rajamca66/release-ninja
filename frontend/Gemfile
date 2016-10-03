@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+ruby "2.3.1"
+
+gem "sass", ">= 3.4"
+gem "slim", ">= 3.0.2"
