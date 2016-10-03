@@ -2,7 +2,7 @@
   "name": "frontend-builder",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "cd frontend && npm install && gem install bundler && bundle install && gulp build:production"
+    "heroku-postbuild": "cd frontend && npm install && gem install bundler && bundle install && node ./node_modules/gulp/bin/gulp.js build:production"
   },
   "engines": {
     "node": "4.3.2"
