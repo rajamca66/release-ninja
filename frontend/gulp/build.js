@@ -26,6 +26,14 @@ gulp.task('clean', function () {
   return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
 });
 
+gulp.task('clean:styles', function () {
+  return $.del(path.join(conf.paths.dist, '/styles'));
+});
+
+gulp.task('clean:scripts', function () {
+  return $.del([path.join(conf.paths.dist, '/scripts'), path.join(conf.paths.tmp, '/templateCacheHtml.js')]);
+});
+
 gulp.task('build', ['scripts', 'styles', 'fonts']);
 
 gulp.task('build:revision', ['build'], function () {
