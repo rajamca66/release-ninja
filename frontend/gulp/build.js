@@ -4,6 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 var mainBowerFiles = require('main-bower-files');
+var runSequence = require('run-sequence').use(gulp);
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'del']
@@ -40,8 +41,8 @@ gulp.task('revision', function () {
     return revisionTask();
 });
 
-gulp.task('build:production', ['build:revision'], function() {
-  return gulp.start("files:move");
+gulp.task('build:production', function() {
+  return runSequence('clean', 'build:revision', 'files:move');
 });
 
 gulp.task('files:move', $.shell.task([
