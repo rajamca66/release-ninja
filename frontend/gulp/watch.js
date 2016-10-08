@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var conf = require('./conf');
 var runSequence = require('run-sequence').use(gulp);
 
-gulp.task('watch', ['build:production'], function () {
+gulp.task('watch', ['build:development'], function () {
   gulp.watch([
     path.join(conf.paths.src, '/stylesheets/**/*.scss')
   ], function() {

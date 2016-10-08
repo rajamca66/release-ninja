@@ -18,6 +18,10 @@ exports.paths = {
   bower: '../vendor/assets/components'
 };
 
+exports.opts = {
+  minify: true
+}
+
 /**
  *  Common implementation for an error handler of a Gulp plugin
  */

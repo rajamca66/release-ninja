@@ -40,7 +40,7 @@ function getApplicationJSStream() {
       "angular-app.js"
     ]))
     .pipe($.concat('application.js'))
-    .pipe($.uglify());
+    .pipe($.if(conf.opts.minify, $.uglify()));
 }
 
 function getVendorJSStream() {

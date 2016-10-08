@@ -41,8 +41,13 @@ gulp.task('revision', function () {
     return revisionTask();
 });
 
-gulp.task('build:production', function() {
-  return runSequence('clean', 'build:revision', 'files:move');
+gulp.task('build:development', function(cb) {
+  conf.opts.minify = false;
+  return runSequence('clean', 'build:revision', 'files:move', cb);
+});
+
+gulp.task('build:production', function(cb) {
+  return runSequence('clean', 'build:revision', 'files:move', cb);
 });
 
 gulp.task('files:move', $.shell.task([

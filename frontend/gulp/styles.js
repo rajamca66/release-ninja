@@ -4,7 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 var merge = require('merge-stream');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 
 var $ = require('gulp-load-plugins')();
 
@@ -14,25 +14,36 @@ gulp.task('styles', function() {
   return buildStyles();
 });
 
-var buildStyles = function() {
+function buildStyles() {
+  return merge(
+      getSASSStream(),
+      getSimpleCSSStream()
+    )
+    .pipe($.concat('application.css'))
+    .pipe($.if(conf.opts.minify, $.cleanCss()))
+    .pipe($.sourcemaps.write())
+    .pipe($.size())
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/styles')));
+};
+
+function getSimpleCSSStream() {
+  return gulp.src([
+    path.join(conf.paths.bower, 'angularjs-toaster/toaster.css')
+  ])
+    .pipe($.sourcemaps.init());
+}
+
+function getSASSStream() {
   var sassOptions = {
-    style: 'expanded',
-    loadPath: [
+    outputStyle: 'expanded',
+    includePaths: [
       '../vendor/assets/components'
     ]
   };
 
-  var src = path.join(conf.paths.src, '/stylesheets/application.scss');
-
-  return merge(
-      sass(src, sassOptions),
-      gulp.src([
-        path.join(conf.paths.bower, 'angularjs-toaster/toaster.css')
-      ])
-    )
+  return gulp.src([
+      path.join(conf.paths.src, '/stylesheets/application.scss')
+    ])
     .pipe($.sourcemaps.init())
-    .pipe($.concat('application.css'))
-    .pipe($.cleanCss())
-    .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/styles')));
-};
+    .pipe(sass(sassOptions).on('error', conf.errorHandler("Sass")));
+}
