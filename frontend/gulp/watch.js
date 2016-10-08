@@ -5,17 +5,12 @@ var gulp = require('gulp');
 var conf = require('./conf');
 var runSequence = require('run-sequence').use(gulp);
 
-function isOnlyChange(event) {
-  return event.type === 'changed';
-}
-
-gulp.task('watch', function () {
+gulp.task('watch', ['build:production'], function () {
   gulp.watch([
     path.join(conf.paths.src, '/stylesheets/**/*.scss')
   ], function() {
     runSequence('styles', 'revision', 'files:move');
   });
-
 
   gulp.watch([
     path.join(conf.paths.src, '/**/*.html.slim'),
