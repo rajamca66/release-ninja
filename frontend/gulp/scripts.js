@@ -58,7 +58,7 @@ function getVendorJSStream() {
     }))
     .pipe($.filter("**/*.js"))
     .pipe($.cached('vendorJS'))
-    .pipe($.uglify())
+    .pipe($.if(conf.opts.minify, $.uglify()))
     .pipe($.remember('vendorJS'))
     .pipe($.concat('vendor.js'));
 }
