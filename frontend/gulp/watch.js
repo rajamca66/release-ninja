@@ -13,7 +13,7 @@ gulp.task('watch', function () {
   gulp.watch([
     path.join(conf.paths.src, '/stylesheets/**/*.scss')
   ], function() {
-    runSequence('clean:styles', 'styles', 'revision', 'files:move');
+    runSequence('styles', 'revision', 'files:move');
   });
 
 
@@ -21,6 +21,6 @@ gulp.task('watch', function () {
     path.join(conf.paths.src, '/**/*.html.slim'),
     path.join(conf.paths.src, '/**/*.js')
   ], function() {
-    runSequence('clean:scripts', 'scripts', 'revision', 'files:move')
+    runSequence('scripts', 'revision', 'files:move')
   });
 });
