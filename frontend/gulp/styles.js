@@ -20,7 +20,7 @@ function buildStyles() {
       getSimpleCSSStream()
     )
     .pipe($.concat('application.css'))
-    .pipe($.if(conf.opts.minify, $.cleanCss()))
+    .pipe($.cleanCss())
     .pipe($.sourcemaps.write())
     .pipe($.size())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/styles')));
