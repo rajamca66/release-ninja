@@ -32,17 +32,25 @@ gulp.task('build', ['scripts', 'styles', 'fonts']);
 gulp.task('build:revision', ['build'], function () {
     // by default, gulp would pick `assets/css` as the base,
     // so we need to set it explicitly:
-    return revisionTask();
+    if (conf.opts.watching) {
+      return fakeRevisionTask();
+    } else {
+      return revisionTask();
+    }
 });
 
 gulp.task('revision', function () {
     // by default, gulp would pick `assets/css` as the base,
     // so we need to set it explicitly:
-    return revisionTask();
+    if (conf.opts.watching) {
+      return fakeRevisionTask();
+    } else {
+      return revisionTask();
+    }
 });
 
-gulp.task('build:development', function(cb) {
-  conf.opts.minify = false;
+gulp.task('build:watching', function(cb) {
+  conf.opts.watching = true;
   return runSequence('clean', 'build:revision', 'files:move', cb);
 });
 
@@ -54,10 +62,20 @@ gulp.task('files:move', $.shell.task([
   'mkdir -p ../public/scripts ../public/styles ../public/fonts',
   'rm -f ../public/scripts/* ../public/styles/* ../public/fonts/*',
   'cp dist/rev-manifest.json ../config/asset_manifest.json',
-  'rsync -a dist/scripts/* ../public/scripts --exclude application.js',
-  'rsync -a dist/styles/* ../public/styles --exclude application.css',
+  'rsync -a dist/scripts/* ../public/scripts <%= watching("application.js") %>',
+  'rsync -a dist/styles/* ../public/styles <%= watching("application.css") %>',
   'rsync -a dist/fonts/* ../public/fonts',
-]));
+], {
+  templateData: {
+    watching: function(path) {
+      if (conf.opts.watching) {
+        return '';
+      } else {
+        return '--exclude ' + path;
+      }
+    }
+  }
+}));
 
 function revisionTask() {
   return gulp.src([
@@ -68,4 +86,10 @@ function revisionTask() {
       .pipe(gulp.dest(conf.paths.dist))  // write rev'd assets to build dir
       .pipe($.rev.manifest())
       .pipe(gulp.dest(conf.paths.dist)); // write manifest to build dir
+}
+
+function fakeRevisionTask() {
+  return gulp.src('asset_manifest.static.json')
+    .pipe($.rename("rev-manifest.json"))
+    .pipe(gulp.dest(conf.paths.dist));
 }

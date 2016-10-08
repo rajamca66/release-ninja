@@ -19,7 +19,7 @@ exports.paths = {
 };
 
 exports.opts = {
-  minify: true
+  watching: false
 }
 
 /**

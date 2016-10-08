@@ -39,7 +39,7 @@ function getApplicationJSStream() {
       "angular-app.js"
     ]))
     .pipe($.concat('application.js'))
-    .pipe($.if(conf.opts.minify, $.uglify()));
+    .pipe($.if(!conf.opts.watching, $.uglify()));
 }
 
 function getVendorJSStream() {
@@ -58,5 +58,5 @@ function getVendorJSStream() {
     .pipe($.filter("**/*.js"))
     .pipe($.sourcemaps.init())
     .pipe($.concat('vendor.js'))
-    .pipe($.if(conf.opts.minify, $.uglify()));
+    .pipe($.if(!conf.opts.watching, $.uglify()));
 }
