@@ -2,10 +2,21 @@ class AssetLookupHelper
   AssetNotFound = Class.new(StandardError)
 
   def self.current
-    @current ||= begin
-      json = JSON.parse(File.read(Rails.root.join("config", "asset_manifest.json")))
-      new(json)
+    if Rails.env.development?
+      new(asset_json)
+    else
+      memoize_current
     end
+  end
+
+  def self.memoize_current
+    @current ||= begin
+      new(asset_json)
+    end
+  end
+
+  def self.asset_json
+    JSON.parse(File.read(Rails.root.join("config", "asset_manifest.json")))
   end
 
   attr_reader :manifest
