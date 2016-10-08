@@ -19,7 +19,6 @@ gulp.task('scripts', ['markups'], function() {
       'application.js'
     ]))
     .pipe($.concat('application.js'))
-    .pipe($.uglify())
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/scripts')));
 });
@@ -40,7 +39,8 @@ function getApplicationJSStream() {
       "!angular-app.js",
       "angular-app.js"
     ]))
-    .pipe($.concat('application.js'));
+    .pipe($.concat('application.js'))
+    .pipe($.uglify());
 }
 
 function getVendorJSStream() {
