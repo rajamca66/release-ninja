@@ -57,5 +57,8 @@ function getVendorJSStream() {
       }
     }))
     .pipe($.filter("**/*.js"))
+    .pipe($.cached('vendorJS'))
+    .pipe($.uglify())
+    .pipe($.remember('vendorJS'))
     .pipe($.concat('vendor.js'));
 }
