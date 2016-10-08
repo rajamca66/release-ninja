@@ -15,12 +15,14 @@ gulp.task('slim', function() {
   }
 
   return gulp.src(path.join(conf.paths.src, '/javascripts/angular/templates/**/*.slim'))
+    .pipe($.cached('slim'))
     .pipe($.slim({
       options: [
         "code_attr_delims={'(' => ')', '[' => ']'}",
         "attr_list_delims={'(' => ')', '[' => ']'}"
       ]
     }))
+    .pipe($.remember('slim'))
     .pipe($.rename(renameToHtml))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
       module: 'templates',
