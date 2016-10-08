@@ -4,18 +4,18 @@
     ul.sidebar--menu-main ng-show="ctrl.user"
       li ng-class="{active: $state.includes('projects') }"
         a ui-sref="projects.list" Projects
-      li ng-class="{active: $state.includes('teams') }" 
+      li ng-class="{active: $state.includes('teams') }"
         a ui-sref="teams.invite" Manage Team
     ul.sidebar--secondary-menu ng-if="ctrl.sideMenuItems().length > 0"
       li ng-repeat="item in ctrl.sideMenuItems()"
         a ng-click="item.onClick()" {{ item.title }}
-        
+
   .body--container
     .topbar--container ng-show="ctrl.user"
       .topbar--container--logout
         a href="/users/sign_out" ng-click="$event.stopPropagation()" Logout
         .topbar--container--pendant
-        
+
     .body--container-content ui-view=true
-    
+
 toaster-container
