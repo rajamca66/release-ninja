@@ -13,7 +13,6 @@ gulp.task('scripts', ['markups'], function() {
       getApplicationJSStream(),
       getVendorJSStream()
     )
-    .pipe($.sourcemaps.init())
     .pipe($.order([
       'vendor.js',
       'application.js'
@@ -55,10 +54,9 @@ function getVendorJSStream() {
           "main": "angular-autodisable.min.js"
         }
       }
-    }))
+    }), { base: conf.paths.bower })
     .pipe($.filter("**/*.js"))
-    .pipe($.cached('vendorJS'))
-    .pipe($.if(conf.opts.minify, $.uglify()))
-    .pipe($.remember('vendorJS'))
-    .pipe($.concat('vendor.js'));
+    .pipe($.sourcemaps.init())
+    .pipe($.concat('vendor.js'))
+    .pipe($.if(conf.opts.minify, $.uglify()));
 }
