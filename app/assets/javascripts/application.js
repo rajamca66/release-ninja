@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require_self
 
 $("#help-index .question .title").each(function(i) {
   var title = $(this).text().trim();

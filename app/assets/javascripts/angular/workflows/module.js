@@ -1,8 +1,3 @@
-/*
- = require_self
- = require_tree .
- */
-
 angular.module("workflows", [
   "ui.router",
   "restangular",
