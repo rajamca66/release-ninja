@@ -21,7 +21,7 @@
     "tag": "v0.0.1",
     "commit": "f460bf056155d0a8a21c8d70561fe23fa5d2e401"
   },
-  "_source": "git://github.com/kirstein/angular-autodisable.git",
-  "_target": "*",
+  "_source": "https://github.com/kirstein/angular-autodisable.git",
+  "_target": "0.0.1",
   "_originalSource": "angular-autodisable"
 }
