@@ -67,5 +67,3 @@ group :production do
   gem 'rails_12factor'
   gem 'tunemygc'
 end
-
-gem "therubyracer"
