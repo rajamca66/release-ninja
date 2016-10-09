@@ -2,6 +2,8 @@
   "name": "frontend",
   "version": "0.0.0",
   "dependencies": {
+    "babel": "^6.5.2",
+    "babel-preset-es2015": "^6.16.0",
     "del": "~2.0.2",
     "gulp": "~3.9.0",
     "gulp-angular-templatecache": "^1.8.1",
@@ -45,7 +47,14 @@
     "gulp-livereload": "^3.8.1",
     "jasmine": "^2.5.2",
     "karma": "^1.3.0",
+    "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^2.0.0",
-    "karma-jasmine": "^1.0.2"
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }

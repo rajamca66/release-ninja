@@ -8,6 +8,7 @@
 let conf = require('./gulp/conf');
 let path = require('path');
 let mainBowerFiles = require('main-bower-files');
+let es2015 = require('babel-preset-es2015');
 
 let vendorFiles = mainBowerFiles({
   includeDev: true,
@@ -25,13 +26,32 @@ let vendorFiles = mainBowerFiles({
 
 module.exports = function(config) {
   config.set({
-    browsers: ['Chrome'],
+    preprocessors: {
+      'javascript_tests/**/*.spec.js': ['babel']
+    },
+    browsers: ['PhantomJS'],
     frameworks: ['jasmine'],
     basePath: conf.paths.src,
     files: vendorFiles.concat([
       'javascripts/**/module.js',
       'javascripts/**/*.js',
       'javascript_tests/**/*.spec.js'
-    ])
+    ]),
+    babelPreprocessor: {
+      options: {
+        presets: [es2015],
+        sourceMap: 'inline'
+      },
+      filename: function (file) {
+        return file.originalPath.replace(/\.js$/, '.es5.js');
+      },
+      sourceFileName: function (file) {
+        return file.originalPath;
+      }
+    },
+    phantomjsLauncher: {
+      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+      exitOnResourceError: true
+    }
   });
 };
