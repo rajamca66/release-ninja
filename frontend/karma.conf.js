@@ -27,15 +27,15 @@ let vendorFiles = mainBowerFiles({
 module.exports = function(config) {
   config.set({
     preprocessors: {
-      'javascript_tests/**/*.spec.js': ['babel']
+      'javascripts/**/*.spec.js': ['babel']
     },
     browsers: ['PhantomJS'],
     frameworks: ['jasmine'],
     basePath: conf.paths.src,
     files: vendorFiles.concat([
+      'test_helpers/**/*.js',
       'javascripts/**/module.js',
-      'javascripts/**/*.js',
-      'javascript_tests/**/*.spec.js'
+      'javascripts/**/*.js'
     ]),
     babelPreprocessor: {
       options: {
