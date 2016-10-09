@@ -25,6 +25,7 @@ gulp.task('scripts', ['markups'], function() {
 function getApplicationJSStream() {
   return gulp.src([
       path.join(conf.paths.src, '/javascripts/angular/**/*.js'),
+      "!" + path.join(conf.paths.src, '/javascripts/angular/**/*.spec.js'),
       path.join(conf.paths.tmp, '/templateCacheHtml.js'),
       path.join(conf.paths.src, '/javascripts/angular-app.js')
     ])
