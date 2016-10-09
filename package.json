@@ -4,7 +4,9 @@
   "scripts": {
     "postinstall": "cd frontend && npm install && bundle install",
     "assets:build": "cd frontend && gulp build:production",
-    "assets:watch": "cd frontend && gulp watch"
+    "assets:watch": "cd frontend && gulp watch",
+    "test": "cd frontend && gulp test",
+    "test:watch": "cd frontend && gulp tdd"
   },
   "engines": {
     "node": "4.3.2"
